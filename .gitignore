@@ -65,3 +65,13 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+
+# Ignore IDEA files
+.idea/*
+.idea/**/*
+
+# PostgreSQL
+config/database.yml
+
+# Env
+.env
