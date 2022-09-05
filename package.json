@@ -2,9 +2,11 @@
   "name": "app",
   "private": "true",
   "dependencies": {
+    "@rails/ujs": "^7.0.3-1",
     "autoprefixer": "^10.4.8",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
+    "turbolinks": "^5.2.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
