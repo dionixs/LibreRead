@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: localhost
+  port: 5432
+  username: your_local_pg_user
+  password: your_local_pg_user pass
+
+development:
+  <<: *default
+  database: LibreRead_development
+
+test:
+  <<: *default
+  database: LibreRead_test
+
+production:
+  <<: *default
+  database: LibreRead_production
+  username: LibreRead
+  password: <%= ENV["LIBREREAD_DATABASE_PASSWORD"] %>
