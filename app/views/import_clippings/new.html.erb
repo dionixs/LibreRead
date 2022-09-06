@@ -1,0 +1,8 @@
+<h1 class="text-6xl font-normal leading-normal mt-0 mb-10 text-center">
+  Import Highlights
+</h1>
+
+<%= form_with url: import_clippings_path, multipart: true do |form| %>
+  <%= file_field_tag :file %>
+  <%= form.submit 'Submit!' %>
+<% end %>
