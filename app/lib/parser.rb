@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+RUSSIAN_MONTH_NAMES = {
+  'января' => 'january',
+  'февраля' => 'february',
+  'марта' => 'march',
+  'апреля' => 'april',
+  'мая' => 'may',
+  'июня' => 'june',
+  'июля' => 'july',
+  'августа' => 'august',
+  'сентября' => 'september',
+  'октября' => 'october',
+  'ноября' => 'november',
+  'декабря' => 'december'
+}
+
+# todo
 class Parser
   attr_reader :notes
 
@@ -7,20 +23,23 @@ class Parser
     @file = File.read(file_name)
     @raw_notes = to_raw_notes(@file)
     @units = to_units(@raw_notes)
-    @titles = @units.map(&statement_title).uniq
     @notes = extract_notes
   end
 
-  def extract_notes(notes = create_titles)
-    @units.each_with_object(Hash.new(0)) do |unit, note|
+  def extract_notes(notes = [])
+    @units.each do |unit|
+      note = {}
+      # Получаем имя автора книги
+      note[:author] = get_author(unit)
+      # Получаем название книги
+      note[:title] = get_title(unit)
       # Получаем место выделенного отрывка
       note[:place] = get_place(unit)
-      # Получаем время добавления выделенного отрывка
-      note[:datetime] = get_datetime(unit)
+      # Получаем время добавления заметки
+      note[:time] = get_time(unit)
       # Получаем заметку
       note[:note] = get_note(unit)
-
-      notes[get_title(unit)] << note
+      notes << note
     end
     notes
   end
@@ -34,52 +53,55 @@ class Parser
   end
 
   # Метод to_units возращает массив в котором:
-  # Первый элемент (строка) содержит название книги.
+  # Первый элемент (строка) содержит название книги, вместе с автором.
   # А второй элемент (строка) содержит саму заметку и данные о ней.
   def to_units(array)
     array.map(&statement_unit)
   end
 
-  # Метод create_titles возвращает хэш вида:
-  # {"Название книги"=>[], "Название книги"=>[]}
-  def create_titles
-    @titles.flat_map { |t| [t, []] }
-           .each_slice(2)
-           .to_a.to_h
+  def get_title(array)
+    array[0].split(/\(.*?\)/)[0].strip
   end
 
-  # Метод get_title возвращает название книги (вместе с автором)
-  def get_title(array)
-    array[0].strip
+  def get_author(array)
+    array[0].strip.scan(/\(([^()]*)\)/)[-1].join
   end
 
   # Метод get_place возвращает место выделенного отрывка
   def get_place(array)
-    split_unit(array)[0].strip
+    split_details(array)[0][/\d+.\d+/]
+      .split('–')[0]
   end
 
-  # Метод get_datetime возвращает время добавления выделенного отрывка
-  def get_datetime(array)
-    split_unit(array)[1]
-      .split("\r\n\r\n")[0].strip
+  # todo
+  # Метод get_time возвращает время добавления заметки
+  def get_time(array)
+    array = split_details(array)[0].split('|')[-1]
+                 .split(',')[1].split('.')
+    date = date(array)
+    time = array[-1].split[-1].split(':')
+    Time.new(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])
   end
 
   # Метод get_note возвращает заметку
   def get_note(array)
-    split_unit(array)[1]
-      .split("\r\n\r\n")[1].strip
+    split_details(array)[-1].strip
   end
 
   def statement_unit
     proc { |item| item.split("\r\n–") }
   end
 
-  def statement_title
-    proc { |item| get_title(item) }
+  def split_details(array)
+    array[1].split("\r\n\r\n")
   end
 
-  # Метод для разбивки массива на составляющие
-  def split_unit(array)
-    array[1].split('|')
+  # todo
+  def date(array)
+    date = array[0].split[0..-2]
+    month = RUSSIAN_MONTH_NAMES[date[1]].capitalize
+    date[1] = Date::MONTHNAMES.index(month)
+    date = date.reverse
+    Date._parse("#{date[0]}-#{date[1]}-#{date[2]}")
   end
 end
