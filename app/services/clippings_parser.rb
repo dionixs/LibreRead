@@ -16,8 +16,8 @@ RUSSIAN_MONTH_NAMES = {
 }
 
 # todo
-class Parser
-  attr_reader :notes
+class ClippingsParser
+  attr_reader :notes, :raw_notes
 
   def initialize(data)
     @raw_notes = to_raw_notes(data)
@@ -26,6 +26,7 @@ class Parser
   end
 
   def extract_notes(notes = [])
+    return nil if @units.nil?
     @units.each do |unit|
       note = {}
       # Получаем имя автора книги
@@ -45,17 +46,22 @@ class Parser
 
   private
 
+  # todo
   # Метод to_raw_notes разбивает строку
   # и возвращает массив необработанных заметок
   def to_raw_notes(string)
-    string.strip.split('==========')
+    if string.split.include?('==========')
+      string.strip.split('==========')
+    else
+      nil
+    end
   end
 
   # Метод to_units возращает массив в котором:
   # Первый элемент (строка) содержит название книги, вместе с автором.
   # А второй элемент (строка) содержит саму заметку и данные о ней.
   def to_units(array)
-    array.map(&statement_unit)
+    array.map(&statement_unit) unless array.nil?
   end
 
   def get_title(array)
@@ -63,20 +69,26 @@ class Parser
   end
 
   def get_author(array)
-    array[0].strip.scan(/\(([^()]*)\)/)[-1].join
+    author = array[0].strip.scan(/\(([^()]*)\)/)[-1]
+    author.nil? ? nil : author.join
   end
 
   # Метод get_place возвращает место выделенного отрывка
   def get_place(array)
-    split_details(array)[0][/\d+.\d+/]
-      .split('–')[0]
+    if split_details(array).nil?
+      nil
+    else
+      split_details(array)[0][/\d+.\d+/]
+        .split('–')[0]
+    end
   end
 
   # todo
   # Метод get_time возвращает время добавления заметки
   def get_time(array)
+    return nil if split_details(array).nil?
     array = split_details(array)[0].split('|')[-1]
-                 .split(',')[1].split('.')
+              .split(',')[1].split('.')
     date = date(array)
     time = array[-1].split[-1].split(':')
     Time.new(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])
@@ -84,7 +96,11 @@ class Parser
 
   # Метод get_note возвращает заметку
   def get_note(array)
-    split_details(array)[-1].strip
+    if split_details(array).nil?
+      nil
+    else
+      split_details(array)[-1].strip
+    end
   end
 
   def statement_unit
@@ -92,7 +108,7 @@ class Parser
   end
 
   def split_details(array)
-    array[1].split("\r\n\r\n")
+    array[1].nil? ? nil : array[1].split("\r\n\r\n")
   end
 
   # todo
