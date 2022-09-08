@@ -19,9 +19,8 @@ RUSSIAN_MONTH_NAMES = {
 class Parser
   attr_reader :notes
 
-  def initialize(file_name)
-    @file = File.read(file_name)
-    @raw_notes = to_raw_notes(@file)
+  def initialize(data)
+    @raw_notes = to_raw_notes(data)
     @units = to_units(@raw_notes)
     @notes = extract_notes
   end
