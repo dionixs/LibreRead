@@ -36,9 +36,9 @@ class ClippingsParser
       # Получаем место выделенного отрывка
       note[:place] = get_place(unit)
       # Получаем время добавления заметки
-      note[:time] = get_time(unit)
+      note[:created_kindle_at] = get_time(unit)
       # Получаем заметку
-      note[:note] = get_note(unit)
+      note[:clipping] = get_note(unit)
       notes << note
     end
     notes
