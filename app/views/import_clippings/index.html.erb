@@ -1,0 +1,9 @@
+<tbody>
+<% @imports.each do |import| %>
+  <tr>
+    <td><%= import.filename %></td>
+    <td><%= link_to "Download", "#{import_clippings_path}/#{import.id}", data: {turbolinks: false} %></td>
+    <td><%= button_to "Delete", "#{import_clippings_path}/#{import.id}", method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{import.filename}?" %></td>
+  </tr>
+<% end %>
+</tbody>

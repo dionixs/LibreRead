@@ -1,0 +1,14 @@
+<h1 class="text-6xl font-normal leading-normal mt-0 mb-10 text-center">
+  Import Highlights
+</h1>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<%= form_with url: import_clippings_url, multipart: true do |form| %>
+  <%= file_field_tag :text_file %>
+  <%= form.submit 'Submit!' %>
+<% end %>
