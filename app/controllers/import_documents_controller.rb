@@ -1,7 +1,11 @@
 class ImportClippingsController < ApplicationController
+  def index
+    
+  end
+
   def new; end
 
-  #todo
+  # todo
   def create
     @filename = params[:file]
 
@@ -15,5 +19,8 @@ class ImportClippingsController < ApplicationController
     end
 
     render plain: @notes
+  end
+
+  def destroy
   end
 end
