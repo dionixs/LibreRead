@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/ujs": "^7.0.3-1",
     "autoprefixer": "^10.4.8",
+    "flowbite": "^1.5.3",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "turbolinks": "^5.2.0",
