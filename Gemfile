@@ -12,6 +12,7 @@ gem 'sprockets-rails',    '3.4.2'
 
 group :development, :test do
   gem 'debug', '1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'rubocop', '1.36.0'
 end
 
 group :development do
