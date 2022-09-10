@@ -12,8 +12,9 @@
 </head>
 
 <body>
-  <%= render 'shared/header' %>
-  <%= yield %>
-  <%= render 'shared/footer' %>
+<%= render 'shared/header' %>
+<%= render 'shared/error_messages' %>
+<%= yield %>
+<%= render 'shared/footer' %>
 </body>
 </html>
