@@ -5,3 +5,5 @@ import 'flowbite';
 
 Rails.start()
 Turbolinks.start()
+
+require("./controllers/application");
