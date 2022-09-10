@@ -13,7 +13,7 @@ RUSSIAN_MONTH_NAMES = {
   'октября' => 'october',
   'ноября' => 'november',
   'декабря' => 'december'
-}
+}.freeze
 
 # todo
 class ClippingsParser
@@ -27,6 +27,7 @@ class ClippingsParser
 
   def extract_notes(notes = [])
     return nil if @units.nil?
+
     @units.each do |unit|
       note = {}
       # Получаем имя автора книги
@@ -50,18 +51,14 @@ class ClippingsParser
   # Метод to_raw_notes разбивает строку
   # и возвращает массив необработанных заметок
   def to_raw_notes(string)
-    if string.split.include?('==========')
-      string.strip.split('==========')
-    else
-      nil
-    end
+    string.strip.split('==========') if string.split.include?('==========')
   end
 
   # Метод to_units возращает массив в котором:
   # Первый элемент (строка) содержит название книги, вместе с автором.
   # А второй элемент (строка) содержит саму заметку и данные о ней.
   def to_units(array)
-    array.map(&statement_unit) unless array.nil?
+    array&.map(&statement_unit)
   end
 
   def get_title(array)
@@ -87,8 +84,9 @@ class ClippingsParser
   # Метод get_time возвращает время добавления заметки
   def get_time(array)
     return nil if split_details(array).nil?
+
     array = split_details(array)[0].split('|')[-1]
-              .split(',')[1].split('.')
+                                   .split(',')[1].split('.')
     date = date(array)
     time = array[-1].split[-1].split(':')
     Time.new(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])

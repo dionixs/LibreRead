@@ -5,8 +5,6 @@ class Document < ApplicationRecord
   validate :check_file_type
 
   def check_file_type
-    if !mime_type.in?(%w(text/plain))
-      errors.add(:document, 'Must be a Txt file')
-    end
+    errors.add(:document, 'Must be a Txt file') unless mime_type.in?(%w[text/plain])
   end
 end
