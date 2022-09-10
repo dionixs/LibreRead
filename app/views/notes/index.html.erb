@@ -1,2 +1,26 @@
-<h1>Notes#index</h1>
-<p>Find me in app/views/notes/index.html.erb</p>
+<% @notes.each do |note| %>
+  <div class="mx-80 mt-10">
+    <div class="p-4 w-full  bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <h5 class="text-lg font-bold dark:text-white text-left mb-3">
+        <span class="text-xl"><%= note.title %></span>
+        <span class="text-sm text-gray-600 font-medium">by
+          <% if note.author.size > 50 %>
+          <%= note.author[0..49] + '...'  %>
+        <% else %>
+          <%= note.author %>
+        <% end %>
+      </span>
+      </h5>
+      <p class="mb-3 font-light text-gray-500 dark:text-gray-400">
+        <%= note.clipping %>
+      </p>
+      <span class="text-sm text-gray-600">(Location <%= note.place %>)</span>
+      <br>
+      <span>
+      <time class="text-xs text-gray-600" datetime="<%= note.created_kindle_at %>">
+        Created: <%= local_time(note.created_kindle_at) %>
+      </time>
+    </span>
+    </div>
+  </div>
+<% end %>
