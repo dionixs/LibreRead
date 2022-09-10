@@ -23,29 +23,27 @@ class ImportClippingsController < ApplicationController
       @import.data = File.read(@text_file.to_io)
       @notes = ClippingsParser.new(@import.data).notes
     elsif @text_file.nil?
-      flash[:notice] = 'You have not selected a file'
+      flash[:alert] = 'You have not selected a file'
     else
-      flash[:notice] = 'Must be a txt file'
+      flash[:alert] = 'Must be a txt file'
     end
 
     if @notes.nil?
-      flash[:notice] =  "Not a Kindle clipping file!"
-      # todo
-      render "new" and return
+      flash[:alert] = 'Not a Kindle clipping file!'
+      render 'new' and return
     end
 
     if @import.save
-      # todo
-      @notes.each { | note | Note.new(note).save }
-      redirect_to imports_path
+      @notes.each { |note| Note.new(note).save }
+      redirect_to imports_path, notice: 'Import Complete!'
     else
-      render "new"
+      render 'new'
     end
   end
 
   def destroy
     @import = Document.find(params[:id])
     @import.destroy
-    redirect_to imports_path, notice:  "Successfully deleted."
+    redirect_to imports_path, notice: 'Successfully deleted.'
   end
 end

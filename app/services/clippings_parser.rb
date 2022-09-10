@@ -99,7 +99,7 @@ class ClippingsParser
     if split_details(array).nil?
       nil
     else
-      split_details(array)[-1].strip
+      split_details(array)[-1]
     end
   end
 
