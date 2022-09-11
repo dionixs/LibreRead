@@ -1,11 +1,11 @@
 class NotesController < ApplicationController
+  before_action :find_note, only: %i[show edit update destroy]
+
   def index
     @notes = Note.all
   end
 
-  def show
-    @note = Note.find_by(id: params[:id])
-  end
+  def show; end
 
   def new
     @note = Note.new
@@ -20,12 +20,9 @@ class NotesController < ApplicationController
     end
   end
 
-  def edit
-    @note = Note.find_by(id: params[:id])
-  end
+  def edit; end
 
   def update
-    @note = Note.find_by(id: params[:id])
     if @note.update(notes_params)
       redirect_to notes_path
     else
@@ -34,15 +31,18 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note = Note.find_by(id: params[:id])
     @note.destroy
     redirect_to notes_path
   end
 
   private
 
+  # todo
   def notes_params
-    # todo
-    params.require(:note).permit(:title, :data)
+    params.require(:note).permit(:title, :clipping)
+  end
+
+  def find_note
+    @note = Note.find(id: params[:id])
   end
 end

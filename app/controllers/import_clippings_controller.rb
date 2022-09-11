@@ -1,26 +1,30 @@
 class ImportClippingsController < ApplicationController
+  before_action :set_import, only: %i[new create]
+  before_action :find_import, only: %i[show destroy]
+
   def index
     @imports = Document.all
   end
 
   def show
-    @import  = Document.find(params[:id])
-    send_data @import.data, filename: @import.filename, disposition: 'download'
+    send_data(
+      @import.data,
+      filename: @import.filename,
+      disposition: 'download'
+    )
   end
 
-  def new
-    @import = Document.new
-  end
+  def new; end
 
   # todo
   def create
-    @import = Document.new
     @text_file = params[:text_file]
-
     if !@text_file.nil? && File.extname(@text_file.to_io) == '.txt'
-      @import.filename = @text_file.original_filename
-      @import.mime_type = @text_file.content_type
-      @import.data = File.read(@text_file.to_io)
+      @import = Document.new(
+        filename: @text_file.original_filename,
+        mime_type: @text_file.content_type,
+        data: File.read(@text_file.to_io)
+      )
       @notes = ClippingsParser.new(@import.data).notes
     elsif @text_file.nil?
       flash[:alert] = 'You have not selected a file'
@@ -42,8 +46,18 @@ class ImportClippingsController < ApplicationController
   end
 
   def destroy
-    @import = Document.find(params[:id])
+    # TODO: добавить удаление заметок из бд
     @import.destroy
     redirect_to imports_path, notice: 'Successfully deleted.'
+  end
+
+  private
+
+  def set_import
+    @import = Document.new
+  end
+
+  def find_import
+    @import = Document.find(params[:id])
   end
 end
