@@ -8,12 +8,8 @@
   <h2 class="mb-2 text-3xl font-bold text-gray-500 dark:text-white text-center">
     Import list is empty!
   </h2>
-  <div class="text-center mt-6">
-    <%= link_to 'Import Highlights', import_clippings_url,
-                class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded' %>
-  </div>
 <% else %>
-  <div class="overflow-x-auto relative shadow-md sm:rounded-lg mx-auto md:max-w-4xl">
+  <div class="overflow-x-auto relative shadow-md sm:rounded-lg mx-auto md:max-w-4xl mb-10">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
@@ -21,7 +17,7 @@
           File name
         </th>
         <th scope="col" class="py-3 px-6">
-          Date of download
+          Date of import
         </th>
         <th scope="col" class="py-3 px-6">
           <span class="sr-only">Download</span>
@@ -44,7 +40,7 @@
             <%= link_to "Download", "#{import_clippings_path}/#{file.id}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
           </td>
           <td class="py-4 px-6 text-right">
-            <%= link_to "Delete", "#{import_clippings_path}/#{file.id}", method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{file.filename}?", class: 'font-medium text-red-600 dark:text-red-500 hover:underline' %>
+            <%= link_to "Delete", "#{import_clippings_path}/#{file.id}", data: { method: :delete, confirm: "Are you sure that you wish to delete #{file.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline' %>
           </td>
         </tr>
       <% end %>
@@ -52,5 +48,10 @@
     </table>
   </div>
 <% end %>
+
+<div class="text-center mt-6">
+  <%= link_to 'New Import', import_clippings_url,
+              class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded' %>
+</div>
 
 
