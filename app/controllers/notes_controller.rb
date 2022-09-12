@@ -1,48 +1,43 @@
 class NotesController < ApplicationController
-  before_action :find_note, only: %i[show edit update destroy]
+  before_action :find_note!, only: %i[edit update destroy show]
+  before_action :find_import!, only: %i[edit update destroy]
 
   def index
-    @notes = Note.all
+    @notes = Note.where(import_id: params[:import_id])
   end
 
   def show; end
 
-  def new
-    @note = Note.new
-  end
-
-  def create
-    @note = Note.new(notes_params)
-    if @note.save
-      redirect_to notes_path
-    else
-      render :new
-    end
-  end
-
   def edit; end
 
   def update
+    @note = @import.notes.find(params[:id])
     if @note.update(notes_params)
-      redirect_to notes_path
+      flash[:notice] = 'Successfully updated!'
+      redirect_to import_notes_path
     else
       render :edit
     end
   end
 
   def destroy
+    @note = @import.notes.find(params[:id])
     @note.destroy
-    redirect_to notes_path
+    flash[:notice] = 'Successfully deleted.'
+    redirect_to import_notes_path(params[:import_id])
   end
 
   private
 
-  # todo
   def notes_params
-    params.require(:note).permit(:title, :clipping)
+    params.require(:note).permit(:clipping)
   end
 
-  def find_note
-    @note = Note.find(id: params[:id])
+  def find_note!
+    @note = Note.find_by(id: params[:id])
+  end
+
+  def find_import!
+    @import = Import.find(params[:import_id])
   end
 end
