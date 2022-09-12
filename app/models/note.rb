@@ -1,4 +1,6 @@
 class Note < ApplicationRecord
+  belongs_to :import
+
   validates :title, presence: true
   validates :author, presence: true
   validates :place, presence: true

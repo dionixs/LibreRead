@@ -31,16 +31,16 @@
       <% @imports.each do |file| %>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%= file.filename %>
+            <%= link_to file.filename, import_notes_url(file.id), class: 'cursor-pointer hover:underline text-blue-600' %>
           </th>
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             <%= local_time(file.created_at) %>
           </th>
           <td class="py-4 px-6 text-right">
-            <%= link_to "Download", "#{import_clippings_path}/#{file.id}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
+            <%= link_to "Download", "#{import_path(file.id)}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline' %>
           </td>
           <td class="py-4 px-6 text-right">
-            <%= link_to "Delete", "#{import_clippings_path}/#{file.id}", data: { method: :delete, confirm: "Are you sure that you wish to delete #{file.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline' %>
+            <%= link_to "Delete", "#{import_path(file.id)}", data: { method: :delete, confirm: "Are you sure that you wish to delete #{file.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline' %>
           </td>
         </tr>
       <% end %>
@@ -50,7 +50,7 @@
 <% end %>
 
 <div class="text-center mt-6">
-  <%= link_to 'New Import', import_clippings_url,
+  <%= link_to 'New Import', new_import_path,
               class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded' %>
 </div>
 

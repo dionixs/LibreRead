@@ -1,9 +1,9 @@
-class ImportClippingsController < ApplicationController
+class ImportsController < ApplicationController
   before_action :set_import, only: %i[new create]
-  before_action :find_import, only: %i[show destroy]
+  before_action :find_import!, only: %i[show destroy]
 
   def index
-    @imports = Document.all
+    @imports = Import.all
   end
 
   def show
@@ -18,9 +18,9 @@ class ImportClippingsController < ApplicationController
 
   # todo
   def create
-    @text_file = params[:text_file]
+    @text_file = params[:import][:text_file]
     if !@text_file.nil? && File.extname(@text_file.to_io) == '.txt'
-      @import = Document.new(
+      @import = Import.new(
         filename: @text_file.original_filename,
         mime_type: @text_file.content_type,
         data: File.read(@text_file.to_io)
@@ -38,7 +38,7 @@ class ImportClippingsController < ApplicationController
     end
 
     if @import.save
-      @notes.each { |note| Note.new(note).save }
+      @notes.each { |note| @import.notes.build(note).save }
       redirect_to imports_path, notice: 'Import Complete!'
     else
       render 'new'
@@ -46,7 +46,6 @@ class ImportClippingsController < ApplicationController
   end
 
   def destroy
-    # TODO: добавить удаление заметок из бд
     @import.destroy
     redirect_to imports_path, notice: 'Successfully deleted.'
   end
@@ -54,10 +53,10 @@ class ImportClippingsController < ApplicationController
   private
 
   def set_import
-    @import = Document.new
+    @import = Import.new
   end
 
-  def find_import
-    @import = Document.find(params[:id])
+  def find_import!
+    @import = Import.find(params[:id])
   end
 end

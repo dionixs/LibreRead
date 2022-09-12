@@ -1,0 +1,20 @@
+  <div class="mt-10 max-w-md mx-auto md:max-w-4xl">
+    <div class="p-4 w-full bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <h5 class="text-lg font-bold dark:text-white text-left mb-3">
+        <span class="text-xl"><%= @note.title %></span>
+        <span class="text-sm text-gray-600 font-medium">by
+          <%= short_name(@note.author) %>
+        </span>
+      </h5>
+      <p class="mb-3 font-light text-gray-500 dark:text-gray-400">
+        <%= @note.clipping %>
+      </p>
+      <span class="text-sm text-gray-600">(Location <%= @note.place %>)</span>
+      <br>
+      <span>
+      <time class="text-xs text-gray-600" datetime="<%= @note.created_kindle_at %>">
+        Created: <%= local_time(@note.created_kindle_at) %>
+      </time>
+    </span>
+    </div>
+  </div>
