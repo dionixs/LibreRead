@@ -19,7 +19,7 @@
           folder in your Kindle USB drive and select the ‘My Clippings.txt’ file.
         </p>
       </div>
-      <%= form.file_field :text_file, multiple: false, class: "hidden", onchange: 'this.form.submit();' %>
+      <%= form.file_field :text_file, multiple: false, required: true, class: "hidden", onchange: 'this.form.submit();' %>
     <% end %>
   </div>
 <% end %>

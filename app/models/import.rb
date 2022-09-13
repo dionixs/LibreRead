@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Import < ApplicationRecord
   has_many :notes, dependent: :destroy
 

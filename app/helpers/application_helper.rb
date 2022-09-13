@@ -5,7 +5,7 @@ module ApplicationHelper
     if page_title.empty?
       base_title
     else
-      page_title.to_s
+      "#{base_title} | #{page_title}"
     end
   end
 
