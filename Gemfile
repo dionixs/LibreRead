@@ -5,14 +5,16 @@ gem 'bootsnap',           '1.12.0', require: false
 gem 'cssbundling-rails',  '1.1.1'
 gem 'jbuilder',           '2.11.5'
 gem 'jsbundling-rails',   '1.0.3'
+gem 'kaminari',           '1.2.2'
 gem 'pg',                 '1.4.3'
 gem 'puma',               '5.6.5'
 gem 'rails',              '7.0.3'
 gem 'sprockets-rails',    '3.4.2'
 
 group :development, :test do
-  gem 'debug', '1.5.0', platforms: %i[mri mingw x64_mingw]
-  gem 'rubocop', '1.36.0'
+  gem 'debug',    '1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'faker',    '2.23.0'
+  gem 'rubocop',  '1.36.0'
 end
 
 group :development do
