@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
+  include ActionView::RecordIdentifier
+
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
 
@@ -16,7 +18,8 @@ class NotesController < ApplicationController
   def update
     if @note.update(notes_params)
       flash[:notice] = 'Successfully updated!'
-      redirect_to import_notes_path(anchor: @note.id)
+      # todo
+      redirect_to import_notes_path(anchor: dom_id(@note))
     else
       render :edit
     end
