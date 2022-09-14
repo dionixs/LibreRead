@@ -10,28 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_11_134036) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_141146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "imports", force: :cascade do |t|
-    t.string "filename"
-    t.string "mime_type"
-    t.text "data"
+    t.string "filename", null: false
+    t.string "mime_type", null: false
+    t.text "data", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "notes", force: :cascade do |t|
-    t.string "title"
-    t.string "author"
-    t.integer "place"
-    t.datetime "created_kindle_at"
-    t.text "clipping"
+    t.string "title", null: false
+    t.string "author", null: false
+    t.integer "place", null: false
+    t.datetime "created_kindle_at", null: false
+    t.text "clipping", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "import_id", null: false
     t.index ["import_id"], name: "index_notes_on_import_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "name"
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "notes", "imports"
