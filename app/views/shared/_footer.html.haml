@@ -1,0 +1,70 @@
+%footer.bg-white
+  %h2#footerHeading.sr-only Footer
+  .max-w-7xl.mx-auto.py-12.px-4.sm:px-6.lg:py-16.lg:px-8
+    .xl:grid.xl:grid-cols-3.xl:gap-8
+      .space-y-8.xl:col-span-1
+        = image_tag 'logo.svg', class: 'h-10', alt: "LibreRead Logo"
+        %p.text-gray-500.text-base
+          The easy way to export your Kindle
+          notes and highlights to the integrations you love.
+        .flex.space-x-6
+      .mt-12.grid.grid-cols-2.gap-8.xl:mt-0.xl:col-span-2
+        .md:grid.md:grid-cols-2.md:gap-8
+          %div
+            %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase Kindle Links
+            %ul.mt-4.space-y-4
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://read.amazon.com/kp/notebook/", :rel => "noopener", :target => "_blank"}
+                  Amazon Highlights Page
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://read.amazon.com/", :rel => "noopener", :target => "_blank"}
+                  Amazon Online Reader
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://www.amazon.com/gp/digital/fiona/manage#All", :rel => "noopener", :target => "_blank"}
+                  Amazon Kindle Settings
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://www.amazon.com/b?ie=UTF8&node=16571048011", :rel => "noopener", :target => "_blank"}
+                  Amazon Kindle Apps
+          .mt-12.md:mt-0
+            %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase
+              Something
+            %ul.mt-4.space-y-4
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#", :target => "_blank"}
+                  Something
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
+                  Something
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
+                  Something
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#", :target => "_blank"}
+                  Something
+        .md:grid.md:grid-cols-2.md:gap-8
+          %div
+            %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase
+              Something
+            %ul.mt-4.space-y-4
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#", :rel => "noopener", :target => "_blank"}
+                  Something
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
+                  Something
+          .mt-12.md:mt-0
+            %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase
+              Legal
+            %ul.mt-4.space-y-4
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
+                  Cookie Policy
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
+                  Privacy
+              %li
+                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
+                  Terms
+    .mt-12.border-t.border-gray-200.pt-8
+      %p.text-base.text-gray-400.xl:text-center
+        © #{Time.now.year} LibreRead. All rights reserved.

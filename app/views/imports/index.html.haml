@@ -1,0 +1,24 @@
+- provide(:title, 'Imports')
+%h1.mt-10.mb-6.text-center.text-4xl.font-extrabold.tracking-tight.leading-none.text-gray-900.md:text-5xl.lg:text-6xl.dark:text-white
+  Imports
+- if @imports.empty?
+  %h2.mb-2.text-3xl.font-bold.text-gray-500.dark:text-white.text-center
+    Import list is empty!
+- else
+  .overflow-x-auto.relative.shadow-md.sm:rounded-lg.mx-auto.md:max-w-4xl.mb-10
+    %table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
+      %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
+        %tr
+          %th.py-3.px-6{:scope => "col"}
+            File name
+          %th.py-3.px-6{:scope => "col"}
+            Date of import
+          %th.py-3.px-6{:scope => "col"}
+            %span.sr-only Download
+          %th.py-3.px-6{:scope => "col"}
+            %span.sr-only Delete
+      %tbody
+        = render @imports
+.text-center.mt-6
+  = link_to 'New Import', new_import_path,                                        |
+    class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded' |

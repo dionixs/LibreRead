@@ -1,0 +1,45 @@
+%body
+  %header.sticky.top-0.z-50
+    %nav.pt-6.bg-white.border-gray-200.dark:bg-gray-900.dark:border-gray-700
+      .container.flex.flex-wrap.justify-around.items-center.mx-auto
+        = link_to root_url, class: 'flex items-center'  do
+          = image_tag 'logo.svg', class: 'mr-3 h-6 sm:h-10', alt: "LibreRead Logo"
+          %span.self-center.text-xl.font-semibold.whitespace-nowrap.dark:text-white
+            LibreRead
+        %button.inline-flex.justify-center.items-center.ml-3.text-gray-400.rounded-lg.md:hidden.hover:text-gray-900.focus:outline-none.focus:ring-2.focus:ring-blue-300.dark:text-gray-400.dark:hover:text-white.dark:focus:ring-gray-500{"aria-controls" => "mobile-menu-2", "aria-expanded" => "false", "data-collapse-toggle" => "mobile-menu", :type => "button"}
+          %span.sr-only Open main menu
+          %svg.w-6.h-6{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
+            %path{"clip-rule" => "evenodd", :d => "M3 5a1 1 0 011-1h12a1 1 0\n        110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1\n        1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z", "fill-rule" => "evenodd"}
+        #mobile-menu.hidden.w-full.md:block.md:w-auto
+          %ul.flex.flex-col.p-4.mt-4.bg-gray-50.rounded-lg.border.border-gray-100.md:flex-row.md:space-x-8.md:mt-0.md:text-sm.md:font-medium.md:border-0.md:bg-white.dark:bg-gray-800.md:dark:bg-gray-900.dark:border-gray-700
+            %li
+              = link_to 'Home', root_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
+            %li
+              = link_to 'Dashboard', '#', class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'                  |
+            %li
+              = link_to 'Import Highlights', new_import_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'                                    |
+            %li
+              = link_to 'Something', '#', class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
+            - if user_signed_in?
+              %li
+                %button#dropdownNavbarLink.flex.justify-between.items-center.py-2.pr-4.pl-3.w-full.font-medium.text-gray-700.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-700.md:p-0.md:w-auto.dark:text-gray-400.dark:hover:text-white.dark:focus:text-white.dark:border-gray-700.dark:hover:bg-gray-700.md:dark:hover:bg-transparent.text-lg{"data-dropdown-toggle" => "dropdownNavbar"}
+                  My Profile
+                  %svg.ml-1.w-5.h-5{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
+                    %path{"clip-rule" => "evenodd", :d => "M5.293 7.293a1 1 0\n                011.414 0L10 10.586l3.293-3.293a1 1 0 111.414\n                1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z", "fill-rule" => "evenodd"}
+                / Dropdown menu
+                #dropdownNavbar.hidden.z-10.w-44.font-normal.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600{"data-popper-escaped" => "", "data-popper-placement" => "bottom", "data-popper-reference-hidden" => "", :style => "position: absolute; inset: 0px auto auto 0px; margin: 0px;\n                     transform: translate3d(0px, 470.4px, 0px);"}
+                  %ul.py-1.text-sm.text-gray-700.dark:text-gray-400{"aria-labelledby" => "dropdownLargeButton"}
+                    %li
+                      %a.block.py-3.px-4.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white.text-lg{:href => "#"} Something
+                    %li
+                      %a.block.py-3.px-4.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white.text-lg{:href => "#"} Something
+                    %li
+                      %a.block.py-3.px-4.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white.text-lg{:href => "#"} Something
+                  .py-1
+                    %a.block.py-3.px-4.text-sm.text-gray-700.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-400.dark:hover:text-white.text-lg{:href => "#"} Sign out
+            - else
+              %li
+                %a.block.py-3.pr-4.pl-3.text-gray-700.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-700.md:p-0.dark:text-gray-400.md:dark:hover:text-white.dark:hover:bg-gray-700.dark:hover:text-white.md:dark:hover:bg-transparent.text-lg{:href => "#"}
+                  Log in
+              %li
+                = link_to 'Sign up', new_user_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
