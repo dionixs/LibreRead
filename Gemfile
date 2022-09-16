@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'bcrypt',             '3.1.18'
 gem 'bootsnap',           '1.12.0', require: false
 gem 'cssbundling-rails',  '1.1.1'
-gem "haml-rails",         '2.0.1'
+gem 'haml-rails',         '2.0.1'
 gem 'jbuilder',           '2.11.5'
 gem 'jsbundling-rails',   '1.0.3'
 gem 'kaminari',           '1.2.2'
@@ -12,6 +12,7 @@ gem 'pg',                 '1.4.3'
 gem 'puma',               '5.6.5'
 gem 'rails',              '7.0.3'
 gem 'sprockets-rails',    '3.4.2'
+gem 'rails-i18n',         '7.0.5'
 
 group :development, :test do
   gem 'debug',    '1.5.0', platforms: %i[mri mingw x64_mingw]

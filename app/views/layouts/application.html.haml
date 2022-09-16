@@ -7,10 +7,11 @@
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "application", media: 'all'
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   %body
     = render 'shared/header'
     = render 'shared/messages'
-    = yield
+    %main.relative.min-h-full
+      = yield
     = render 'shared/footer'
