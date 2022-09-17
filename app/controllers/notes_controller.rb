@@ -7,8 +7,8 @@ class NotesController < ApplicationController
   before_action :find_note!, only: %i[show edit update destroy]
 
   def index
-    @notes = @import.notes.order(created_kindle_at: :asc)
-                    .page params[:page]
+    @pagy, @notes = pagy @import.notes.order(created_kindle_at: :asc)
+    @notes = @notes.decorate
   end
 
   def show; end
@@ -42,6 +42,6 @@ class NotesController < ApplicationController
   end
 
   def find_note!
-    @note = @import.notes.find(params[:id])
+    @note = @import.notes.find(params[:id]).decorate
   end
 end
