@@ -6,7 +6,7 @@ class ImportsController < ApplicationController
   before_action :import!, only: %i[create]
 
   def index
-    @imports = Import.all
+    @imports = Import.all.decorate
   end
 
   def show
