@@ -1,4 +1,4 @@
-= form_with model: @user, class: 'space-y-4 md:space-y-6' do |form|
+= form_with model: @user, url: path, class: 'space-y-4 md:space-y-6' do |form|
   %div
     = form.label :email, 'Your email', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white'
     = form.email_field :email, class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', |
@@ -15,16 +15,17 @@
     = form.label :password_confirmation, 'Confirm password', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white'
     = form.password_field :password_confirmation, id: 'password_confirmation', placeholder: '••••••••', class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', |
       required: true                                                                                                                                                                                                                                                                                                                                                                           |
-  .flex.items-start
+  .flex.items-start{:class => "#{ 'hidden' unless @user.new_record?}"}
     .flex.items-center.h-5
-      = form.check_box :terms, class: 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800', |
-        required: true                                                                                                                                                                                                     |
+      = if @user.new_record?
+        - form.check_box :terms, class: "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800", |
+        required: true                                                                                                                                                                                                  |
     .ml-3.text-sm
       %label.font-light.text-gray-500.dark:text-gray-300{:for => "terms"}
         I accept the
         %a.font-medium.text-primary-600.hover:underline.dark:text-primary-500{:href => "#"} Terms and Conditions
-  = form.submit 'Create an account', class: 'w-full items-center py-2.5 px-4 text-xs font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800'
-  %p.text-sm.font-light.text-gray-500.dark:text-gray-400
+  = form.submit (@user.new_record? ? "Create an account" : "Save!"), class: 'w-full items-center py-2.5 px-4 text-xs font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800'
+  %p.text-sm.font-light.text-gray-500.dark:text-gray-400{:class => "#{ 'hidden' unless @user.new_record?}"}
     Already have an account?
     = link_to 'Login here', new_session_url, class: 'font-medium text-primary-600 hover:underline dark:text-primary-500'
 

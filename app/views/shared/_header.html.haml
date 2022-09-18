@@ -30,11 +30,7 @@
                 #dropdownNavbar.hidden.z-10.w-44.font-normal.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600{"data-popper-escaped" => "", "data-popper-placement" => "bottom", "data-popper-reference-hidden" => "", :style => "position: absolute; inset: 0px auto auto 0px; margin: 0px;\n                     transform: translate3d(0px, 470.4px, 0px);"}
                   %ul.py-1.text-sm.text-gray-700.dark:text-gray-400{"aria-labelledby" => "dropdownLargeButton"}
                     %li
-                      %a.block.py-3.px-4.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white.text-lg{:href => "#"} Something
-                    %li
-                      %a.block.py-3.px-4.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white.text-lg{:href => "#"} Something
-                    %li
-                      %a.block.py-3.px-4.hover:bg-gray-100.dark:hover:bg-gray-600.dark:hover:text-white.text-lg{:href => "#"} Something
+                      = link_to 'Edit Profile', edit_user_path(current_user), class: 'block py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-lg'
                   .py-1
                     = link_to 'Sign out', session_path,
                     class: 'block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white text-lg',

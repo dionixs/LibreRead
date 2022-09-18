@@ -15,14 +15,10 @@ module Authentication
       current_user.present?
     end
 
-    def logged_in_user
-      redirect_to new_session_path unless user_signed_in?
-    end
-
     def require_no_authentication
       return unless user_signed_in?
 
-      flash[:alert] = 'You are already signed in!'
+      flash[:warning] = 'You are already signed in!'
       redirect_to root_path
     end
 
@@ -30,7 +26,7 @@ module Authentication
       return if user_signed_in?
 
       flash[:warning] = 'You are not signed in!'
-      redirect_to root_path
+      redirect_to new_session_path
     end
 
     def sign_in(user)
