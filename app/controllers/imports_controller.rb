@@ -3,7 +3,7 @@
 class ImportsController < ApplicationController
   before_action :set_import, only: %i[new create]
   before_action :find_import!, only: %i[show destroy]
-  before_action :import!, only: %i[create]
+  before_action :import_text_file, only: %i[create]
 
   def index
     @imports = Import.all.decorate
@@ -21,7 +21,7 @@ class ImportsController < ApplicationController
 
   def create
     if @import.save
-      @notes.each { |note| @import.notes.build(note).save }
+      @notes&.each { |note| @import.notes.build(note).save }
       redirect_to imports_path, notice: 'Import Complete!'
     else
       render 'new'
@@ -43,25 +43,15 @@ class ImportsController < ApplicationController
     @import = Import.find(params[:id])
   end
 
-  # todo
-  def import!
-    @text_file = params[:import][:text_file]
-    if !@text_file.nil? && File.extname(@text_file.to_io) == '.txt'
-      @import = Import.new(
-        filename: @text_file.original_filename,
-        mime_type: @text_file.content_type,
-        data: File.read(@text_file.to_io)
-      )
-      @notes = ClippingsParser.new(@import.data).notes
-    elsif @text_file.nil?
-      flash[:alert] = 'You have not selected a file'
-    else
-      flash[:alert] = 'Must be a txt file'
+  def import_text_file
+    @file = params[:import][:text_file]
+    @notes = nil
+
+    if text_file?(@file)
+      @import = new_import_text_file(@file)
+      @notes = import_notes(@import)
     end
 
-    if @notes.nil?
-      flash[:alert] = 'Not a Kindle clipping file!'
-      render 'new'
-    end
+    render 'new' if import_failed?(@file, @notes)
   end
 end
