@@ -15,6 +15,7 @@ gem 'rails',              '7.0.3'
 gem 'rails-i18n',         '7.0.5'
 gem 'sidekiq',            '6.5.6'
 gem 'sprockets-rails',    '3.4.2'
+gem 'valid_email2',       '4.0.4'
 
 group :development, :test do
   gem 'debug',    '1.5.0', platforms: %i[mri mingw x64_mingw]
