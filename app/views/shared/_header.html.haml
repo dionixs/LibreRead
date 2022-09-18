@@ -1,6 +1,6 @@
 %body
   %header.sticky.top-0.z-50
-    %nav.pt-6.bg-white.border-gray-200.dark:bg-gray-900.dark:border-gray-700
+    %nav.pt-4.bg-white.border-gray-200.dark:bg-gray-900.dark:border-gray-700
       .container.flex.flex-wrap.justify-around.items-center.mx-auto
         = link_to root_url, class: 'flex items-center'  do
           = image_tag 'logo.svg', class: 'mr-3 h-6 sm:h-10', alt: "LibreRead Logo"
@@ -39,7 +39,6 @@
                     %a.block.py-3.px-4.text-sm.text-gray-700.hover:bg-gray-100.dark:hover:bg-gray-600.dark:text-gray-400.dark:hover:text-white.text-lg{:href => "#"} Sign out
             - else
               %li
-                %a.block.py-3.pr-4.pl-3.text-gray-700.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-700.md:p-0.dark:text-gray-400.md:dark:hover:text-white.dark:hover:bg-gray-700.dark:hover:text-white.md:dark:hover:bg-transparent.text-lg{:href => "#"}
-                  Log in
+                = link_to 'Log in', new_session_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
               %li
                 = link_to 'Sign up', new_user_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'

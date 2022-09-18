@@ -26,4 +26,5 @@
   = form.submit 'Create an account', class: 'w-full items-center py-2.5 px-4 text-xs font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800'
   %p.text-sm.font-light.text-gray-500.dark:text-gray-400
     Already have an account?
-    %a.font-medium.text-primary-600.hover:underline.dark:text-primary-500{:href => "#"} Login here
+    = link_to 'Login here', new_session_url, class: 'font-medium text-primary-600 hover:underline dark:text-primary-500'
+
