@@ -15,6 +15,10 @@ module Authentication
       current_user.present?
     end
 
+    def logged_in_user
+      redirect_to new_session_path unless user_signed_in?
+    end
+
     def require_no_authentication
       return unless user_signed_in?
 

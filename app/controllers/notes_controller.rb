@@ -3,6 +3,7 @@
 class NotesController < ApplicationController
   include ActionView::RecordIdentifier
 
+  before_action :logged_in_user, only: %i[index show edit update destroy]
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
 
