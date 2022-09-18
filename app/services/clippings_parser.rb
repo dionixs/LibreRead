@@ -25,6 +25,7 @@ class ClippingsParser
     @notes = extract_notes
   end
 
+  # todo
   def extract_notes(notes = [])
     return nil if @units.nil?
 
