@@ -1,4 +1,7 @@
+# frozen_string_literal: true
 class SessionsController < ApplicationController
+  before_action :require_no_authentication, only: %i[new create]
+  before_action :require_authentication, only: :destroy
 
   def new; end
 
@@ -13,5 +16,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    flash[:notice] = 'See you later!'
+    sign_out
+    redirect_to root_path
+  end
 end
