@@ -90,7 +90,7 @@ class ClippingsParser
                                    .split(',')[1].split('.')
     date = date(array)
     time = array[-1].split[-1].split(':')
-    Time.new(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])
+    Time.zone.local(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])
   end
 
   # Метод get_note возвращает заметку

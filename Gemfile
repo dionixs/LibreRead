@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -18,13 +20,15 @@ gem 'sprockets-rails',    '3.4.2'
 gem 'valid_email2',       '4.0.4'
 
 group :development, :test do
-  gem 'debug',    '1.5.0', platforms: %i[mri mingw x64_mingw]
-  gem 'faker',    '2.23.0'
-  gem 'rubocop',  '1.36.0'
+  gem 'debug',               '1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'faker',               '2.23.0'
 end
 
 group :development do
-  gem 'web-console', '4.2.0'
+  gem 'rubocop',             '1.36.0', require: false
+  gem 'rubocop-performance', '1.15.0', require: false
+  gem 'rubocop-rails',       '2.16.1', require: false
+  gem 'web-console',         '4.2.0'
 end
 
 group :test do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class SessionsController < ApplicationController
   before_action :require_no_authentication, only: %i[new create]
   before_action :require_authentication, only: :destroy
@@ -12,7 +13,7 @@ class SessionsController < ApplicationController
       remember(user) if params[:remember_me] == '1'
       redirect_to root_path, notice: "Welcome to the app, #{current_user.name_or_email}!"
     else
-      flash[:alert] = 'Incorrect email and/or password!'
+      flash.now[:alert] = 'Incorrect email and/or password!'
       render :new
     end
   end

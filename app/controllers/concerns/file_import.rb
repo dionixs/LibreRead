@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module FileImport
   extend ActiveSupport::Concern
 
   included do
-
     private
 
     def text_file?(file)
