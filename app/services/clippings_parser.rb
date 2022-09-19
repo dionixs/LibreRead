@@ -48,7 +48,6 @@ class ClippingsParser
 
   private
 
-  # todo
   # Метод to_raw_notes разбивает строку
   # и возвращает массив необработанных заметок
   def to_raw_notes(string)
@@ -73,33 +72,46 @@ class ClippingsParser
 
   # Метод get_place возвращает место выделенного отрывка
   def get_place(array)
-    if split_details(array).nil?
-      nil
-    else
-      split_details(array)[0][/\d+.\d+/]
-        .split('–')[0]
-    end
+    return nil if split_details(array).nil?
+
+    split_details(array)[0][/\d+.\d+/].split('–')[0]
   end
 
-  # todo
   # Метод get_time возвращает время добавления заметки
   def get_time(array)
     return nil if split_details(array).nil?
 
-    array = split_details(array)[0].split('|')[-1]
-                                   .split(',')[1].split('.')
-    date = date(array)
-    time = array[-1].split[-1].split(':')
+    raw_time = raw_time(array)
+    parse_time(date(raw_time), time(raw_time))
+  end
+
+  def parse_time(date, time)
     Time.zone.local(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])
+  end
+
+  def date(array)
+    date = array[0].split[0..-2]
+    month = RUSSIAN_MONTH_NAMES[date[1]].capitalize
+    date[1] = Date::MONTHNAMES.index(month)
+    date = date.reverse
+    Date._parse("#{date[0]}-#{date[1]}-#{date[2]}")
+  end
+
+  def time(array)
+    array[-1].split[-1].split(':')
+  end
+
+  def raw_time(array)
+    split_details(array)[0].split('|')[-1]
+                           .split(',')[1]
+                           .split('.')
   end
 
   # Метод get_note возвращает заметку
   def get_note(array)
-    if split_details(array).nil?
-      nil
-    else
-      split_details(array)[-1]
-    end
+    return nil if split_details(array).nil?
+
+    split_details(array)[-1]
   end
 
   def statement_unit
@@ -108,14 +120,5 @@ class ClippingsParser
 
   def split_details(array)
     array[1].nil? ? nil : array[1].split("\r\n\r\n")
-  end
-
-  # todo
-  def date(array)
-    date = array[0].split[0..-2]
-    month = RUSSIAN_MONTH_NAMES[date[1]].capitalize
-    date[1] = Date::MONTHNAMES.index(month)
-    date = date.reverse
-    Date._parse("#{date[0]}-#{date[1]}-#{date[2]}")
   end
 end

@@ -4,7 +4,9 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def pagination(obj)
+    # rubocop:disable Rails/OutputSafety
     raw(pagy_nav(obj).html_safe) if obj.pages > 1
+    # rubocop:enable Rails/OutputSafety
   end
 
   # Returns the full title on a per-page basis.
