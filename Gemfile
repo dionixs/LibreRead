@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'bcrypt',             '3.1.18'
 gem 'bootsnap',           '1.12.0', require: false
+gem 'cld',                '0.11.0'
 gem 'cssbundling-rails',  '1.1.1'
 gem 'draper',             '4.0.2'
 gem 'haml-rails',         '2.0.1'
