@@ -1,124 +1,160 @@
 # frozen_string_literal: true
 
-RUSSIAN_MONTH_NAMES = {
-  'января' => 'january',
-  'февраля' => 'february',
-  'марта' => 'march',
-  'апреля' => 'april',
-  'мая' => 'may',
-  'июня' => 'june',
-  'июля' => 'july',
-  'августа' => 'august',
-  'сентября' => 'september',
-  'октября' => 'october',
-  'ноября' => 'november',
-  'декабря' => 'december'
-}.freeze
-
 # todo
 class ClippingsParser
-  attr_reader :notes, :raw_notes
+  attr_reader :raw_notes, :notes, :units
+
+  SEPARATOR = '=========='
+
+  MONTH_NAMES = {
+    'января' => 'january',
+    'февраля' => 'february',
+    'марта' => 'march',
+    'апреля' => 'april',
+    'мая' => 'may',
+    'июня' => 'june',
+    'июля' => 'july',
+    'августа' => 'august',
+    'сентября' => 'september',
+    'октября' => 'october',
+    'ноября' => 'november',
+    'декабря' => 'december'
+  }.freeze
 
   def initialize(data)
-    @raw_notes = to_raw_notes(data)
-    @units = to_units(@raw_notes)
-    @notes = extract_notes
+    @raw_notes = create_raw_notes(data)
+    @units = create_units(@raw_notes)
+    @notes = []
   end
 
-  # todo
-  def extract_notes(notes = [])
-    return nil if @units.nil?
+  def extract_notes
+    return if @units.nil?
 
-    @units.each do |unit|
-      note = {}
-      # Получаем имя автора книги
-      note[:author] = get_author(unit)
-      # Получаем название книги
-      note[:title] = get_title(unit)
-      # Получаем место выделенного отрывка
-      note[:place] = get_place(unit)
-      # Получаем время добавления заметки
-      note[:created_kindle_at] = get_time(unit)
-      # Получаем заметку
-      note[:clipping] = get_note(unit)
-      notes << note
-    end
-    notes
+    @units.each { |unit| @notes << get_note(unit) }
+    @notes
   end
 
   private
 
-  # Метод to_raw_notes разбивает строку
+  # Метод create_raw_notes разбивает строку
   # и возвращает массив необработанных заметок
-  def to_raw_notes(string)
-    string.strip.split('==========') if string.split.include?('==========')
+  def create_raw_notes(string)
+    string.strip.split(SEPARATOR) if string.split.include?(SEPARATOR)
   end
 
-  # Метод to_units возращает массив в котором:
-  # Первый элемент (строка) содержит название книги, вместе с автором.
-  # А второй элемент (строка) содержит саму заметку и данные о ней.
-  def to_units(array)
-    array&.map(&statement_unit)
+  # Метод create_units возращает массив строк в котором:
+  # Первый элемент содержит название книги, вместе с автором.
+  # Второй элемент содержит данные о заметке.
+  # Третий элемент содержит саму заметку
+  def create_units(raw_notes)
+    return if raw_notes.nil?
+
+    raw_notes.map do |item|
+      item.split("\r\n").compact_blank
+    end
   end
 
-  def get_title(array)
-    array[0].split(/\(.*?\)/)[0].strip
+  def get_note(unit)
+    {
+      author: get_author(unit),
+      title: get_title(unit),
+      place: get_place(unit),
+      created_kindle_at: get_time(unit),
+      clipping: get_clipping(unit)
+    }
   end
 
-  def get_author(array)
-    author = array[0].strip.scan(/\(([^()]*)\)/)[-1]
+  def get_title(unit)
+    unit[0].split(/\(.*?\)/)[0].strip
+  end
+
+  def get_author(unit)
+    author = unit[0].strip.scan(/\(([^()]*)\)/)[-1]
     author.nil? ? nil : author.join
   end
 
   # Метод get_place возвращает место выделенного отрывка
-  def get_place(array)
-    return nil if split_details(array).nil?
-
-    split_details(array)[0][/\d+.\d+/].split('–')[0]
+  def get_place(unit)
+    delimiters = %w[– -]
+    loc = unit[1][/\d+.\d+/].split(Regexp.union(delimiters))
+    loc[0]
   end
 
   # Метод get_time возвращает время добавления заметки
-  def get_time(array)
-    return nil if split_details(array).nil?
-
-    raw_time = raw_time(array)
-    parse_time(date(raw_time), time(raw_time))
+  def get_time(unit)
+    raw_time = raw_time(unit)
+    raw_date = raw_date(unit)
+    parse_time(date(raw_date), time(raw_time))
   end
 
   def parse_time(date, time)
     Time.zone.local(date[:year], date[:mon], date[:mday], time[0], time[1], time[2])
   end
 
-  def date(array)
-    date = array[0].split[0..-2]
-    month = RUSSIAN_MONTH_NAMES[date[1]].capitalize
-    date[1] = Date::MONTHNAMES.index(month)
-    date = date.reverse
-    Date._parse("#{date[0]}-#{date[1]}-#{date[2]}")
+  # todo
+  def date(raw_date)
+    month = ru_lang?(raw_date) ? MONTH_NAMES[raw_date[1]].capitalize : raw_date[1]
+    raw_date[1] = Date::MONTHNAMES.index(month)
+    Date._parse("#{raw_date[0]}-#{raw_date[1]}-#{raw_date[2]}")
   end
 
-  def time(array)
-    array[-1].split[-1].split(':')
+  # todo
+  def time(arr)
+    time = arr[0].split(':')
+    if arr.size == 2
+      abbreviation = arr[1].downcase
+      hour = Time.strptime("#{time[0].to_i - 1}#{abbreviation}", '%I%P').strftime('%H')
+      time[0] = hour
+    end
+    time
   end
 
-  def raw_time(array)
-    split_details(array)[0].split('|')[-1]
-                           .split(',')[1]
-                           .split('.')
+  # todo
+  def raw_time(unit, delimiters = %w[, .], abbreviation = nil)
+    arr = split_details(unit)
+          .split(Regexp.union(delimiters))[-1].split
+    abbreviation = arr[-1] if arr.size == 3
+    arr = arr.filter_map { |item| item if item.include?(':') }
+    arr.push(abbreviation) unless abbreviation.nil?
+    arr
   end
 
-  # Метод get_note возвращает заметку
-  def get_note(array)
-    return nil if split_details(array).nil?
+  # todo
+  def raw_date(unit)
+    arr = split_details(unit).split(',')
 
-    split_details(array)[-1]
+    return eng_version_date(arr) if eng_lang?(arr)
+
+    arr[1].split('.')[0].split
   end
 
-  def statement_unit
-    proc { |item| item.split("\r\n–") }
+  # todo
+  def eng_version_date(arr)
+    arr = arr[1..].join
+    arr = arr.split.filter_map { |item| item unless item.include?(':') }[0..-2]
+    arr[0], arr[1], arr[2] = arr[1], arr[0], arr[2]
   end
 
-  def split_details(array)
-    array[1].nil? ? nil : array[1].split("\r\n\r\n")
+  # Метод get_clipping возвращает заметку
+  def get_clipping(unit)
+    return if unit.nil?
+
+    unit[2].strip
+  end
+
+  def split_details(unit)
+    unit[1].split('|')[-1]
+  end
+
+  def eng_lang?(obj)
+    detect_lang(obj) == 'en'
+  end
+
+  def ru_lang?(obj)
+    detect_lang(obj) == 'ru'
+  end
+
+  def detect_lang(obj)
+    CLD.detect_language(obj)[:code]
   end
 end

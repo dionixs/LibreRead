@@ -32,9 +32,9 @@ module FileImport
       )
     end
 
-    # todo
-    def import_notes(import)
-      ClippingsParser.new(import.data).notes
+    def extract_notes(data)
+      parser = ClippingsParser.new(data)
+      parser.extract_notes
     end
   end
 end

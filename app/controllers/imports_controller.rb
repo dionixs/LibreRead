@@ -50,7 +50,7 @@ class ImportsController < ApplicationController
 
     if text_file?(@file)
       @import = new_import_text_file(@file)
-      @notes = import_notes(@import)
+      @notes = extract_notes(@import.data)
     end
 
     render 'new' if import_failed?(@file, @notes)
