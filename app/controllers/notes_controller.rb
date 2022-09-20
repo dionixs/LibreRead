@@ -10,6 +10,7 @@ class NotesController < ApplicationController
   def index
     @pagy, @notes = pagy @import.notes.order(created_kindle_at: :asc)
     @notes = @notes.decorate
+    session[:return_to] = request.fullpath
   end
 
   def show; end
@@ -19,8 +20,7 @@ class NotesController < ApplicationController
   def update
     if @note.update(notes_params)
       flash[:notice] = 'Successfully updated!'
-      # todo
-      redirect_to import_notes_path(anchor: dom_id(@note))
+      redirect_to "#{session[:return_to]}##{dom_id(@note)}"
     else
       render :edit
     end
