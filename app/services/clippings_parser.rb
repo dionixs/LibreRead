@@ -28,7 +28,7 @@ class ClippingsParser
   end
 
   def extract_notes
-    return if @units.nil?
+    return if @units.nil? || @units[0].size != 3
 
     @units.each { |unit| @notes << get_note(unit) }
     @notes
@@ -39,7 +39,10 @@ class ClippingsParser
   # Метод create_raw_notes разбивает строку
   # и возвращает массив необработанных заметок
   def create_raw_notes(string)
-    string.strip.split(SEPARATOR) if string.split.include?(SEPARATOR)
+    return unless include_separator?(string)
+
+    arr = string.strip.split(SEPARATOR)
+    arr.empty? ? nil : arr
   end
 
   # Метод create_units возращает массив строк в котором:
@@ -47,7 +50,7 @@ class ClippingsParser
   # Второй элемент содержит данные о заметке.
   # Третий элемент содержит саму заметку
   def create_units(raw_notes)
-    return if raw_notes.nil?
+    return if raw_notes.blank?
 
     raw_notes.map do |item|
       item.split("\r\n").compact_blank
@@ -144,6 +147,10 @@ class ClippingsParser
 
   def split_details(unit)
     unit[1].split('|')[-1]
+  end
+
+  def include_separator?(string)
+    string.split.include?(SEPARATOR)
   end
 
   def eng_lang?(obj)
