@@ -21,6 +21,7 @@ gem 'sprockets-rails',    '3.4.2'
 gem 'valid_email2',       '4.0.4'
 
 group :development, :test do
+  gem 'byebug',              '11.1.3'
   gem 'debug',               '1.5.0', platforms: %i[mri mingw x64_mingw]
   gem 'faker',               '2.23.0'
 end
