@@ -3,7 +3,10 @@
 module FileImport
   extend ActiveSupport::Concern
 
+  # rubocop:disable Metrics/BlockLength
   included do
+    include LanguageDetection
+
     private
 
     def text_file?(file)
@@ -20,8 +23,13 @@ module FileImport
       flash[:warning] = 'Not a Kindle clipping file!' if notes.nil?
     end
 
+    def lang_not_supported(text_file)
+      flash[:warning] = 'Language of your file is not supported!' if lang_not_support?(text_file.read)
+    end
+
     def import_failed?(text_file, notes)
-      not_text_file(text_file) || not_kindle_clipping_file(notes)
+      not_text_file(text_file) || lang_not_supported(text_file) ||
+        not_kindle_clipping_file(notes)
     end
 
     def new_import_text_file(file)
@@ -37,4 +45,5 @@ module FileImport
       parser.extract_notes
     end
   end
+  # rubocop:enable Metrics/BlockLength
 end
