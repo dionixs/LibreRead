@@ -7,14 +7,14 @@ class ImportsController < ApplicationController
   before_action :import_text_file, only: %i[create]
 
   def index
-    @imports = Import.all.decorate
+    @pagy, @imports = pagy Import.order(created_at: :desc)
+    @imports = @imports.decorate
   end
 
   def show
     send_data(
       @import.data,
-      filename: @import.filename,
-      disposition: 'download'
+      filename: @import.filename
     )
   end
 
