@@ -6,7 +6,9 @@
     Import list is empty!
 - else
   .overflow-x-auto.relative.shadow-md.sm:rounded-lg.mx-auto.md:max-w-4xl.mb-10
-    %table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
+  .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
+    = pagination(@pagy)
+    %table.w-full.mt-10.text-sm.text-left.text-gray-500.dark:text-gray-400
       %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
         %tr
           %th.py-3.px-6{:scope => "col"}
@@ -19,6 +21,8 @@
             %span.sr-only Delete
       %tbody
         = render @imports
+  .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
+    = pagination(@pagy)
 .text-center.mt-6
   = link_to 'New Import', new_import_path,                                        |
     class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded' |
