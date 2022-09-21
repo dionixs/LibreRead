@@ -11,7 +11,24 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def create; end
+  def new
+    @user = User.new
+  end
+
+  def upload; end
+
+  # todo
+  def create
+    if params[:archive].present?
+      UserBulkService.call params[:archive]
+      flash[:notice] = 'Users impoted!'
+      redirect_to admin_users_path
+    elsif params[:user].present?
+      create_user
+    else
+      file_not_selected
+    end
+  end
 
   private
 
@@ -31,4 +48,25 @@ class Admin::UsersController < ApplicationController
     send_data compressed_filestream.read, filename: 'users.zip'
   end
 
+  def admin_user_params
+    params.require(:user).permit(:email, :name, :old_password,
+                                 :password, :password_confirmation)
+  end
+
+  # todo
+  def create_user
+    @user = User.new(admin_user_params)
+    if @user.save
+      sign_in(@user)
+      redirect_to admin_users_path, notice: 'User created!'
+    else
+      render :new
+    end
+  end
+
+  # todo
+  def file_not_selected
+    flash.now[:warning] = 'File not selected!'
+    render :upload
+  end
 end

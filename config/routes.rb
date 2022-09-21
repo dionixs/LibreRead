@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create edit update]
 
   namespace :admin do
-    resources :users, only: %i[index create]
+    resources :users, only: %i[index new create] do
+      get 'upload', on: :new
+    end
   end
 
   resources :imports, except: %i[edit update] do
