@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::UsersController < ApplicationController
   before_action :require_authentication
 
@@ -57,7 +59,6 @@ class Admin::UsersController < ApplicationController
   def create_user
     @user = User.new(admin_user_params)
     if @user.save
-      sign_in(@user)
       redirect_to admin_users_path, notice: 'User created!'
     else
       render :new
