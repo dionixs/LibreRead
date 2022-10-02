@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Import < ApplicationRecord
-  has_many :notes, dependent: :destroy
+  has_many :notes, dependent: :delete_all
 
   validates :filename, presence: true, length: { in: 1..200 }
   validates :mime_type, presence: true
