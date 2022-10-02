@@ -7,6 +7,8 @@
 - else
   .overflow-x-auto.relative.shadow-md.sm:rounded-lg.mx-auto.md:max-w-4xl.mb-10
   .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
+    .text-center.mt-6.mb-10
+      = link_to 'New Import', new_import_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded'
     = pagination(@pagy)
     %table.w-full.mt-10.text-sm.text-left.text-gray-500.dark:text-gray-400
       %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
@@ -23,6 +25,3 @@
         = render @imports
   .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
     = pagination(@pagy)
-.text-center.mt-6
-  = link_to 'New Import', new_import_path,                                        |
-    class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded' |
