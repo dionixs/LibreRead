@@ -23,8 +23,10 @@ class ImportsController < ApplicationController
 
   def create
     if @import.save
-      # TODO: Use activerecord-import (?)
-      @notes&.each { |note| @import.notes.build(note).save }
+      @notes = @notes&.each_with_object([]) do |note, array|
+        array << @import.notes.build(note)
+      end
+      Note.import @notes, recursive: true
       redirect_to imports_path, notice: 'Import Complete!'
     else
       render 'new'
