@@ -49,11 +49,11 @@ module Authentication
       return unless password_must_be_changed?
 
       flash[:alert] = 'You must change your password before logging in for the first time'
-      edit_user_path(current_user)
+      redirect_to edit_user_path(current_user)
     end
 
     def password_must_be_changed?
-      current_user.password_must_be_changed
+      current_user&.password_must_be_changed
     end
 
     def sign_in(user)

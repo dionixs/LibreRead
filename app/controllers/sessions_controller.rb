@@ -28,6 +28,6 @@ class SessionsController < ApplicationController
     sign_in(user)
     remember(user) if params[:remember_me] == '1'
     flash[:notice] = "Welcome to the app, #{current_user.name_or_email}!"
-    redirect_to password_must_be_changed? ? check_pass_changed : root_path
+    password_must_be_changed? ? check_pass_changed : redirect_to(root_path)
   end
 end
