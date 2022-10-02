@@ -23,6 +23,7 @@ class ImportsController < ApplicationController
 
   def create
     if @import.save
+      # TODO: Use activerecord-import (?)
       @notes&.each { |note| @import.notes.build(note).save }
       redirect_to imports_path, notice: 'Import Complete!'
     else

@@ -21,8 +21,7 @@ class Admin::UsersController < ApplicationController
 
   def create
     if params[:archive].present?
-      UserBulkService.call params[:archive]
-      flash[:notice] = 'Users impoted!'
+      call_user_bulk_service
       redirect_to admin_users_path
     elsif params[:user].present?
       create_one_user
@@ -47,6 +46,14 @@ class Admin::UsersController < ApplicationController
 
     compressed_filestream.rewind
     send_data compressed_filestream.read, filename: 'users.zip'
+  end
+
+  def call_user_bulk_service
+    if UserBulkService.call params[:archive]
+      flash[:notice] = 'Users impoted!'
+    else
+      flash[:alert] = 'Import error! Check the integrity of the zip file!'
+    end
   end
 
   def admin_user_params
