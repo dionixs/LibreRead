@@ -24,7 +24,8 @@ class UserBulkService < ApplicationService
       User.new name: cells[0],
                email: cells[1],
                password: cells[2],
-               password_confirmation: cells[2]
+               password_confirmation: cells[2],
+               password_must_be_changed: true
     end
   end
 end

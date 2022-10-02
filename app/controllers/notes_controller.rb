@@ -4,6 +4,7 @@ class NotesController < ApplicationController
   include ActionView::RecordIdentifier
 
   before_action :require_authentication, only: %i[index show edit update destroy]
+  before_action :check_pass_changed
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
 

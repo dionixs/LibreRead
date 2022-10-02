@@ -2,6 +2,7 @@
 
 class ImportsController < ApplicationController
   before_action :require_authentication, only: %i[index show new create destroy]
+  before_action :check_pass_changed
   before_action :set_import, only: %i[new create]
   before_action :find_import!, only: %i[show destroy]
   before_action :import_text_file, only: %i[create]

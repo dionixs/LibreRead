@@ -19,14 +19,13 @@ class Admin::UsersController < ApplicationController
 
   def upload; end
 
-  # todo
   def create
     if params[:archive].present?
       UserBulkService.call params[:archive]
       flash[:notice] = 'Users impoted!'
       redirect_to admin_users_path
     elsif params[:user].present?
-      create_user
+      create_one_user
     else
       file_not_selected
     end
@@ -55,9 +54,9 @@ class Admin::UsersController < ApplicationController
                                  :password, :password_confirmation)
   end
 
-  # todo
-  def create_user
+  def create_one_user
     @user = User.new(admin_user_params)
+    @user.password_must_be_changed = true
     if @user.save
       redirect_to admin_users_path, notice: 'User created!'
     else
@@ -65,7 +64,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # todo
   def file_not_selected
     flash.now[:warning] = 'File not selected!'
     render :upload

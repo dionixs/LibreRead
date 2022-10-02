@@ -45,6 +45,17 @@ module Authentication
       redirect_to new_session_path
     end
 
+    def check_pass_changed
+      return unless password_must_be_changed?
+
+      flash[:alert] = 'You must change your password before logging in for the first time'
+      edit_user_path(current_user)
+    end
+
+    def password_must_be_changed?
+      current_user.password_must_be_changed
+    end
+
     def sign_in(user)
       session[:user_id] = user.id
     end

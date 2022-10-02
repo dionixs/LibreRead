@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token
 
+  before_update :check_password_changed, if: -> { password.present? }
+
   has_secure_password validations: false
 
   validate :password_presence
@@ -35,6 +37,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def check_password_changed
+    self.password_must_be_changed = false if password_must_be_changed == true
+  end
 
   def digest(string)
     cost = if ActiveModel::SecurePassword
