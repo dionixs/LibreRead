@@ -14,57 +14,38 @@
             %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase Kindle Links
             %ul.mt-4.space-y-4
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://read.amazon.com/kp/notebook/", :rel => "noopener", :target => "_blank"}
-                  Amazon Highlights Page
+                = link_to 'Amazon Highlights Page', 'https://read.amazon.com/kp/notebook/', class: 'text-base text-gray-500 hover:text-gray-900', target: '_blank'
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://read.amazon.com/", :rel => "noopener", :target => "_blank"}
-                  Amazon Online Reader
+                = link_to 'Amazon Online Reader', 'https://read.amazon.com/', class: 'text-base text-gray-500 hover:text-gray-900', target: '_blank'
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://www.amazon.com/gp/digital/fiona/manage#All", :rel => "noopener", :target => "_blank"}
-                  Amazon Kindle Settings
+                = link_to 'Amazon Kindle Settings', 'https://www.amazon.com/gp/digital/fiona/manage#All', class: 'text-base text-gray-500 hover:text-gray-900', target: '_blank'
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "https://www.amazon.com/b?ie=UTF8&node=16571048011", :rel => "noopener", :target => "_blank"}
-                  Amazon Kindle Apps
+                = link_to 'Amazon Kindle Apps', 'https://www.amazon.com/b?ie=UTF8&node=16571048011', class: 'text-base text-gray-500 hover:text-gray-900', target: '_blank'
           .mt-12.md:mt-0
             %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase
-              Something
+              Support
             %ul.mt-4.space-y-4
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#", :target => "_blank"}
-                  Something
+                = link_to 'Documentation', '#', class: 'text-base text-gray-500 hover:text-gray-900'
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
-                  Something
-              %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
-                  Something
-              %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#", :target => "_blank"}
-                  Something
+                = link_to 'FAQs', '#', class: 'text-base text-gray-500 hover:text-gray-900'
         .md:grid.md:grid-cols-2.md:gap-8
           %div
             %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase
-              Something
+              Company
             %ul.mt-4.space-y-4
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#", :rel => "noopener", :target => "_blank"}
-                  Something
-              %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
-                  Something
+                = link_to 'Blog', '#', class: 'text-base text-gray-500 hover:text-gray-900'
           .mt-12.md:mt-0
             %h3.text-sm.font-semibold.text-gray-400.tracking-wider.uppercase
               Legal
             %ul.mt-4.space-y-4
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
-                  Cookie Policy
+                = link_to 'Cookie Policy', '#', class: 'text-base text-gray-500 hover:text-gray-900'
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
-                  Privacy
+                = link_to 'Privacy', '#', class: 'text-base text-gray-500 hover:text-gray-900'
               %li
-                %a.text-base.text-gray-500.hover:text-gray-900{:href => "#"}
-                  Terms
+                = link_to 'Terms', '#', class: 'text-base text-gray-500 hover:text-gray-900'
     .mt-12.border-t.border-gray-200.pt-8
       %p.text-base.text-gray-400.xl:text-center
         © #{Time.now.year} LibreRead. All rights reserved.
