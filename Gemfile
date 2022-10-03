@@ -22,6 +22,7 @@ gem 'rails-i18n',           '7.0.5'
 gem 'rubyXL',               '3.4.25'
 gem 'rubyzip',              '2.3.2'
 gem 'sidekiq',              '6.5.6'
+gem 'slim-rails',           '3.5.1'
 gem 'sprockets-rails',      '3.4.2'
 gem 'valid_email2',         '4.0.4'
 
@@ -29,8 +30,10 @@ group :development, :test do
   gem 'awesome_print'
   gem 'byebug',              '11.1.3'
   gem 'debug',               '1.5.0', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails',   '6.2.0'
   gem 'faker',               '2.23.0'
   gem 'pry-rails'
+  gem 'rspec-rails',         '5.1.2'
 end
 
 group :development do
