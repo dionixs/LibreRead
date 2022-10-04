@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   include ErrorHandling
   include Authentication
   include LanguageDetection
-  include FileImport
+  include TextFileImport
+  include ZipFileImport
 end

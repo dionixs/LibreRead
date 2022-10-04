@@ -1,0 +1,258 @@
+ru:
+  activerecord:
+    models:
+      user: 'Пользователь'
+      import: 'Импорт'
+      note: 'Заметка'
+    attributes:
+      user:
+        email: 'Email'
+        name: 'Имя'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+        new_password: 'Новый пароль'
+        old_password: 'Старый пароль'
+      import:
+        filename: 'Имя файла'
+        mime_type: 'Тип файла'
+        data: 'Содержимое файла'
+      note:
+        title: 'Заголовок'
+        author: 'Автор'
+        place: 'Место'
+        body: 'Заметка'
+    errors:
+      messages:
+        confirmation: "не совпадает c новым паролем"
+        complexity: "недостаточно сложный. Длина должна быть 8-70 символов и
+                     пароль должен содержать: хотя бы 1 прописную и 1 строчную букву, 1 цифру и 1 специальный символ"
+
+  errors:
+    danger: 'Убедитесь, что эти требования выполнены:'
+
+  flash:
+    alert:
+      is_not_zip_file: 'Файл не является zip-архивом!'
+      is_not_txt_file: 'Это не текстовый файл!'
+      user_signed_in: 'Вы уже вошли в систему!'
+      user_not_signed_in: 'Вы не вошли в систему!'
+      password_must_be_changed: 'Вы должны изменить свой пароль перед первым входом в систему'
+      not_selected_file: 'Вы не выбрали файл!'
+      not_kindle_clipping_file: 'Это не файл Kindle!'
+      lang_not_supported: 'Язык вашего файла не поддерживается!'
+    notice:
+      welcome: "Добро пожаловать, %{name}!"
+      import_complete: 'Импорт завершен!'
+      successfully_updated: "%{name} успешно обновлена!"
+      successfully_deleted:
+        import: "%{name} %{filename} успешно удален!"
+        note: "%{name} успешна удалена!"
+
+  admin:
+    users:
+      index:
+        title: 'Список пользователей'
+        heading:
+          h1: 'Список пользователей'
+        btn:
+          download: 'Скачать архив с файлами XLSX'
+          upload: 'Загрузить пользователей из файла XLSX'
+          new_user: 'Добавить нового пользователя'
+        table:
+          id: 'ID'
+          name: 'Имя'
+          email: 'Email'
+          created_at: 'Создано'
+          edit: 'Редактировать'
+          delete: 'Удалить'
+      new:
+        title: 'Добавить нового пользователя'
+        heading:
+          h1: 'Добавить нового пользователя'
+        form:
+          label:
+            email: 'Ваш email'
+            name: 'Ваше имя'
+            password: 'Пароль'
+            password_confirmation: 'Подтверждение пароля'
+          placeholder:
+            name: 'Enter your name'
+          btn:
+            submit: 'Создать пользователя'
+      upload:
+        title: 'Загрузить пользователей'
+        heading:
+          h1: 'Загрузить пользователей'
+        form:
+          label:
+            archive: 'Архив'
+          paragraph:
+            second: 'Нажмите кнопку ниже и выберите файл .zip с файлами XLSX'
+      create:
+        notice:
+          create_user: 'Пользователь создан!'
+          import_users: 'Пользователи успешно импортированы!'
+        alert:
+          import_error: 'Ошибка импорта! Проверьте целостность zip-файла!'
+          file_not_selected: 'Файл не выбран!'
+
+  users:
+    new:
+      title: 'Регистрация'
+      heading: 'Регистрация'
+      form:
+        label:
+          email: 'Ваш email'
+          name: 'Ваше имя'
+          old_password: 'Старый пароль'
+          password: 'Пароль'
+          new_password: 'Новый пароль'
+          password_confirmation: 'Подтвердить пароль'
+          confirm_new_password: 'Подтвердить новый пароль'
+          terms: 'Я принимаю'
+        placeholder:
+          name: 'Введите ваше имя'
+        link:
+          terms: 'условия о предоставлении услуг'
+          login_here: 'Войти'
+        btn:
+          create_an_account: 'Регистрация'
+          save: 'Сохранить!'
+        paragraph:
+          text: 'У вас уже есть аккаунт?'
+    edit:
+      title: 'Редактировать Профиль'
+      heading: 'Редактировать профиль'
+    update:
+      flash:
+        notice: 'Ваш профиль успешно обновлен!'
+
+  sessions:
+    new:
+      title: 'Войти'
+      heading: 'Войти'
+      form:
+        label:
+          email: 'Ваш email'
+          password: 'Ваш пароль'
+          remember_me: 'Запомнить меня'
+        paragraph:
+          text: 'У вас нет аккаунта на LibreRead?'
+        btn: 'Войти'
+        link: 'Зарегистрироваться'
+    create:
+      flash:
+        alert: 'Неверный адрес электронной почты или пароль!'
+    destroy:
+      flash:
+        alert: 'Увидимся позже!'
+
+  notes:
+    index:
+      title: 'Заметки'
+      heading:
+        h1: ''
+        h2: 'Заметки не найдены'
+      btn:
+        new_import: 'Новый Импорт'
+    show:
+      title: 'Заметка'
+      card:
+        location: 'Место'
+        created: 'Создана'
+        btn:
+          edit: 'Редактировать'
+          delete: 'Удалить'
+          confirm: 'Вы уверены?'
+    edit:
+      title: 'Редактировать'
+      heading: 'Редактировать Заметку'
+      btn: 'Сохранить!'
+
+  imports:
+    index:
+      title: 'Импортированные файлы'
+      heading:
+        h1: 'Импортированные файлы'
+        h2: 'Список импорта пуст!'
+      btn:
+        new_import: 'Новый Импорт'
+      table:
+        file_name: 'Имя файла'
+        date_of_import: 'Дата импорта'
+        download: 'Загрузить'
+        delete: 'Удалить'
+      confirm: 'Вы уверены, что хотите удалить'
+    new:
+      title: 'Импорт Заметок'
+      heading:
+        h1: 'Импорт Заметок'
+      form:
+        label:
+          text_file: 'Импорт Заметок'
+        paragraph:
+          second: 'Нажмите на кнопку и перейдите в папку ‘Documents’
+                   на устройстве Kindle и выберите файл «My Clippings.txt».'
+
+  static_pages:
+    index:
+      heading:
+        import: 'Импортируйте ваши'
+        yellow: 'Заметки Kindle'
+        integrations: 'сделанные на любом устройстве'
+        red: ''
+      paragraph:
+        text: "LibreRead это простой способ упорядочить заметки из вашего Kindle. 
+                 Тратьте меньше времени на конспектирование и больше времени на получение удовольствия от прочитанного."
+      btn: 'Присоединиться'
+
+  header:
+    menu:
+      home: 'Главная'
+      features: 'Особенности'
+      dashboard: 'Dashboard'
+      import_highlights: 'Импорт Заметок'
+      faqs: 'FAQs'
+      blog: 'Блог'
+      documentation: 'Документация'
+      profile: 'Мой Профиль'
+      dropdown:
+        edit_profile: 'Редактировать'
+        sign_out: 'Выход'
+      btn:
+        log_in: 'Войти'
+        sign_up: 'Зарегистрироваться'
+
+  footer:
+    paragraph:
+          text: 'Простой и удобный способ импортировать заметки из Kindle.'
+    kindle_links:
+      column_name: 'Сервисы Kindle'
+      amazon_highlights_page: 'Amazon Highlights Page'
+      amazon_online_reader: 'Amazon Online Reader'
+      amazon_kindle_settings: 'Amazon Kindle Settings'
+      amazon_kindle_apps: 'Amazon Kindle Apps'
+    support:
+      column_name: 'Поддержка'
+      documentation: 'Документация'
+      faqs: 'FAQs'
+    libre_read:
+      column_name: 'LibreRead'
+      blog: 'Блог'
+      api: 'API'
+    legal:
+      column_name: 'Правовые вопросы'
+      cookie_policy: 'Политика использования'
+      privacy: 'Конфиденциальность'
+      terms: 'Условия'
+    rights: 'Все права защищены.'
+
+  form:
+    upload:
+      label:
+         paragraph:
+            first: 'или перетащите'
+            span: 'Нажмите, чтобы загрузить'
+
+  names:
+    file: 'Файл'

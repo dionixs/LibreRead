@@ -1,10 +1,10 @@
-- provide(:title, 'Notes')
+- provide(:title, t('.title'))
 
 - if @notes.blank?
   %h2.mt-20.mb-10.text-3xl.font-bold.text-gray-500.dark:text-white.text-center
-    No notes found
-  .text-center.mt-10.mb-5
-    = link_to 'New Import', new_import_path,                                        |
+    = t('.heading.h2')
+  .text-center.mt-10.mb-10
+    = link_to t('.btn.new_import'), new_import_path,                                        |
       class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' |
 
 .mt-10.max-w-md.mx-auto.md:max-w-4xl.text-center

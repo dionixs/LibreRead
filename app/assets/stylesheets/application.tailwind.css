@@ -3,5 +3,6 @@
 @import "tailwindcss/utilities";
 
 @import "./components/_pagination.css";
+@import "./components/_form.css";
 
 @import "./components/_custom.css";

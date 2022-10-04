@@ -1,0 +1,7 @@
+div.field_with_errors > label {
+  @apply text-red-900;
+}
+
+div.field_with_errors > :is(input, textarea, select) {
+  @apply border-red-600 text-red-900 placeholder-red-600;
+}

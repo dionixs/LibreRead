@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       do_sign_in(user)
     else
-      flash.now[:alert] = 'Incorrect email and/or password!'
+      flash.now[:alert] = t('.create.flash.alert')
       render :new
     end
   end
 
   def destroy
-    flash[:notice] = 'See you later!'
+    flash[:notice] = t('.destroy.flash.alert')
     sign_out
     redirect_to root_path
   end
@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   def do_sign_in(user)
     sign_in(user)
     remember(user) if params[:remember_me] == '1'
-    flash[:notice] = "Welcome to the app, #{current_user.name_or_email}!"
+    flash[:notice] = t('flash.notice.welcome', name: current_user.name_or_email)
     password_must_be_changed? ? check_pass_changed : redirect_to(root_path)
   end
 end

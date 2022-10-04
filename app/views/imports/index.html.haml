@@ -1,26 +1,26 @@
-- provide(:title, 'Imports')
+- provide(:title, t('imports.index.title'))
 %h1.mt-10.mb-6.text-center.text-4xl.font-extrabold.tracking-tight.leading-none.text-gray-900.md:text-5xl.lg:text-6xl.dark:text-white
-  Imports
+  = t('imports.index.heading.h1')
 - if @imports.empty?
   %h2.mb-2.text-3xl.font-bold.text-gray-500.dark:text-white.text-center
-    Import list is empty!
+    = t('imports.index.heading.h2')
 - else
   .overflow-x-auto.relative.shadow-md.sm:rounded-lg.mx-auto.md:max-w-4xl.mb-10
   .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
     .text-center.mt-6.mb-10
-      = link_to 'New Import', new_import_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded'
+      = link_to t('imports.index.btn.new_import'), new_import_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded'
     = pagination(@pagy)
     %table.w-full.mt-10.text-sm.text-left.text-gray-500.dark:text-gray-400
       %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
         %tr
           %th.py-3.px-6{:scope => "col"}
-            File name
+            = t('imports.index.table.file_name')
           %th.py-3.px-6{:scope => "col"}
-            Date of import
+            = t('imports.index.table.date_of_import')
           %th.py-3.px-6{:scope => "col"}
-            %span.sr-only Download
+            %span.sr-only "#{t('imports.index.table.download')}"
           %th.py-3.px-6{:scope => "col"}
-            %span.sr-only Delete
+            %span.sr-only "#{t('imports.index.table.delete')}"
       %tbody
         = render @imports
   .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center

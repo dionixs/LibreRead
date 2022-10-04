@@ -4,6 +4,6 @@
   %th.py-4.px-6.font-medium.text-gray-900.whitespace-nowrap.dark:text-white{:scope => "row"}
     = import.formatted_created_at
   %td.py-4.px-6.text-right
-    = link_to "Download", "#{import_path(import.id)}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline'
+    = link_to t('imports.index.table.download'), "#{import_path(import.id)}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline'
   %td.py-4.px-6.text-right
-    = link_to "Delete", "#{import_path(import.id)}", data: { method: :delete, confirm: "Are you sure that you wish to delete #{import.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline'
+    = link_to t('imports.index.table.delete'), "#{import_path(import.id)}", data: { method: :delete, confirm: "#{t('imports.index.confirm')} #{import.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline'

@@ -20,7 +20,7 @@ class NotesController < ApplicationController
 
   def update
     if @note.update(notes_params)
-      flash[:notice] = 'Successfully updated!'
+      flash[:notice] = t('flash.notice.successfully_updated', name: t('activerecord.models.note'))
       redirect_to "#{session[:return_to]}##{dom_id(@note)}"
     else
       render :edit
@@ -29,7 +29,7 @@ class NotesController < ApplicationController
 
   def destroy
     @note.destroy
-    flash[:notice] = 'Successfully deleted.'
+    flash[:notice] = t('flash.notice.successfully_deleted.note', name: t('activerecord.models.note'))
     redirect_to import_notes_path(params[:import_id])
   end
 

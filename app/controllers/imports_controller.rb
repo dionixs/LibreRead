@@ -27,15 +27,19 @@ class ImportsController < ApplicationController
         array << @import.notes.build(note)
       end
       Note.import @notes, recursive: true
-      redirect_to imports_path, notice: 'Import Complete!'
+      redirect_to imports_path, notice: t('flash.notice.import_complete')
     else
       render 'new'
     end
   end
 
   def destroy
+    filename = @import.filename
     @import.destroy
-    redirect_to imports_path, notice: 'Successfully deleted.'
+    redirect_to imports_path,
+                notice: t('flash.notice.successfully_deleted.import',
+                          name: t('names.file'),
+                          filename: filename.to_s)
   end
 
   private

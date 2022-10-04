@@ -1,10 +1,10 @@
-- provide(:title, t('imports.new.title'))
+- provide(:title, t('admin.users.upload.title'))
 %h1.mt-10.mb-10.text-center.text-4xl.font-extrabold.tracking-tight.leading-none.text-gray-900.md:text-5xl.lg:text-6xl.dark:text-white
-  = t('imports.new.heading.h1')
-= render 'shared/errors', object: @import
-= form_with model: @import, multipart: true do |form|
+  = t('admin.users.upload.heading.h1')
+
+= form_with url: admin_users_path, multipart: true do |form|
   .flex.justify-center.items-center.w-full
-    = form.label :text_file, "#{t('imports.new.form.label.text_file')}", class: "label text-6xl font-normal leading-normal mt-0 mb-10 text-center flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600" do
+    = form.label :archive, "#{t('admin.users.upload.form.label.archive')}", class: "label text-6xl font-normal leading-normal mt-0 mb-10 text-center flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600" do
       .flex.flex-col.justify-center.items-center.pt-5.pb-6
         %svg.mb-3.w-10.h-10.text-gray-400{"aria-hidden" => "true", :fill => "none", :stroke => "currentColor", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
           %path{:d => "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
@@ -12,5 +12,5 @@
           %span.font-semibold #{t('form.upload.label.paragraph.span')}
           #{t('form.upload.label.paragraph.first')}
         %p.text-xs.text-gray-500.dark:text-gray-400
-          #{t('imports.new.form.paragraph.second')}
-      = form.file_field :text_file, multiple: false, required: true, class: "hidden", onchange: 'this.form.submit();'
+          #{t('admin.users.upload.form.paragraph.second')}
+      = form.file_field :archive, multiple: false, required: true, class: "hidden", onchange: 'this.form.submit();'

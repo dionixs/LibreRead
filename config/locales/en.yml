@@ -1,33 +1,258 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      user: 'User'
+      import: 'Import'
+      note: 'Note'
+    attributes:
+      user:
+        email: 'Email'
+        name: 'Name'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        new_password: 'New Password'
+        old_password: 'Old password'
+      import:
+        filename: 'Filename'
+        mime_type: 'Mime type'
+        data: 'File Contents'
+      note:
+        title: 'Title'
+        author: 'Author'
+        place: 'Place'
+        body: 'Clipping'
+    errors:
+      messages:
+        complexity: "complexity requirement not met. Length should be 8-70 characters and
+                              include: 1 uppercase, 1 lowercase, 1 digit and 1 special character"
+        confirmation: "does not match"
+
+  errors:
+    danger: 'Ensure that these requirements are met:'
+
+  flash:
+    alert:
+      is_not_zip_file: 'File is not a zip file'
+      is_not_txt_file: 'Must be a txt file'
+      user_signed_in: 'You are already signed in!'
+      user_not_signed_in: 'You are not signed in!'
+      password_must_be_changed: 'You must change your password before logging in for the first time'
+      not_selected_file: 'You have not selected a file'
+      not_kindle_clipping_file: 'Not a Kindle clipping file!'
+      lang_not_supported: 'Language of your file is not supported!'
+    notice:
+      welcome: "Welcome to the app, %{name}!"
+      import_complete: 'Import Complete!'
+      successfully_updated: "%{name} successfully updated!"
+      successfully_deleted:
+        import: "%{name} %{filename} successfully deleted!"
+        note: "%{name} successfully deleted!"
+
+  admin:
+    users:
+      index:
+        title: 'List of users'
+        heading:
+          h1: 'List of users'
+        btn:
+          download: 'Download zipped XLSX'
+          upload: 'Upload users from XLSX'
+          new_user: 'Add new user'
+        table:
+          id: 'ID'
+          name: 'Name'
+          email: 'Email'
+          created_at: 'Created_at'
+          edit: 'Edit'
+          delete: 'Delete'
+      new:
+        title: 'Add new user'
+        heading:
+          h1: 'Add new user'
+        form:
+          label:
+            email: 'Your email'
+            name: 'Your name'
+            password: 'Password'
+            password_confirmation: 'Confirm password'
+          placeholder:
+            name: 'Enter your name'
+          btn:
+            submit: 'Create an account"'
+      upload:
+        title: 'Upload users'
+        heading:
+          h1: 'Upload users'
+        form:
+          label:
+            archive: 'Archive'
+          paragraph:
+            second: 'Click the button below and select the .zip file with XLSX files'
+      create:
+        notice:
+          create_user: 'User created!'
+          import_users: 'Users impoted!'
+        alert:
+          import_error: 'Import error! Check the integrity of the zip file!'
+          file_not_selected: 'File not selected!'
+
+  users:
+    new:
+      title: 'Registration'
+      heading: 'Create and account'
+      form:
+        label:
+          email: 'Your email'
+          name: 'Your name'
+          old_password: 'Old password'
+          password: 'Password'
+          new_password: 'New password'
+          password_confirmation: 'Confirm password'
+          confirm_new_password: 'Confirm new password'
+          terms: 'I accept the'
+        placeholder:
+          name: 'Enter your name'
+        link:
+          terms: 'Terms and Conditions'
+          login_here: 'Login here'
+        btn:
+          create_an_account: 'Create an account'
+          save: 'Save!'
+        paragraph:
+          text: 'Already have an account?'
+    edit:
+      title: 'Edit Profile'
+      heading: 'Edit Profile'
+    update:
+      flash:
+        notice: 'Your profile was successfully updated!'
+
+  sessions:
+    new:
+      title: 'Log in'
+      heading: 'Log in'
+      form:
+        label:
+          email: 'Your email'
+          password: 'Your password'
+          remember_me: 'Remember me'
+        paragraph:
+          text: 'New to LibreRead?'
+        btn: 'Log in'
+        link: 'Create an account'
+    create:
+      flash:
+        alert: 'Incorrect email and/or password!'
+    destroy:
+      flash:
+        alert: 'See you later!'
+
+  imports:
+    index:
+      title: 'Imports'
+      heading:
+        h1: 'Imports'
+        h2: 'Import list is empty!'
+      btn:
+        new_import: 'New Import'
+      table:
+        file_name: 'File name'
+        date_of_import: 'Date of import'
+        download: 'Download'
+        delete: 'Delete'
+      confirm: 'Are you sure that you wish to delete'
+    new:
+      title: 'Import Highlights'
+      heading:
+        h1: 'Import Highlights'
+      form:
+        label:
+          text_file: 'Import Highlights'
+        paragraph:
+          second: 'Click the button below and browse to the ‘Documents’
+                   folder in your Kindle USB drive and select the ‘My Clippings.txt’ file'
+
+  notes:
+    index:
+      title: 'Notes'
+      heading:
+        h1: ''
+        h2: 'No notes found'
+      btn:
+        new_import: 'New Import'
+    show:
+      title: 'Note'
+      card:
+        location: 'Place'
+        created: 'Created'
+        btn:
+          edit: 'Edit'
+          delete: 'Delete'
+          confirm: 'Are you sure?'
+    edit:
+      title: 'Edit'
+      heading: 'Edit Note'
+      btn: 'Save!'
+
+  static_pages:
+    index:
+      heading:
+          import: 'Import your'
+          yellow: 'Kindle Highlights'
+          integrations: 'to the integrations'
+          red: 'you love'
+      paragraph:
+          text: "LibreRead is the easy way to organise your Kindle highlights. 
+                 Spend less time note taking and more time enjoying the things you've read."
+      btn: 'Get started'
+
+  header:
+    menu:
+      home: 'Home'
+      features: 'Features'
+      dashboard: 'Dashboard'
+      import_highlights: 'Import Highlights'
+      faqs: 'FAQs'
+      blog: 'Blog'
+      documentation: 'Documentation'
+      profile: 'My Profile'
+      dropdown:
+        edit_profile: 'Edit Profile'
+        sign_out: 'Sign out'
+      btn:
+        log_in: 'Log in'
+        sign_up: 'Sign up'
+
+  footer:
+    paragraph:
+          text: 'The easy way to export your Kindle notes and highlights to the integrations you love.'
+    kindle_links:
+      column_name: 'Kindle Links'
+      amazon_highlights_page: 'Amazon Highlights Page'
+      amazon_online_reader: 'Amazon Online Reader'
+      amazon_kindle_settings: 'Amazon Kindle Settings'
+      amazon_kindle_apps: 'Amazon Kindle Apps'
+    support:
+      column_name: 'Support'
+      documentation: 'Documentation'
+      faqs: 'FAQs'
+    libre_read:
+      column_name: 'LibreRead'
+      blog: 'Blog'
+      api: 'API'
+    legal:
+      column_name: 'Legal'
+      cookie_policy: 'Cookie Policy'
+      privacy: 'Privacy'
+      terms: 'Terms'
+    rights: 'All rights reserved.'
+
+  form:
+    upload:
+      label:
+         paragraph:
+            first: 'or drag and drop'
+            span: 'Click to upload'
+
+  names:
+    file: 'File'

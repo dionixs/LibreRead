@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module FileImport
+module TextFileImport
   extend ActiveSupport::Concern
 
   # rubocop:disable Metrics/BlockLength
@@ -14,17 +14,17 @@ module FileImport
     end
 
     def not_text_file(text_file)
-      return flash[:warning] = 'You have not selected a file' if text_file.nil?
+      return flash[:alert] = t('flash.alert.not_selected_file') if text_file.nil?
 
-      flash[:warning] = 'Must be a txt file' unless text_file?(text_file)
+      flash[:alert] = t('flash.alert.is_not_txt_file') unless text_file?(text_file)
     end
 
     def not_kindle_clipping_file(notes)
-      flash[:warning] = 'Not a Kindle clipping file!' if notes.nil?
+      flash[:alert] = t('flash.alert.not_kindle_clipping_file') if notes.nil?
     end
 
     def lang_not_supported(text_file)
-      flash[:warning] = 'Language of your file is not supported!' if lang_not_support?(text_file.read)
+      flash[:alert] = t('flash.alert.lang_not_supported') if lang_not_support?(text_file.read)
     end
 
     def import_failed?(text_file, notes)

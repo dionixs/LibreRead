@@ -1,16 +1,15 @@
 .bg-white
   .relative.overflow-hidden
     .relative.pt-6.pb-16.sm:pb-24
-      .mt-16.mx-auto.max-w-7xl.px-4.sm:mt-24.sm:px-6
+      .mt-16.mx-auto.max-w-7xl.px-4.sm:mt-20.sm:px-6
         .text-center
-          %h1.text-4xl.font-extrabold.text-gray-900.sm:text-5xl.md:text-6xl
+          %h1.text-4xl.font-extrabold.text-gray-900.sm:text-5xl
             %span.block
-              Export your
-              %span.bg-yellow-200.px-2 Kindle Highlights
+              = t('.heading.import')
+              %span.bg-yellow-200.px-2 #{t('static_pages.index.heading.yellow')}
             %span.block
-              to the integrations
-              %span.text-red-600 you love
-          %p.mt-3.mb-7.max-w-md.mx-auto.text-base.text-gray-500.sm:text-lg.md:mt-5.md:text-xl.md:max-w-3xl
-            LibreRead is the easy way to organise your Kindle highlights.
-            Spend less time note taking and more time enjoying the things you've read.
-          = link_to "Get started".upcase, new_user_url, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded'
+              = t('.heading.integrations')
+              %span.text-red-600 #{t('.heading.red')}
+          %p.mt-4.mb-8.max-w-md.mx-auto.text-base.text-gray-500.sm:text-lg.md:mt-5.md:text-xl.md:max-w-3xl
+            = t('.paragraph.text')
+          = link_to t('.btn').upcase, new_user_url, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded'

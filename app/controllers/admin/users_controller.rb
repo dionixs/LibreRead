@@ -49,10 +49,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def call_user_bulk_service
+    is_not_zip_file(params[:archive])
     if UserBulkService.call params[:archive]
-      flash[:notice] = 'Users impoted!'
+      flash[:notice] = t('admin.users.create.notice.import_users')
     else
-      flash[:alert] = 'Import error! Check the integrity of the zip file!'
+      flash[:alert] = t('admin.users.create.alert.import_error')
     end
   end
 
@@ -65,14 +66,14 @@ class Admin::UsersController < ApplicationController
     @user = User.new(admin_user_params)
     @user.password_must_be_changed = true
     if @user.save
-      redirect_to admin_users_path, notice: 'User created!'
+      redirect_to admin_users_path, notice: t('admin.users.create.notice.create_user')
     else
       render :new
     end
   end
 
   def file_not_selected
-    flash.now[:warning] = 'File not selected!'
+    flash.now[:alert] = t('admin.users.create.alert.file_not_selected')
     render :upload
   end
 end

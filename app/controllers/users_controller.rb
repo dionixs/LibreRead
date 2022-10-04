@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in(@user)
-      redirect_to root_path, notice: "Welcome to the app, #{current_user.name_or_email}!"
+      redirect_to root_path, notice: t('flash.notice.welcome', name: current_user.name_or_email.to_s)
     else
       render :new
     end
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = 'Your profile was successfully updated!'
+      flash[:notice] = t('.update.flash.notice')
       redirect_to edit_user_path(@user)
     else
       render :edit

@@ -34,21 +34,21 @@ module Authentication
     def require_no_authentication
       return unless user_signed_in?
 
-      flash[:warning] = 'You are already signed in!'
+      flash[:alert] = t('flash.alert.user_signed_in')
       redirect_to root_path
     end
 
     def require_authentication
       return if user_signed_in?
 
-      flash[:warning] = 'You are not signed in!'
+      flash[:alert] = t('flash.alert.user_not_signed_in')
       redirect_to new_session_path
     end
 
     def check_pass_changed
       return unless password_must_be_changed?
 
-      flash[:alert] = 'You must change your password before logging in for the first time'
+      flash[:alert] = t('flash.alert.password_must_be_changed')
       redirect_to edit_user_path(current_user)
     end
 
