@@ -11,3 +11,7 @@ Style/Documentation:
 
 Rails/FilePath:
   EnforcedStyle: arguments
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/services/**/*'
