@@ -33,6 +33,7 @@ module Admin
 
     private
 
+    # TODO: Refactoring
     def respond_with_zipped_users
       compressed_filestream = Zip::OutputStream.write_buffer do |zos|
         User.order(created_at: :desc).each do |user|

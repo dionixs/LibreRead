@@ -1,25 +1,11 @@
 # frozen_string_literal: true
 
-# todo
+# TODO: Refactoring
 class ClippingsParser
   attr_reader :raw_notes, :notes, :units
 
-  SEPARATOR = '=========='
-
-  MONTH_NAMES = {
-    'января' => 'january',
-    'февраля' => 'february',
-    'марта' => 'march',
-    'апреля' => 'april',
-    'мая' => 'may',
-    'июня' => 'june',
-    'июля' => 'july',
-    'августа' => 'august',
-    'сентября' => 'september',
-    'октября' => 'october',
-    'ноября' => 'november',
-    'декабря' => 'december'
-  }.freeze
+  include Parser::Constants
+  include Parser::LanguageDetection
 
   def initialize(data)
     @raw_notes = create_raw_notes(data)
@@ -151,17 +137,5 @@ class ClippingsParser
 
   def include_separator?(string)
     string.split.include?(SEPARATOR)
-  end
-
-  def eng_lang?(obj)
-    detect_lang(obj) == 'en'
-  end
-
-  def ru_lang?(obj)
-    detect_lang(obj) == 'ru'
-  end
-
-  def detect_lang(obj)
-    CLD.detect_language(obj)[:code]
   end
 end

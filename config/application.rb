@@ -25,6 +25,7 @@ module LibreRead
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # I18n
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :en
 
@@ -34,7 +35,10 @@ module LibreRead
     # in config/environments, which are processed later.
     #
     config.time_zone = 'Moscow'
-    # config.eager_load_paths << Rails.root.join("extras")
+
+    config.eager_load_paths += %W[
+      #{config.root}/lib/parser/**
+    ]
 
     # Don't generate system test files.
     config.generators.system_tests = nil
