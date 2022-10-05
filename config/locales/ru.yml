@@ -1,4 +1,8 @@
 ru:
+  lang: 'Язык'
+  en: 'Английский'
+  ru: 'Русский'
+
   activerecord:
     models:
       user: 'Пользователь'

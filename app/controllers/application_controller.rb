@@ -4,29 +4,23 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include ErrorHandling
   include Authentication
+  include Internationalization
   include LanguageDetection
   include TextFileImport
   include ZipFileImport
 
+  after_action :set_route_info
   around_action :switch_locale
+
+  def set_route_info
+    session[:previous_url] = request.url
+    session[:previous_controller] = prev_route[:controller]
+    session[:previous_action] = prev_route[:action]
+  end
 
   private
 
-  def switch_locale(&)
-    locale = locale_from_url || I18n.default_locale
-    I18n.with_locale(locale, &)
-  end
-
-  def locale_from_url
-    locale = params[:locale]
-    locale if locale_supported?(locale)
-  end
-
-  def locale_supported?(locale)
-    I18n.available_locales.map(&:to_s).include?(locale)
-  end
-
-  def default_url_options
-    { locale: I18n.locale }
+  def prev_route
+    Rails.application.routes.recognize_path(URI(session[:previous_url]).path)
   end
 end
