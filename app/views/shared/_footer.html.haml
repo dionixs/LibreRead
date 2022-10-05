@@ -47,6 +47,9 @@
                 = link_to "#{t('footer.legal.privacy')}", '#', class: 'text-base text-gray-500 hover:text-gray-900'
               %li
                 = link_to "#{t('footer.legal.terms')}", '#', class: 'text-base text-gray-500 hover:text-gray-900'
+
+    = render 'shared/forms/locale_switcher'
+
     .mt-12.border-t.border-gray-200.pt-8
       %p.text-base.text-gray-400.xl:text-center
         © #{Time.now.year} LibreRead. #{t('footer.rights')}

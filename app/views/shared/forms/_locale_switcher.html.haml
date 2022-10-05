@@ -1,0 +1,21 @@
+= form_with url: change_locale_path, method: 'get', id: 'locale_switcher' do |form|
+  - request.query_parameters.each do |key, value|
+    = hidden_field_tag(key, value)
+  .nav-wrapper
+    .sl-nav.text-gray-500
+      = "#{t('lang')}:"
+      %ul
+        %li
+          %b #{t I18n.locale}
+          %i.fa.fa-angle-down{"aria-hidden" => "true"}
+          .triangle
+          %ul
+            - I18n.available_locales.each do |locale|
+              %li
+                - if I18n.locale == locale
+                  %i.sl-flag{:class => "flag-#{I18n.locale}"}
+                  = tag.span t(locale), class: 'active'
+                - else
+                  %i.sl-flag{:class => "flag-#{locale}"}
+                  = form.hidden_field :new_locale, value: locale
+                  = form.submit t(locale), class: 'dropdown-item-link'
