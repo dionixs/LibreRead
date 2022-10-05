@@ -21,7 +21,9 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
+  # rubocop:disable Rails/FilePath
   if Rails.root.join('tmp/caching-dev.txt').exist?
+    # rubocop:enable Rails/FilePath
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 

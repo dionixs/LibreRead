@@ -4,10 +4,9 @@ module ZipFileImport
   extend ActiveSupport::Concern
 
   included do
-
     private
 
-    def is_not_zip_file(file)
+    def not_zip_file(file)
       return flash[:alert] = t('flash.alert.is_not_zip_file') unless valid_zip?(file)
     end
 

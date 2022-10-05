@@ -4,7 +4,6 @@ module LanguageDetection
   extend ActiveSupport::Concern
 
   included do
-
     private
 
     def lang_support?(text)
