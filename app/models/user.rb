@@ -63,7 +63,7 @@ class User < ApplicationRecord
   end
 
   def password_blank?
-    password_digest.blank? || (password.nil? && !password_confirmation.blank?)
+    password_digest.blank? || (password.nil? && password_confirmation.present?)
   end
 
   def password_complexity
