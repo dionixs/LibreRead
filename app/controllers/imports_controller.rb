@@ -40,7 +40,7 @@ class ImportsController < ApplicationController
     @import.destroy
     redirect_to imports_path,
                 notice: t('flash.notice.successfully_deleted.import',
-                          name: t('names.file'),
+                          name: t('global.names.file'),
                           filename: filename.to_s)
   end
 
