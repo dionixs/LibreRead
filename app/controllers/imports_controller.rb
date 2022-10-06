@@ -23,6 +23,7 @@ class ImportsController < ApplicationController
   def new; end
 
   def create
+    # TODO: Refactoring
     if @import.save
       @notes = @notes&.each_with_object([]) do |note, array|
         note[:user_id] = current_user.id
@@ -46,6 +47,10 @@ class ImportsController < ApplicationController
 
   private
 
+  def import_params
+    params.require(:import).permit(:text_file)
+  end
+
   def set_import
     @import = Import.new
   end
@@ -55,7 +60,7 @@ class ImportsController < ApplicationController
   end
 
   def import_text_file
-    @file = params[:import][:text_file]
+    @file = import_params[:text_file]
     @notes = nil
 
     if text_file?(@file)
