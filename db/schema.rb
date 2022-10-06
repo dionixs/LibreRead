@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_02_102738) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_103018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_102738) do
     t.text "data", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", default: 1, null: false
+    t.index ["user_id"], name: "index_imports_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -31,7 +33,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_102738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "import_id", null: false
+    t.bigint "user_id", default: 1, null: false
     t.index ["import_id"], name: "index_notes_on_import_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,5 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_102738) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "imports", "users"
   add_foreign_key "notes", "imports"
+  add_foreign_key "notes", "users"
 end
