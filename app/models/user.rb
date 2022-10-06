@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token
 
+  before_save :set_gravatar_hash, if: :email_changed?
   before_update :check_password_changed, if: -> { password.present? }
 
   has_many :imports, dependent: :destroy
@@ -40,6 +41,13 @@ class User < ApplicationRecord
   end
 
   private
+
+  def set_gravatar_hash
+    return unless email.present?
+
+    hash = Digest::MD5.hexdigest(email.strip.downcase)
+    self.gravatar_hash = hash
+  end
 
   def check_password_changed
     self.password_must_be_changed = false if password_must_be_changed == true

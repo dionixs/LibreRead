@@ -10,8 +10,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def gravatar(size: 30, css_class: '')
-    email_hash = Digest::MD5.hexdigest(email.strip.downcase)
-    h.image_tag "https://www.gravatar.com/avatar/#{email_hash}.jpg?d=retro&s=#{size}&f=y",
+    h.image_tag "https://www.gravatar.com/avatar/#{gravatar_hash}.jpg?d=retro&s=#{size}",
                 class: css_class, alt: name_or_email
   end
 end
