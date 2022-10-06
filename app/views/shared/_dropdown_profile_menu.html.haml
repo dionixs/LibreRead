@@ -1,0 +1,26 @@
+.flex.items-center.md:order-2
+  %button#user-menu-button.flex.mr-3.text-sm.bg-gray-800.md:mr-0.focus:ring-1.focus:ring-gray-300.dark:focus:ring-gray-600{"aria-expanded" => "false", "data-dropdown-placement" => "bottom", "data-dropdown-toggle" => "user-dropdown", :type => "button"}
+    %span.sr-only Open user menu
+    = current_user.gravatar(css_class: "w-8 h-8")
+  / Dropdown menu
+  #user-dropdown.hidden.z-50.my-4.text-base.list-none.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600{"data-popper-escaped" => "", "data-popper-placement" => "bottom", "data-popper-reference-hidden" => "", :style => "position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 356px, 0px);"}
+    .py-3.px-4
+      %span.block.text-sm.text-gray-900.dark:text-white
+        = current_user.name_or_email
+      %span.block.text-sm.font-medium.text-gray-500.truncate.dark:text-gray-400
+        = current_user.email
+    %ul.py-1{"aria-labelledby" => "user-menu-button"}
+      %li
+        / TODO: Add Dashboard
+      %li
+        = link_to t('header.menu.profile.dropdown.imports'), imports_url, class: 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+      %li
+        / TODO: Add Settings
+      %li
+        = link_to t('header.menu.profile.dropdown.settings'), edit_user_path(current_user), class: 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+      %li
+        = link_to t('header.menu.profile.dropdown.sign_out'), session_url, data: { method: :delete }, class: 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+  %button.inline-flex.items-center.p-2.ml-1.text-sm.text-gray-500.rounded-lg.md:hidden.hover:bg-gray-100.focus:outline-none.focus:ring-2.focus:ring-gray-200.dark:text-gray-400.dark:hover:bg-gray-700.dark:focus:ring-gray-600{"aria-controls" => "mobile-menu-2", "aria-expanded" => "false", "data-collapse-toggle" => "mobile-menu-2", :type => "button"}
+    %span.sr-only Open main menu
+    %svg.w-6.h-6{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{"clip-rule" => "evenodd", :d => "M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z", "fill-rule" => "evenodd"}

@@ -23,19 +23,7 @@
 
             - if user_signed_in?
               %li
-                %button#dropdownNavbarLink.flex.justify-between.items-center.py-2.pr-4.pl-3.w-full.font-medium.text-gray-700.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-700.md:p-0.md:w-auto.dark:text-gray-400.dark:hover:text-white.dark:focus:text-white.dark:border-gray-700.dark:hover:bg-gray-700.md:dark:hover:bg-transparent.text-lg{"data-dropdown-toggle" => "dropdownNavbar"}
-                  = t('header.menu.profile')
-                  %svg.ml-1.w-5.h-5{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
-                    %path{"clip-rule" => "evenodd", :d => "M5.293 7.293a1 1 0\n                011.414 0L10 10.586l3.293-3.293a1 1 0 111.414\n                1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z", "fill-rule" => "evenodd"}
-                / Dropdown menu
-                #dropdownNavbar.hidden.z-10.w-44.font-normal.bg-white.rounded.divide-y.divide-gray-100.shadow.dark:bg-gray-700.dark:divide-gray-600{"data-popper-escaped" => "", "data-popper-placement" => "bottom", "data-popper-reference-hidden" => "", :style => "position: absolute; inset: 0px auto auto 0px; margin: 0px;\n                     transform: translate3d(0px, 470.4px, 0px);"}
-                  %ul.py-1.text-sm.text-gray-700.dark:text-gray-400{"aria-labelledby" => "dropdownLargeButton"}
-                    %li
-                      = link_to t('header.menu.dropdown.edit_profile'), edit_user_path(current_user), class: 'block py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-lg'
-                  .py-1
-                    = link_to t('header.menu.dropdown.sign_out'), session_url,
-                    class: 'block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white text-lg',
-                    data: { method: :delete }
+                = render 'shared/dropdown_profile_menu'
             - else
               %li.login
                 = link_to t('header.menu.btn.log_in'), new_session_url,

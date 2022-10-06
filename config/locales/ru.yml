@@ -219,10 +219,11 @@ ru:
       faqs: 'FAQs'
       blog: 'Блог'
       documentation: 'Документация'
-      profile: 'Мой Профиль'
-      dropdown:
-        edit_profile: 'Редактировать'
-        sign_out: 'Выход'
+      profile:
+        dropdown:
+          imports: 'Импорты'
+          settings: 'Настройки'
+          sign_out: 'Выход'
       btn:
         log_in: 'Войти'
         sign_up: 'Зарегистрироваться'
@@ -258,5 +259,8 @@ ru:
             first: 'или перетащите'
             span: 'Нажмите, чтобы загрузить'
 
-  names:
-    file: 'Файл'
+  global:
+    names:
+      file: 'Файл'
+    dialog:
+      you_sure: 'Вы уверены?'

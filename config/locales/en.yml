@@ -219,10 +219,11 @@ en:
       faqs: 'FAQs'
       blog: 'Blog'
       documentation: 'Documentation'
-      profile: 'My Profile'
-      dropdown:
-        edit_profile: 'Edit Profile'
-        sign_out: 'Sign out'
+      profile:
+        dropdown:
+          imports: 'Imports'
+          settings: 'Settings'
+          sign_out: 'Sign out'
       btn:
         log_in: 'Log in'
         sign_up: 'Sign up'
@@ -258,5 +259,8 @@ en:
             first: 'or drag and drop'
             span: 'Click to upload'
 
-  names:
-    file: 'File'
+  global:
+    names:
+      file: 'File'
+    dialog:
+      you_sure: 'Are you sure?'
