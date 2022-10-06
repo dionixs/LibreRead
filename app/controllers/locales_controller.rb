@@ -5,6 +5,7 @@ class LocalesController < ApplicationController
     locale = params[:locale]
     new_locale = params[:new_locale]
     I18n.locale = locale_supported?(new_locale) ? new_locale : new_locale = locale
+    session[:locale] = I18n.locale
     redirect_to previous_url_with_new_locale(new_locale, locale)
   end
 
