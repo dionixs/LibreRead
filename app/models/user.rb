@@ -5,6 +5,9 @@ class User < ApplicationRecord
 
   before_update :check_password_changed, if: -> { password.present? }
 
+  has_many :imports, dependent: :destroy
+  has_many :notes, dependent: :destroy
+
   has_secure_password validations: false
 
   validate :password_presence
