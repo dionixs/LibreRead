@@ -9,6 +9,7 @@ class ImportsController < ApplicationController
 
   def index
     @pagy, @imports = pagy Import.order(created_at: :desc)
+                                 .where(user_id: current_user.id)
     @imports = @imports.decorate
   end
 
@@ -24,6 +25,7 @@ class ImportsController < ApplicationController
   def create
     if @import.save
       @notes = @notes&.each_with_object([]) do |note, array|
+        note[:user_id] = current_user.id
         array << @import.notes.build(note)
       end
       Note.import @notes, recursive: true

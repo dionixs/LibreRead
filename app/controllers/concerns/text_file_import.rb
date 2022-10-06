@@ -36,7 +36,8 @@ module TextFileImport
       Import.new(
         filename: file.original_filename,
         mime_type: file.content_type,
-        data: File.read(file.to_io)
+        data: File.read(file.to_io),
+        user_id: current_user.id
       )
     end
 
