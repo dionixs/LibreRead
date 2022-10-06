@@ -1,0 +1,18 @@
+%ul.flex.flex-col.p-4.mt-4.bg-gray-50.rounded-lg.border.border-gray-100.md:flex-row.md:space-x-8.md:mt-0.md:text-sm.md:font-medium.md:border-0.md:bg-white.dark:bg-gray-800.md:dark:bg-gray-900.dark:border-gray-700
+  %li
+    = link_to t('header.menu.home'), root_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
+  %li
+    = link_to t('header.menu.dashboard'), '#', class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
+  %li
+    = link_to t('header.menu.import_highlights'), new_import_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
+  %li
+    = link_to t('header.menu.faqs'), '#', class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
+
+  - if user_signed_in?
+    %li
+      = render 'shared/dropdowns/dropdown_profile_menu'
+  - else
+    %li.login
+      = render 'shared/buttons/login_btn'
+    %li.signup
+      = render 'shared/buttons/signup_btn'

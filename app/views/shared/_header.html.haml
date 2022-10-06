@@ -11,23 +11,4 @@
           %svg.w-6.h-6{"aria-hidden" => "true", :fill => "currentColor", :viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
             %path{"clip-rule" => "evenodd", :d => "M3 5a1 1 0 011-1h12a1 1 0\n        110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1\n        1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z", "fill-rule" => "evenodd"}
         #mobile-menu.hidden.w-full.md:block.md:w-auto
-          %ul.flex.flex-col.p-4.mt-4.bg-gray-50.rounded-lg.border.border-gray-100.md:flex-row.md:space-x-8.md:mt-0.md:text-sm.md:font-medium.md:border-0.md:bg-white.dark:bg-gray-800.md:dark:bg-gray-900.dark:border-gray-700
-            %li
-              = link_to t('header.menu.home'), root_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
-            %li
-              = link_to t('header.menu.dashboard'), '#', class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
-            %li
-              = link_to t('header.menu.import_highlights'), new_import_url, class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
-            %li
-              = link_to t('header.menu.faqs'), '#', class: 'block py-3 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-lg'
-
-            - if user_signed_in?
-              %li
-                = render 'shared/dropdown_profile_menu'
-            - else
-              %li.login
-                = link_to t('header.menu.btn.log_in'), new_session_url,
-                class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 text-lg'
-              %li.signup
-                = link_to t('header.menu.btn.sign_up'), new_user_url,
-                class: 'focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 text-lg'
+          = render 'shared/navbar'
