@@ -3,18 +3,62 @@
 module Internationalization
   extend ActiveSupport::Concern
 
+  # rubocop:disable Metrics/BlockLength
   included do
+    around_action :switch_locale
+
     private
 
     def switch_locale(&)
-      I18n.locale = locale_from_url || session[:locale] || I18n.default_locale
-      session[:locale] = I18n.locale
-      I18n.with_locale(I18n.locale, &)
+      locale = locale_from_url || locale_from_headers || session[:locale] || I18n.default_locale
+      response.set_header 'Content-Language', I18n.locale
+      session[:locale] = locale
+      I18n.with_locale(locale, &)
     end
 
+    # Adapted from https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb
     def locale_from_url
       locale = params[:locale]
       locale if locale_supported?(locale)
+    end
+
+    def locale_from_headers
+      return session[:locale] if session[:locale].present?
+
+      header = request.env['HTTP_ACCEPT_LANGUAGE']
+
+      return if header.nil?
+
+      locales = parse_header header
+
+      return if locales.empty?
+
+      return locales.last unless I18n.enforce_available_locales
+
+      detect_from_available(locales)
+    end
+
+    def parse_header(header)
+      # rubocop:disable Style/MultilineBlockChain
+      header.gsub(/\s+/, '').split(',').map do |language_tag|
+        locale, quality = language_tag.split(/;q=/i)
+        quality = quality ? quality.to_f : 1.0
+        [locale, quality]
+      end.reject do |(locale, quality)|
+        locale == '*' || quality.zero?
+      end.sort_by do |(_, quality)|
+        quality
+      end.map(&:first)
+      # rubocop:enable Style/MultilineBlockChain
+    end
+
+    def detect_from_available(locales)
+      locales.reverse.find { |l| I18n.available_locales.any? { |al| match?(al, l) } }
+      I18n.available_locales.find { |al| match?(al, locale) } if locale
+    end
+
+    def match?(str1, str2)
+      str1.to_s.casecmp(str2.to_s).zero?
     end
 
     def locale_supported?(locale)
@@ -25,4 +69,5 @@ module Internationalization
       { locale: I18n.locale }
     end
   end
+  # rubocop:enable Metrics/BlockLength
 end
