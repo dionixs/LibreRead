@@ -23,13 +23,8 @@ class ImportsController < ApplicationController
   def new; end
 
   def create
-    # TODO: Refactoring
     if @import.save
-      @notes = @notes&.each_with_object([]) do |note, array|
-        note[:user_id] = current_user.id
-        array << @import.notes.build(note)
-      end
-      Note.import @notes, recursive: true
+      import_notes(@import, @notes)
       redirect_to imports_path, notice: t('flash.notice.import_complete')
     else
       render 'new'
@@ -59,15 +54,15 @@ class ImportsController < ApplicationController
     @import = Import.find(params[:id])
   end
 
+  # TODO: Refactoring
   def import_text_file
     @file = import_params[:text_file]
-    @notes = nil
-
     if text_file?(@file)
       @import = new_import_text_file(@file)
       @notes = extract_notes(@import.data)
+      old_notes = saved_notes_for_current_user(current_user)
+      @notes = unique_notes_for_import(@notes, old_notes)
     end
-
     render 'new' if import_failed?(@file, @notes)
   end
 end

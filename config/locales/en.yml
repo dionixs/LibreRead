@@ -45,6 +45,7 @@ en:
       not_selected_file: 'You have not selected a file'
       not_kindle_clipping_file: 'Not a Kindle clipping file!'
       lang_not_supported: 'Language of your file is not supported!'
+      no_new_highlights: "No new highlights!"
     notice:
       welcome: "Welcome to the app, %{name}!"
       import_complete: 'Import Complete!'

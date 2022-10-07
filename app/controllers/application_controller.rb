@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   include Authentication
   include Internationalization
   include LanguageDetection
-  include RoutesHandling
+  include RouteHandling
   include TextFileImport
+  include NoteHandling
   include ZipFileImport
 end

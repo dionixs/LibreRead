@@ -27,9 +27,13 @@ module TextFileImport
       flash[:alert] = t('flash.alert.lang_not_supported') if lang_not_support?(text_file.read)
     end
 
+    def no_new_highlights(notes)
+      flash[:alert] = t('flash.alert.no_new_highlights') if notes.blank?
+    end
+
     def import_failed?(text_file, notes)
       not_text_file(text_file) || lang_not_supported(text_file) ||
-        not_kindle_clipping_file(notes)
+        not_kindle_clipping_file(notes) || no_new_highlights(notes)
     end
 
     def new_import_text_file(file)

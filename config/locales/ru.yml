@@ -45,6 +45,7 @@ ru:
       not_selected_file: 'Вы не выбрали файл!'
       not_kindle_clipping_file: 'Это не файл Kindle!'
       lang_not_supported: 'Язык вашего файла не поддерживается!'
+      no_new_highlights: "Новых заметок не обнаружено!"
     notice:
       welcome: "Добро пожаловать, %{name}!"
       import_complete: 'Импорт завершен!'
@@ -231,7 +232,7 @@ ru:
 
   footer:
     paragraph:
-          text: 'Простой и удобный способ импортировать заметки из Kindle.'
+      text: 'Простой и удобный способ импортировать заметки из Kindle.'
     kindle_links:
       column_name: 'Сервисы Kindle'
       amazon_highlights_page: 'Amazon Highlights Page'
@@ -256,9 +257,9 @@ ru:
   form:
     upload:
       label:
-         paragraph:
-            first: 'или перетащите'
-            span: 'Нажмите, чтобы загрузить'
+        paragraph:
+          first: 'или перетащите'
+          span: 'Нажмите, чтобы загрузить'
 
   global:
     names:
