@@ -16,7 +16,10 @@ module NoteHandling
     end
 
     def saved_notes_for_current_user(user)
-      old_notes = Note.where(user_id: user.id).map(&:attributes)
+      old_notes = Note.where(user_id: user.id)
+      return if old_notes.blank?
+
+      old_notes = old_notes.map(&:attributes)
       symbolize_keys_in_array_hashes(old_notes)
     end
 
@@ -27,6 +30,8 @@ module NoteHandling
     end
 
     def unique_notes_for_import(new_notes, old_notes)
+      return if old_notes.blank?
+
       new_notes&.each_with_object([]) do |hash, array|
         array << hash unless old_notes.any? do |hash2|
           hash[:clipping] == hash2[:clipping]
