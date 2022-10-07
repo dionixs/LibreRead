@@ -3,8 +3,8 @@
 module NoteHandling
   extend ActiveSupport::Concern
 
+  # rubocop:disable Metrics/BlockLength
   included do
-
     private
 
     def import_notes(import, notes)
@@ -17,7 +17,6 @@ module NoteHandling
 
     def saved_notes_for_current_user(user)
       old_notes = Note.where(user_id: user.id)
-      return if old_notes.blank?
 
       old_notes = old_notes.map(&:attributes)
       symbolize_keys_in_array_hashes(old_notes)
@@ -30,8 +29,6 @@ module NoteHandling
     end
 
     def unique_notes_for_import(new_notes, old_notes)
-      return if old_notes.blank?
-
       new_notes&.each_with_object([]) do |hash, array|
         array << hash unless old_notes.any? do |hash2|
           hash[:clipping] == hash2[:clipping]
@@ -39,4 +36,5 @@ module NoteHandling
       end
     end
   end
+  # rubocop:enable Metrics/BlockLength
 end
