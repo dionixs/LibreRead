@@ -37,8 +37,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman'
   gem 'bullet'
-  gem 'rubocop',             '1.36.0', require: false
+  gem 'rails_best_practices'
+  gem 'rubocop', '1.36.0', require: false
   gem 'rubocop-performance', '1.15.0', require: false
   gem 'rubocop-rails', '2.16.1', require: false
   gem 'web-console', '4.2.0'
