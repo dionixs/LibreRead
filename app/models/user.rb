@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :imports, dependent: :destroy
   has_many :notes, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   has_secure_password validations: false
 
