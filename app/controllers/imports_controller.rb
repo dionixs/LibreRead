@@ -5,8 +5,8 @@ class ImportsController < ApplicationController
   before_action :check_pass_changed
   before_action :set_import, only: %i[new create]
   before_action :find_import!, only: %i[show destroy]
-  before_action :import_text_file, only: %i[create]
   before_action -> { owner?(@import) }, only: %i[show destroy]
+  before_action :import_text_file, only: %i[create]
 
   def index
     @pagy, @imports = pagy Import.order(created_at: :desc)
