@@ -33,14 +33,15 @@ group :development, :test do
   gem 'factory_bot_rails',   '6.2.0'
   gem 'faker',               '2.23.0'
   gem 'pry-rails'
-  gem 'rspec-rails',         '5.1.2'
+  gem 'rspec-rails', '5.1.2'
 end
 
 group :development do
+  gem 'bullet'
   gem 'rubocop',             '1.36.0', require: false
   gem 'rubocop-performance', '1.15.0', require: false
-  gem 'rubocop-rails',       '2.16.1', require: false
-  gem 'web-console',         '4.2.0'
+  gem 'rubocop-rails', '2.16.1', require: false
+  gem 'web-console', '4.2.0'
 end
 
 group :test do
