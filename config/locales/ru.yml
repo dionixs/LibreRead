@@ -46,6 +46,7 @@ ru:
       not_kindle_clipping_file: 'Это не файл Kindle!'
       lang_not_supported: 'Язык вашего файла не поддерживается!'
       no_new_highlights: "Новых заметок не обнаружено!"
+      restricted_area: Запретная Зона
     notice:
       welcome: "Добро пожаловать, %{name}!"
       import_complete: 'Импорт завершен!'

@@ -7,9 +7,11 @@ class NotesController < ApplicationController
   before_action :check_pass_changed
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
+  before_action -> { owner?(@note) }, only: %i[show edit update destroy]
 
   def index
     @pagy, @notes = pagy @import.notes.order(created_kindle_at: :asc)
+                                .where(user_id: current_user.id)
     @notes = @notes.decorate
     session[:return_to] = request.fullpath
   end
