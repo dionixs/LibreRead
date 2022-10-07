@@ -3,7 +3,6 @@
 module NoteHandling
   extend ActiveSupport::Concern
 
-  # rubocop:disable Metrics/BlockLength
   included do
     private
 
@@ -36,5 +35,4 @@ module NoteHandling
       end
     end
   end
-  # rubocop:enable Metrics/BlockLength
 end
