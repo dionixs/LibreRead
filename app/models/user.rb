@@ -43,7 +43,7 @@ class User < ApplicationRecord
   private
 
   def set_gravatar_hash
-    return unless email.present?
+    return if email.blank?
 
     hash = Digest::MD5.hexdigest(email.strip.downcase)
     self.gravatar_hash = hash
