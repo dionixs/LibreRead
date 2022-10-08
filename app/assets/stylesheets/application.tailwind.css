@@ -4,6 +4,5 @@
 
 @import "./components/_pagination.css";
 @import "./components/_form.css";
+@import "./components/_buttons.css";
 @import "./components/_language_dropdown_menu.css";
-
-@import "./components/_custom.css";
