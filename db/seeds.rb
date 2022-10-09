@@ -12,7 +12,7 @@
 # 10.times do
 #   User.create email: Faker::Internet.email,
 #               name: Faker::Name.name,
-#               password: password,
+#               password:,
 #               password_confirmation: password
 # end
 
@@ -38,10 +38,10 @@
 # end
 
 # Create tags
-# 30.times do
+# 5.times do
 #   title = Faker::Hipster.word
 #   Tag.create(
-#     title: title,
+#     title:,
 #     user_id: User.first.id
 #   )
 # end
