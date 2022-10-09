@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
+# TODO
 module NoteHandling
   extend ActiveSupport::Concern
 
   included do
     private
+
+    # Refactoring
+    def find_note!
+      @note = @import.notes.find(params[:id]).decorate
+    end
 
     def import_notes(import, notes)
       notes = notes.each_with_object([]) do |note, array|
@@ -16,7 +22,6 @@ module NoteHandling
 
     def saved_notes_for_current_user(user)
       old_notes = Note.where(user_id: user.id)
-
       old_notes = old_notes.map(&:attributes)
       symbolize_keys_in_array_hashes(old_notes)
     end

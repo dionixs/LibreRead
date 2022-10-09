@@ -7,12 +7,14 @@ class NotesController < ApplicationController
   before_action :check_pass_changed
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
+  before_action :set_tag, only: %i[index show]
   before_action -> { owner?(@note) }, only: %i[show edit update destroy]
 
   def index
     @pagy, @notes = pagy @import.notes.order(created_kindle_at: :asc)
                                 .where(user_id: current_user.id)
     @notes = @notes.decorate
+    # TODO
     session[:return_to] = request.fullpath
   end
 
@@ -41,11 +43,12 @@ class NotesController < ApplicationController
     params.require(:note).permit(:clipping)
   end
 
+  # Refactoring
   def find_import!
     @import = Import.find(params[:import_id])
   end
 
-  def find_note!
-    @note = @import.notes.find(params[:id]).decorate
+  def set_tag
+    @tag = Tag.new
   end
 end

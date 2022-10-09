@@ -51,6 +51,7 @@ class ImportsController < ApplicationController
     @import = Import.new
   end
 
+  # Refactoring
   def find_import!
     @import = Import.find(params[:id])
   end
