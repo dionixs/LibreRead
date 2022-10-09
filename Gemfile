@@ -40,6 +40,7 @@ group :development do
   gem 'brakeman'
   gem 'bullet'
   gem 'rails_best_practices'
+  gem 'rails-erd'
   gem 'rubocop', '1.36.0', require: false
   gem 'rubocop-performance', '1.15.0', require: false
   gem 'rubocop-rails', '2.16.1', require: false
