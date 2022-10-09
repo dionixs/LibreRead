@@ -240,6 +240,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@orchidjs/sifter@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@orchidjs/sifter@npm:1.0.1"
+  dependencies:
+    "@orchidjs/unicode-variants": ^1.0.2
+  checksum: 39496861889f918a201c8336fd5f0f754b3c29269cb464997bf08a86c96df275821ab55782ff8679ede707a727475b9bd7bb62ef85f7ba3fd69a02f935c05b13
+  languageName: node
+  linkType: hard
+
+"@orchidjs/unicode-variants@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@orchidjs/unicode-variants@npm:1.0.2"
+  checksum: dc1d8682ecdd15bfc8d0be204eff47b8ff7ca88741ae4b61ebf5bf2e31fb9d22338a40b71a0082b8a965ea6c6b57de0c05683f7b4152e1500a010b7c0ddbf05f
+  languageName: node
+  linkType: hard
+
 "@popperjs/core@npm:^2.9.3":
   version: 2.11.6
   resolution: "@popperjs/core@npm:2.11.6"
@@ -415,6 +431,8 @@ __metadata:
     postcss-preset-env: ^7.8.2
     sass: ^1.54.9
     tailwindcss: ^3.1.8
+    tom-select: ^2.2.1
+    turbolinks: ^5.2.0
   languageName: unknown
   linkType: soft
 
@@ -2656,6 +2674,23 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
+  languageName: node
+  linkType: hard
+
+"tom-select@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "tom-select@npm:2.2.1"
+  dependencies:
+    "@orchidjs/sifter": ^1.0.1
+    "@orchidjs/unicode-variants": ^1.0.2
+  checksum: d51fc44cec81b363aee41dfad0d9ff83414f7521349fd1c422e2ba9b231bc92e6b7e7857e3348bdfa84994c7867f50b2164eae2428a2dac5b1c1102a4a15cbbd
+  languageName: node
+  linkType: hard
+
+"turbolinks@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "turbolinks@npm:5.2.0"
+  checksum: df393c321ed19d9761e632ff357d3cb032a9ca32c07f1ef8202e5f5bb9d17fcc93cdec0d9dfcf0fbca56c373a9dffa2c151639383e663a72897ae434a877819b
   languageName: node
   linkType: hard
 

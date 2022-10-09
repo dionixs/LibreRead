@@ -4,7 +4,7 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import 'flowbite';
 
-import './scripts/application'
+import './components/add_tags_modal'
 
 Rails.start()
 // Turbolinks.start()
