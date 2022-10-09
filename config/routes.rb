@@ -18,5 +18,7 @@ Rails.application.routes.draw do
     resources :imports, except: %i[edit update] do
       resources :notes, except: %i[new create]
     end
+
+    resources :tags, only: %i[create destroy]
   end
 end
