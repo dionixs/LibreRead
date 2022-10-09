@@ -1,0 +1,11 @@
+/ TODO: Add remote: true
+= form_for @tag, url: tags_path, html: { class: "mt-4", id: "add_new_tag_form" } do |f|
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  .w-full.my-8.p-8.items-center.bg-white.rounded-2xl.shadow-xl.overflow-hidden.sm:max-w-4xl.hover:shadow-xl.dark:bg-gray-500
+    %h1.mr-2.text-2xl.text-gray-800.font-bold.sm:text-4xl.dark:text-gray-100 Add Tags for note
+    .flex.flex-col.items-center.mt-1.text-sm.sm:flex-row.sm:space-y-0.sm:space-x-4
+      .w-full.sm:mb-2
+        = f.label :list do
+          = tag.span 'Which tags do you want to add?', class: 'text-sm text-gray-800 sm:text-base dark:text-gray-200'
+          = f.text_field :tag_list, id: 'input-tags', value: 'awesome,neat', autocomplete: 'off', class: 'mt-2'
+          = f.submit 'Save', id: 'add-tag-btn', class: 'mt-4 w-full text-center py-3 px-8 text-sm font-medium bg-purple-500 text-gray-100 rounded-2xl cursor-pointer hover:bg-purple-700 hover:text-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-50 mb-4 sm:mb-0'
