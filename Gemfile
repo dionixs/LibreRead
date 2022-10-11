@@ -29,6 +29,7 @@ gem 'valid_email2',         '4.0.4'
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'bullet'
   gem 'byebug',              '11.1.3'
   gem 'debug',               '1.5.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails',   '6.2.0'
@@ -39,7 +40,6 @@ end
 
 group :development do
   gem 'brakeman'
-  gem 'bullet'
   gem 'rails_best_practices'
   gem 'rails-erd'
   gem 'rubocop', '1.36.0', require: false
