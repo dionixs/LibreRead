@@ -3,8 +3,8 @@
 class Note < ApplicationRecord
   belongs_to :user
   belongs_to :import
-  has_many :note_tags, dependent: :destroy
-  has_many :tags, through: :note_tags
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   validates :title, presence: true, length: { minimum: 2 }
   validates :author, presence: true
