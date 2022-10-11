@@ -8,6 +8,7 @@ en:
       user: 'User'
       import: 'Import'
       note: 'Note'
+      tag: 'Tag'
     attributes:
       user:
         email: 'Email'
@@ -50,6 +51,7 @@ en:
     notice:
       welcome: "Welcome to the app, %{name}!"
       import_complete: 'Import Complete!'
+      successfully_created: "%{name} successfully created!"
       successfully_updated: "%{name} successfully updated!"
       successfully_deleted:
         import: "%{name} %{filename} successfully deleted!"
@@ -193,6 +195,7 @@ en:
         location: 'Place'
         created: 'Created'
         btn:
+          add_tags: 'Add Tags'
           edit: 'Edit'
           delete: 'Delete'
           confirm: 'Are you sure?'
@@ -200,6 +203,13 @@ en:
       title: 'Edit'
       heading: 'Edit Note'
       btn: 'Save!'
+
+  tags:
+    flash:
+      notice:
+        successfully_created: "%Tags successfully created!"
+        alert:
+          error: "Error when adding tags :("
 
   static_pages:
     index:

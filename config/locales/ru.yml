@@ -8,6 +8,7 @@ ru:
       user: 'Пользователь'
       import: 'Импорт'
       note: 'Заметка'
+      tag: 'Тег'
     attributes:
       user:
         email: 'Email'
@@ -50,6 +51,7 @@ ru:
     notice:
       welcome: "Добро пожаловать, %{name}!"
       import_complete: 'Импорт завершен!'
+      successfully_created: "%{name} успешно добавлена!"
       successfully_updated: "%{name} успешно обновлена!"
       successfully_deleted:
         import: "%{name} %{filename} успешно удален!"
@@ -154,6 +156,13 @@ ru:
       flash:
         alert: 'Увидимся позже!'
 
+  tags:
+    flash:
+      notice:
+        successfully_created: "Теги успешно добавлены!"
+        alert:
+          error: "Ошибка при добавлении тегов :("
+
   notes:
     index:
       title: 'Заметки'
@@ -168,6 +177,7 @@ ru:
         location: 'Место'
         created: 'Создана'
         btn:
+          add_tags: 'Добавить теги'
           edit: 'Редактировать'
           delete: 'Удалить'
           confirm: 'Вы уверены?'

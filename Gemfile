@@ -24,6 +24,7 @@ gem 'rubyzip',              '2.3.2'
 gem 'sidekiq',              '6.5.6'
 gem 'slim-rails',           '3.5.1'
 gem 'sprockets-rails',      '3.4.2'
+gem 'turbo-rails',          '1.3.0'
 gem 'valid_email2',         '4.0.4'
 
 group :development, :test do
@@ -57,3 +58,6 @@ end
 # Uncomment the following line if you're running Rails
 # on a native Windows system:
 # gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Use Redis for Action Cable
+gem "redis", "~> 4.0"

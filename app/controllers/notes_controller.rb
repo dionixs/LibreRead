@@ -13,18 +13,22 @@ class NotesController < ApplicationController
   def index
     @pagy, @notes = pagy @import.notes.order(created_kindle_at: :asc)
                                 .where(user_id: current_user.id)
+    # @tags = @notes.extract_associated(:note_tags)
     @notes = @notes.decorate
     # TODO
     session[:return_to] = request.fullpath
   end
 
-  def show; end
+  def show
+    # @tags = @note.tag_list(user_id: current_user.id)
+  end
 
   def edit; end
 
   def update
     if @note.update(notes_params)
       flash[:notice] = t('flash.notice.successfully_updated', name: t('activerecord.models.note'))
+      # TODO: Add method
       redirect_to "#{session[:return_to]}##{dom_id(@note)}"
     else
       render :edit

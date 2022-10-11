@@ -1,20 +1,44 @@
-import TomSelect from "tom-select";
+// Open modal window
 
-new TomSelect('#input-tags',{
-	plugins: {
-		remove_button:{
-			title:'Remove this item',
-		},
-    clear_button:{
-			title:'Remove all selected options',
-		}
-	},
-	persist: false,
-	create: true,
-	onDelete: function(values) {
-		return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
-	}
+// Set note_id to params
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+const add_tag_buttons = document.querySelectorAll(".add-tag");
+
+add_tag_buttons.forEach(btn => {
+
+  btn.addEventListener('click', (event)=> {
+    let id = btn.id.split('-').slice(-1);
+
+    urlParams.set('note_id', id);
+
+    // Change some part of the URL params
+    if (history.pushState) {
+      const new_url =
+        window.location.protocol + "//" + window.location.host +
+        window.location.pathname + "?" + urlParams.toString() +
+        window.location.hash.replace('#','');
+      window.history.replaceState({ path: new_url }, "", new_url);
+    } else {
+      window.location.search = urlParams.toString();
+    }
+
+    console.log();
+  });
 });
+
+
+// var up = document.getElementById('GFG_UP');
+//             var url = new URL("https://www.geeksforgeeks.org");
+//             up.innerHTML = url;
+//             var down = document.getElementById('GFG_DOWN');
+//
+//             function GFG_Fun() {
+//                 url.searchParams.set('param_1', 'val_1');
+//                 down.innerHTML = url;
+//             }
 
 // const form = document.getElementById("add-tags-form");
 //
@@ -24,28 +48,28 @@ new TomSelect('#input-tags',{
 //   let data = new FormData(event.target);
 //   console.log(tags);
 //   console.log(data);
-  // fetch(event.target.action, {
-  //   method: form.method,
-  //   body: data,
-  //   headers: {
-  //     'Accept': 'application/json'
-  //   }
-  // }).then(response => {
-  //   if (response.ok) {
-  //     status.innerHTML = "Thanks for your submission!";
-  //     form.reset()
-  //   } else {
-  //     response.json().then(data => {
-  //       if (Object.hasOwn(data, 'errors')) {
-  //         status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-  //       } else {
-  //         status.innerHTML = "Oops! There was a problem submitting your form"
-  //       }
-  //     })
-  //   }
-  // }).catch(error => {
-  //   status.innerHTML = "Oops! There was a problem submitting your form"
-  // });
+// fetch(event.target.action, {
+//   method: form.method,
+//   body: data,
+//   headers: {
+//     'Accept': 'application/json'
+//   }
+// }).then(response => {
+//   if (response.ok) {
+//     status.innerHTML = "Thanks for your submission!";
+//     form.reset()
+//   } else {
+//     response.json().then(data => {
+//       if (Object.hasOwn(data, 'errors')) {
+//         status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+//       } else {
+//         status.innerHTML = "Oops! There was a problem submitting your form"
+//       }
+//     })
+//   }
+// }).catch(error => {
+//   status.innerHTML = "Oops! There was a problem submitting your form"
+// });
 // }
 // form.addEventListener("submit", handleSubmit)
 

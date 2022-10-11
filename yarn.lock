@@ -193,6 +193,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hotwired/turbo-rails@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "@hotwired/turbo-rails@npm:7.2.0"
+  dependencies:
+    "@hotwired/turbo": ^7.2.0
+    "@rails/actioncable": ^7.0
+  checksum: 8a40ba37c68d3ac45fdd810642820c80ff179568dc1e668b844fe1cdf2b4574d666496c9585af1c0c2863ece37a6c7e726024d6e0ad5de39ff6f15ae83d8bf74
+  languageName: node
+  linkType: hard
+
+"@hotwired/turbo@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "@hotwired/turbo@npm:7.2.0"
+  checksum: cea846f44190e24897b5b142838ca6fef1dcab623832a4af35a3da9e094fb908f44c73c4abc7ba75ca80cac0358c2009fcb17659ae3c97dd955bfb5aa45d8b4b
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -260,6 +277,13 @@ __metadata:
   version: 2.11.6
   resolution: "@popperjs/core@npm:2.11.6"
   checksum: 47fb328cec1924559d759b48235c78574f2d71a8a6c4c03edb6de5d7074078371633b91e39bbf3f901b32aa8af9b9d8f82834856d2f5737a23475036b16817f0
+  languageName: node
+  linkType: hard
+
+"@rails/actioncable@npm:^7.0":
+  version: 7.0.4
+  resolution: "@rails/actioncable@npm:7.0.4"
+  checksum: b31cae40511a3df4d3048779255219b92f7dd89514f3c9f2da2b219b9b0635261b17b05031c7070756d319bf9165d4d6c021a820b110d53a3e6c441a062accdd
   languageName: node
   linkType: hard
 
@@ -414,6 +438,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "app@workspace:."
   dependencies:
+    "@hotwired/turbo-rails": ^7.2.0
     "@rails/activestorage": ^7.0.4
     "@rails/ujs": ^7.0.3-1
     "@tailwindcss/aspect-ratio": ^0.4.2
@@ -432,7 +457,6 @@ __metadata:
     sass: ^1.54.9
     tailwindcss: ^3.1.8
     tom-select: ^2.2.1
-    turbolinks: ^5.2.0
   languageName: unknown
   linkType: soft
 
@@ -1686,8 +1710,8 @@ __metadata:
   linkType: hard
 
 "node-gyp@npm:latest":
-  version: 9.2.0
-  resolution: "node-gyp@npm:9.2.0"
+  version: 9.3.0
+  resolution: "node-gyp@npm:9.3.0"
   dependencies:
     env-paths: ^2.2.0
     glob: ^7.1.4
@@ -1701,7 +1725,7 @@ __metadata:
     which: ^2.0.2
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 91f0589eabbd37f0d4e3fe9918f1f9e25afc707f6e107f0133be19c5aac62e731d92abdc2b106258665a4487b18cc2878d3fcd3dc2c6cffd68da1cb2a5ccf450
+  checksum: 589ddd3ed967724ef425f9624bfa47cf73022640ab3eba6d556e92cdc4ddef33b63fce3a467c93b995a3f61df92eafd3c3d1e8dbe4a2c00c383334487dea99c3
   languageName: node
   linkType: hard
 
@@ -2684,13 +2708,6 @@ __metadata:
     "@orchidjs/sifter": ^1.0.1
     "@orchidjs/unicode-variants": ^1.0.2
   checksum: d51fc44cec81b363aee41dfad0d9ff83414f7521349fd1c422e2ba9b231bc92e6b7e7857e3348bdfa84994c7867f50b2164eae2428a2dac5b1c1102a4a15cbbd
-  languageName: node
-  linkType: hard
-
-"turbolinks@npm:^5.2.0":
-  version: 5.2.0
-  resolution: "turbolinks@npm:5.2.0"
-  checksum: df393c321ed19d9761e632ff357d3cb032a9ca32c07f1ef8202e5f5bb9d17fcc93cdec0d9dfcf0fbca56c373a9dffa2c151639383e663a72897ae434a877819b
   languageName: node
   linkType: hard
 

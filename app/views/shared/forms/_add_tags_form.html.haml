@@ -7,5 +7,7 @@
       .w-full.sm:mb-2
         = f.label :list do
           = tag.span 'Which tags do you want to add?', class: 'text-sm text-gray-800 sm:text-base dark:text-gray-200'
-          = f.text_field :tag_list, id: 'input-tags', value: 'awesome,neat', autocomplete: 'off', class: 'mt-2'
-          = f.submit 'Save', id: 'add-tag-btn', class: 'mt-4 w-full text-center py-3 px-8 text-sm font-medium bg-purple-500 text-gray-100 rounded-2xl cursor-pointer hover:bg-purple-700 hover:text-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-50 mb-4 sm:mb-0'
+          -# Todo: Refactoring
+          = f.hidden_field :note_id, value: params[:note_id]
+          = f.text_field :tags, id: 'input-tags', value: params[:tags], autocomplete: 'off', class: 'mt-2'
+          = f.submit 'Save', id: 'save-tags-btn', data: { disable_with: "Please wait..." }, class: 'mt-4 w-full text-center py-3 px-8 text-sm font-medium bg-purple-500 text-gray-100 rounded-2xl cursor-pointer hover:bg-purple-700 hover:text-gray-50 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-50 mb-4 sm:mb-0'
