@@ -12,24 +12,20 @@ class Note < ApplicationRecord
   validates :created_kindle_at, presence: true
   validates :clipping, presence: true
 
-  # TODO
-
-  # def self.tagged_with(title)
-  #   Tag.find_by!(title:).notes
-  # end
-
-  # def self.tag_counts
-  #   Tag.select('tags.*, count(note_tags.tag_id) as count')
-  #      .joins(:note_tags).group('note_tags.tag_id')
-  # end
-
-  # def tag_list(opt)
-  #   tags.where(user_id: opt[:user_id]).map(&:title)
-  # end
+  # TODO: Create concern
   #
-  # def tag_list=(opt)
-  #   self.tags = opt[:tags].split(',').map do |title|
-  #     Tag.where(title: title.strip, user_id: opt[:user_id]).first_or_create!
-  #   end
-  # end
+  def all_tags=(titles)
+    self.tags = titles.split(',').map do |title|
+      Tag.where(title: title.strip, user_id:).first_or_create!
+    end
+  end
+
+  def all_tags
+    Note.find_by(id:)&.tags&.map(&:title)&.join(',')
+  end
+
+  def self.tagged_with(title, opt)
+    Tag.find_by!(title:).notes
+       .where(user_id: opt[:user_id])
+  end
 end

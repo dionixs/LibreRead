@@ -2,10 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import "./components/flowbite.min.css";
+@import "components/_flowbite.min.css";
+
+@import "components/_tagify.css";
 
 @import "./components/_pagination.css";
-@import "./components/_tom-select.default.css";
 
 @import "./components/_form.css";
 @import "./components/_buttons.css";

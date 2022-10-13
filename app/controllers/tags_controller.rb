@@ -10,11 +10,11 @@ class TagsController < ApplicationController
   before_action -> { owner?(@note) }
   # before_action :set_tags, only: %i[create]
 
+  # TODO
   def create
-    render plain: 'Функция находиться в разработке'
-    # (@note.tag_list = (tags_params))
-    # flash[:notice] = t('tags.flash.notice.successfully_created')
-    # redirect_to session[:return_to]
+    @note.all_tags = (tags_params)
+    flash[:notice] = t('tags.flash.notice.successfully_created')
+    redirect_to session[:return_to]
   end
 
   def destroy; end

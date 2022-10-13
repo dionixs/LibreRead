@@ -257,22 +257,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@orchidjs/sifter@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@orchidjs/sifter@npm:1.0.1"
-  dependencies:
-    "@orchidjs/unicode-variants": ^1.0.2
-  checksum: 39496861889f918a201c8336fd5f0f754b3c29269cb464997bf08a86c96df275821ab55782ff8679ede707a727475b9bd7bb62ef85f7ba3fd69a02f935c05b13
-  languageName: node
-  linkType: hard
-
-"@orchidjs/unicode-variants@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@orchidjs/unicode-variants@npm:1.0.2"
-  checksum: dc1d8682ecdd15bfc8d0be204eff47b8ff7ca88741ae4b61ebf5bf2e31fb9d22338a40b71a0082b8a965ea6c6b57de0c05683f7b4152e1500a010b7c0ddbf05f
-  languageName: node
-  linkType: hard
-
 "@popperjs/core@npm:^2.9.3":
   version: 2.11.6
   resolution: "@popperjs/core@npm:2.11.6"
@@ -293,13 +277,6 @@ __metadata:
   dependencies:
     spark-md5: ^3.0.1
   checksum: f99eaf856782babbf54a79fdf22e797592ad2a90e83b35125cd2c546c56b9f1c2ee8fc9e9b73098356fbfbca05ea2ba832207d455d3ed6e57513ba33ccb74ea2
-  languageName: node
-  linkType: hard
-
-"@rails/ujs@npm:^7.0.3-1":
-  version: 7.0.4
-  resolution: "@rails/ujs@npm:7.0.4"
-  checksum: 26a05efb14fe09b792dcf8de067d5607d0fdafc0a6c5d73dd4d57a214d441b8cabbdb563b8f54e78932210de2b5236a466664edd53fc8bda71fa6d9835bd9266
   languageName: node
   linkType: hard
 
@@ -341,6 +318,15 @@ __metadata:
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
   checksum: ad87447820dd3f24825d2d947ebc03072b20a42bfc96cbafec16bff8bbda6c1a81fcb0be56d5b21968560c5359a0af4038a68ba150c3e1694fe4c109a063bed8
+  languageName: node
+  linkType: hard
+
+"@yaireo/tagify@npm:^4.16.4":
+  version: 4.16.4
+  resolution: "@yaireo/tagify@npm:4.16.4"
+  peerDependencies:
+    prop-types: ^15.7.2
+  checksum: 054bf968904fb4ae124aa5f24079fff40a0450d05cd1cee7eddfa4813fcf5dcb70dad65433230566d44dfa92fedd66ef6252eb9fef422626f352f845b2065663
   languageName: node
   linkType: hard
 
@@ -440,14 +426,15 @@ __metadata:
   dependencies:
     "@hotwired/turbo-rails": ^7.2.0
     "@rails/activestorage": ^7.0.4
-    "@rails/ujs": ^7.0.3-1
     "@tailwindcss/aspect-ratio": ^0.4.2
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/typography": ^0.5.7
+    "@yaireo/tagify": ^4.16.4
     autoprefixer: ^10.4.11
     esbuild: ^0.15.7
     esbuild-plugin-replace: ^1.2.0
     flowbite: ^1.5.3
+    jquery: ^3.6.1
     postcss: ^8.4.16
     postcss-cli: ^10.0.0
     postcss-flexbugs-fixes: ^5.0.2
@@ -456,7 +443,6 @@ __metadata:
     postcss-preset-env: ^7.8.2
     sass: ^1.54.9
     tailwindcss: ^3.1.8
-    tom-select: ^2.2.1
   languageName: unknown
   linkType: soft
 
@@ -1456,6 +1442,13 @@ __metadata:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 26bf6c5480dda5161c820c5b5c751ae1e766c587b1f951ea3fcfc973bafb7831ae5b54a31a69bd670220e42e99ec154475025a468eae58ea262f813fdc8d1c62
+  languageName: node
+  linkType: hard
+
+"jquery@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "jquery@npm:3.6.1"
+  checksum: 6177d866a74f1137cad800f142c7cdbd5ab19cd4282546f8bdb4890c9f933b1d542ab96f2aa15d007e43c98de7315b0513e849ec5359d3ac5640f720892fe547
   languageName: node
   linkType: hard
 
@@ -2698,16 +2691,6 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
-  languageName: node
-  linkType: hard
-
-"tom-select@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "tom-select@npm:2.2.1"
-  dependencies:
-    "@orchidjs/sifter": ^1.0.1
-    "@orchidjs/unicode-variants": ^1.0.2
-  checksum: d51fc44cec81b363aee41dfad0d9ff83414f7521349fd1c422e2ba9b231bc92e6b7e7857e3348bdfa84994c7867f50b2164eae2428a2dac5b1c1102a4a15cbbd
   languageName: node
   linkType: hard
 

@@ -7,7 +7,6 @@ class NotesController < ApplicationController
   before_action :check_pass_changed
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
-  before_action :set_tag, only: %i[index show]
   before_action -> { owner?(@note) }, only: %i[show edit update destroy]
 
   def index
@@ -15,23 +14,25 @@ class NotesController < ApplicationController
                                 .where(user_id: current_user.id)
     # @tags = @notes.extract_associated(:note_tags)
     @notes = @notes.decorate
-    # TODO
     session[:return_to] = request.fullpath
   end
 
   def show
-    # @tags = @note.tag_list(user_id: current_user.id)
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @note.tags.to_json(only: ['title']) }
+    end
   end
 
   def edit; end
 
   def update
-    if @note.update(notes_params)
-      flash[:notice] = t('flash.notice.successfully_updated', name: t('activerecord.models.note'))
-      # TODO: Add method
-      redirect_to "#{session[:return_to]}##{dom_id(@note)}"
-    else
-      render :edit
+    respond_to do |format|
+      if @note.update(notes_params)
+        format.html { redirect_to return_to }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -44,7 +45,7 @@ class NotesController < ApplicationController
   private
 
   def notes_params
-    params.require(:note).permit(:clipping)
+    params.require(:note).permit(:clipping, :all_tags)
   end
 
   # Refactoring
@@ -52,7 +53,8 @@ class NotesController < ApplicationController
     @import = Import.find(params[:import_id])
   end
 
-  def set_tag
-    @tag = Tag.new
+  def return_to
+    flash[:notice] = t('flash.notice.successfully_updated', name: t('activerecord.models.note'))
+    "#{session[:return_to]}##{dom_id(@note)}"
   end
 end

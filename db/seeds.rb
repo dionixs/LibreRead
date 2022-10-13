@@ -38,10 +38,11 @@
 # end
 
 # Create tags
-# 5.times do
-#   title = Faker::Hipster.word
-#   Tag.create(
-#     title:,
-#     user_id: User.first.id
-#   )
-# end
+5.times do
+  title = Faker::Hipster.word
+  Note.first.tags.create(title:, user_id: User.last.id)
+  # Tag.create(
+  #   title:,
+  #   user_id: User.first.id
+  # )
+end

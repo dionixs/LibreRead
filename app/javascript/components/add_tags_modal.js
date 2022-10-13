@@ -1,20 +1,52 @@
-// Open modal window
+import Tagify from '@yaireo/tagify'
 
-// Set note_id to params
+const csrfToken = document.getElementsByName("csrf-token")[0].content;
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
+const inputTags = document.getElementById("input-tags")
+const inputAllTags = document.getElementById("all-tags")
+const addNewTagForm = document.getElementById("add-new-tag-form")
+const addTagButtons = document.querySelectorAll(".add-tag");
 
-const add_tag_buttons = document.querySelectorAll(".add-tag");
+function changeActionInForm(import_id, note_id) {
+  addNewTagForm.action = `/imports/${import_id}/notes/${note_id}`
+}
 
-add_tag_buttons.forEach(btn => {
+function submitNewTags(url) {
+  console.log(url);
+  $("#save-tags-btn").on("click", function(event) {
+    // event.preventDefault();
+    $.ajax({
+      headers: {
+        "X-CSRF-Token": csrfToken
+      },
+      type: "PATCH",
+      url: url,
+      data: {
+      note: {
+        all_tags: inputTags.value
+      },
+    },
+      success: function(result) {
+        // Append the result to a table or list, $("list").append(result)
+      },
+    });
+  });
+}
+
+addTagButtons.forEach(btn => {
 
   btn.addEventListener('click', (event)=> {
-    let id = btn.id.split('-').slice(-1);
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
 
-    urlParams.set('note_id', id);
+    const import_id = btn.dataset.importId;
+    const note_id = btn.dataset.noteId;
+    // let tags = btn.dataset.tags;
 
-    // Change some part of the URL params
+    urlParams.set('note_id', note_id);
+    // urlParams.set('tags', tags);
+
+    // // Change some part of the URL params
     if (history.pushState) {
       const new_url =
         window.location.protocol + "//" + window.location.host +
@@ -25,80 +57,47 @@ add_tag_buttons.forEach(btn => {
       window.location.search = urlParams.toString();
     }
 
-    console.log();
+    function getTitles(data) {
+      let titles = []
+
+      data.forEach(title => {
+        for (let key in title) {
+          let str = `${title[key]}`;
+          titles.push(str);
+        }
+      })
+      return titles;
+    }
+
+    function changeDataForm(data) {
+      changeActionInForm(import_id, note_id);
+
+      let tagify = new Tagify(inputTags, {
+        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(', ')
+      })
+
+      tagify.removeAllTags();
+      tagify.addTags(getTitles(data));
+      tagify.updateValueByDOMTags();
+    }
+
+    // Ajax
+    fetch(`/imports/${import_id}/notes/${note_id}.json`, {
+      method: "GET",
+      headers: {
+        "X-CSRF-Token": csrfToken,          // 👈👈👈 you need to set token
+        "Content-Type": "application/json", // 👈👈👈 To send json in body, specify this
+        Accept: "application/json"         // 👈👈👈 Specify the response to be returned as json. For api only mode, this may not be needed
+      }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        changeDataForm(data);
+        submitNewTags(addNewTagForm.action);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
   });
 });
-
-
-// var up = document.getElementById('GFG_UP');
-//             var url = new URL("https://www.geeksforgeeks.org");
-//             up.innerHTML = url;
-//             var down = document.getElementById('GFG_DOWN');
-//
-//             function GFG_Fun() {
-//                 url.searchParams.set('param_1', 'val_1');
-//                 down.innerHTML = url;
-//             }
-
-// const form = document.getElementById("add-tags-form");
-//
-// async function handleSubmit(event) {
-//   event.preventDefault();
-//   let tags = document.getElementById("input-tags").value;
-//   let data = new FormData(event.target);
-//   console.log(tags);
-//   console.log(data);
-// fetch(event.target.action, {
-//   method: form.method,
-//   body: data,
-//   headers: {
-//     'Accept': 'application/json'
-//   }
-// }).then(response => {
-//   if (response.ok) {
-//     status.innerHTML = "Thanks for your submission!";
-//     form.reset()
-//   } else {
-//     response.json().then(data => {
-//       if (Object.hasOwn(data, 'errors')) {
-//         status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-//       } else {
-//         status.innerHTML = "Oops! There was a problem submitting your form"
-//       }
-//     })
-//   }
-// }).catch(error => {
-//   status.innerHTML = "Oops! There was a problem submitting your form"
-// });
-// }
-// form.addEventListener("submit", handleSubmit)
-
-// ✅ Create element
-// const note_tag = document.createElement('span');
-// note_tag.innerHTML = 'Hello, World!';
-//
-// document.getElementById('add-tag-btn').addEventListener('click', function handleClick(event) {
-//   console.log('element clicked 🎉🎉🎉', event);
-// });
-
-// document.getElementById('add-tag-btn').onclick = function() {
-//
-//   const note_tags = document.getElementById('note-tags');
-//   note_tags.append(note_tag);
-
-// const elements = document.getElementsByClassName('note-tag');
-//
-// for(let i = 0; i < elements.length; i++)
-// {
-//   elements[i].classList.add('note-tag');
-//   console.log(elements[i].className);
-// }
-
-// document.getElementsByClassName('note-tag').classList.toggle('hidden');
-// }
-
-
-
-
-
-

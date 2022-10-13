@@ -207,7 +207,7 @@ en:
   tags:
     flash:
       notice:
-        successfully_created: "%Tags successfully created!"
+        successfully_created: "Tags successfully created!"
         alert:
           error: "Error when adding tags :("
 
