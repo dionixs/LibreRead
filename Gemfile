@@ -60,4 +60,4 @@ end
 # gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use Redis for Action Cable
-gem "redis", "~> 4.0"
+gem 'redis', '~> 4.0'
