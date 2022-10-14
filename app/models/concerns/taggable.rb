@@ -5,11 +5,13 @@ module Taggable
 
   included do
 
+    # TODO
     def all_tags=(titles)
-      # TODO: Add update updated_at note if tag was created
       self.tags = titles.split(',').map do |title|
         Tag.where(title: title.strip, user_id:).first_or_create!
       end
+      # TODO
+      update(updated_at: Time.current)
     end
 
     def all_tags
