@@ -1,9 +1,9 @@
 %tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.hover:bg-gray-50.dark:hover:bg-gray-600
   %th.py-4.px-6.font-medium.text-gray-900.whitespace-nowrap.dark:text-white{:scope => "row"}
-    = link_to import.filename, import_notes_url(import.id), class: 'cursor-pointer hover:underline text-blue-600'
+    = link_to import.filename, import_path(import.id), class: 'cursor-pointer hover:underline text-blue-600'
   %th.py-4.px-6.font-medium.text-gray-900.whitespace-nowrap.dark:text-white{:scope => "row"}
     = import.formatted_created_at
   %td.py-4.px-6.text-right
-    = link_to t('imports.index.table.download'), "#{import_path(import.id)}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline'
+    = link_to t('imports.index.table.download'), "#{import_download_path(import.id)}", data: {turbolinks: false}, class: 'font-medium text-blue-600 dark:text-blue-500 hover:underline'
   %td.py-4.px-6.text-right
-    = link_to t('imports.index.table.delete'), "#{import_path(import.id)}", data: { method: :delete, confirm: "#{t('imports.index.confirm')} #{import.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline'
+    = link_to t('imports.index.table.delete'), "#{import_path(import.id)}", data: { turbo: true, turbo_method: :delete, 'turbo-confirm': "#{t('imports.index.confirm')} #{import.filename}?" }, class: 'font-medium text-red-600 dark:text-red-500 hover:underline'

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ImportsController < ApplicationController
-  before_action :require_authentication, only: %i[index show new create destroy]
+  before_action :require_authentication, only: %i[index download show new create destroy]
   before_action :check_pass_changed
   before_action :set_import, only: %i[new create]
-  before_action :find_import!, only: %i[show destroy]
-  before_action -> { owner?(@import) }, only: %i[show destroy]
+  before_action :find_import!, only: %i[show download destroy]
+  before_action -> { owner?(@import) }, only: %i[show destroy download]
   before_action :import_text_file, only: %i[create]
 
   def index
@@ -15,6 +15,10 @@ class ImportsController < ApplicationController
   end
 
   def show
+    redirect_to import_notes_url(params[:id])
+  end
+
+  def download
     send_data(
       @import.data,
       filename: @import.filename
@@ -53,7 +57,7 @@ class ImportsController < ApplicationController
 
   # Refactoring
   def find_import!
-    @import = Import.find(params[:id])
+    @import = Import.find(params[:id] || params[:import_id])
   end
 
   # TODO: Refactoring
