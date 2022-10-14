@@ -11,15 +11,12 @@ Rails.application.routes.draw do
     end
 
     resource :session, only: %i[new create destroy]
-    # TODO
-    get 'session', to: 'sessions#destroy'
-
     resources :users, only: %i[new create edit update]
 
     resources :imports, except: %i[edit update] do
       resources :notes, except: %i[new create]
     end
-
-    root 'static_pages#index'
   end
+
+  root 'static_pages#index'
 end

@@ -6,7 +6,7 @@ module RouteHandling
   extend ActiveSupport::Concern
 
   included do
-    # after_action :set_route_info
+    after_action :set_route_info
 
     def set_route_info
       session[:previous_url] = request.url
