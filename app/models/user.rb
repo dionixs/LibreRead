@@ -18,7 +18,7 @@ class User < ApplicationRecord
                        length: { minimum: 8, maximum: 70 }
   validate :password_complexity
 
-  validates :email, presence: true, uniqueness: true,
+  validates :email, presence: true, uniqueness: { case_sensitive: false },
                     'valid_email_2/email': { mx: true }
 
   def remember_me
