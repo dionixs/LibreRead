@@ -5,7 +5,11 @@ module Taggable
 
   included do
 
-    # TODO
+    # todo
+    def self.tagged_with(title:, import_id:)
+      Tag.find_by!(title:).notes.where(import_id:)
+    end
+
     def all_tags=(titles)
       self.tags = titles.split(',').map do |title|
         Tag.where(title: title.strip, user_id:).first_or_create!
@@ -22,14 +26,6 @@ module Taggable
 
     def delete_all_tags
       tags.each(&:destroy)
-    end
-  end
-
-  class_methods do
-    # TODO: Refactoring
-    def self.tagged_with(title, opt)
-      Tag.find_by!(title:).notes
-         .where(user_id: opt[:user_id])
     end
   end
 end
