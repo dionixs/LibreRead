@@ -24,6 +24,6 @@
           %th.py-3.px-6{:scope => "col"}
             %span.sr-only "#{t('imports.index.table.delete')}"
       %tbody
-        = render @imports
+        = render partial: 'imports/import', collection: @imports, cached: true
   .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
     = pagination(@pagy)

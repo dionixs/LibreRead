@@ -9,7 +9,7 @@
 
 .mt-10.max-w-md.mx-auto.md:max-w-4xl.text-center
   = pagination(@pagy)
-= render @notes
+= render partial: 'note', collection: @notes, cached: true
 .mt-10.max-w-md.mx-auto.md:max-w-4xl.text-center
   = pagination(@pagy)
 
