@@ -246,7 +246,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    redis (4.8.0)
+    redis (4.5.0)
     regexp_parser (2.6.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -386,7 +386,7 @@ DEPENDENCIES
   rails-erd
   rails-i18n (= 7.0.5)
   rails_best_practices
-  redis (~> 4.0)
+  redis (= 4.5.0)
   rspec-rails (= 5.1.2)
   rubocop (= 1.36.0)
   rubocop-performance (= 1.15.0)

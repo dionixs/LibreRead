@@ -19,6 +19,7 @@ gem 'pg',                   '1.4.4'
 gem 'puma',                 '6.0.0'
 gem 'rails',                '7.0.4'
 gem 'rails-i18n',           '7.0.5'
+gem 'redis',                '4.5.0'
 gem 'rubyXL',               '3.4.25'
 gem 'rubyzip',              '2.3.2'
 gem 'sidekiq',              '6.5.6'
@@ -39,8 +40,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bundler-audit'
   gem 'brakeman'
+  gem 'bundler-audit'
   gem 'rails_best_practices'
   gem 'rails-erd'
   gem 'rubocop', '1.36.0', require: false
@@ -60,5 +61,3 @@ end
 # on a native Windows system:
 # gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Use Redis for Action Cable
-gem 'redis', '~> 4.0'
