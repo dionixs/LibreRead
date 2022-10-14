@@ -17,6 +17,7 @@ class Note < ApplicationRecord
   # TODO: Create concern
   #
   def all_tags=(titles)
+    # Add update updated_at note if tag was created
     self.tags = titles.split(',').map do |title|
       Tag.where(title: title.strip, user_id:).first_or_create!
     end
