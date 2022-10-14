@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  attr_accessor :old_password, :remember_token
+  include Avatarable
+  include Rememberable
+
+  attr_accessor :old_password
 
   before_save :set_gravatar_hash, if: :email_changed?
   before_update :check_password_changed, if: -> { password.present? }
@@ -21,34 +24,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     'valid_email_2/email': { mx: true }
 
-  def remember_me
-    self.remember_token = SecureRandom.urlsafe_base64
-    # rubocop:disable Rails/SkipsModelValidations
-    update_column :remember_token_digest, digest(remember_token)
-    # rubocop:enable Rails/SkipsModelValidations
-  end
-
-  def forget_me
-    # rubocop:disable Rails/SkipsModelValidations
-    update_column :remember_token_digest, nil
-    # rubocop:enable Rails/SkipsModelValidations
-    self.remember_token = nil
-  end
-
-  def remember_token_authenticated?(remember_token)
-    return false if remember_token_digest.blank?
-
-    BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
-  end
-
   private
-
-  def set_gravatar_hash
-    return if email.blank?
-
-    hash = Digest::MD5.hexdigest(email.strip.downcase)
-    self.gravatar_hash = hash
-  end
 
   def check_password_changed
     self.password_must_be_changed = false if password_must_be_changed == true

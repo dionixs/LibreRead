@@ -1,9 +1,10 @@
+// TODO: Refactoring
+
 import Tagify from '@yaireo/tagify'
 
 const csrfToken = document.getElementsByName("csrf-token")[0].content;
 
 const inputTags = document.getElementById("input-tags")
-const inputAllTags = document.getElementById("all-tags")
 const addNewTagForm = document.getElementById("add-new-tag-form")
 const addTagButtons = document.querySelectorAll(".add-tag");
 
@@ -41,10 +42,8 @@ addTagButtons.forEach(btn => {
 
     const import_id = btn.dataset.importId;
     const note_id = btn.dataset.noteId;
-    // let tags = btn.dataset.tags;
 
     urlParams.set('note_id', note_id);
-    // urlParams.set('tags', tags);
 
     // // Change some part of the URL params
     if (history.pushState) {
@@ -98,6 +97,5 @@ addTagButtons.forEach(btn => {
       .catch((error) => {
         console.error("Error:", error);
       });
-
   });
 });
