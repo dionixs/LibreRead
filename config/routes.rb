@@ -20,8 +20,6 @@ Rails.application.routes.draw do
       resources :notes, except: %i[new create]
     end
 
-    resources :tags, only: %i[create destroy]
-
     root 'static_pages#index'
   end
 end
