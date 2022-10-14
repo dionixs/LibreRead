@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'activerecord-import',  '1.4.0'
+gem 'activerecord-import',  '1.4.1'
 gem 'bcrypt',               '3.1.18'
 gem 'bootsnap',             '1.12.0', require: false
 gem 'caxlsx',               '3.2.0'
@@ -11,13 +11,13 @@ gem 'caxlsx_rails',         '0.6.3'
 gem 'cld',                  '0.11.0'
 gem 'cssbundling-rails',    '1.1.1'
 gem 'draper',               '4.0.2'
-gem 'haml-rails',           '2.0.1'
+gem 'haml-rails',           '2.1.0'
 gem 'jbuilder',             '2.11.5'
 gem 'jsbundling-rails',     '1.0.3'
 gem 'pagy',                 '5.10.1'
-gem 'pg',                   '1.4.3'
-gem 'puma',                 '5.6.5'
-gem 'rails',                '7.0.3'
+gem 'pg',                   '1.4.4'
+gem 'puma',                 '6.0.0'
+gem 'rails',                '7.0.4'
 gem 'rails-i18n',           '7.0.5'
 gem 'rubyXL',               '3.4.25'
 gem 'rubyzip',              '2.3.2'
@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bundler-audit'
   gem 'brakeman'
   gem 'rails_best_practices'
   gem 'rails-erd'
