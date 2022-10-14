@@ -52,6 +52,10 @@ class NotesController < ApplicationController
     @import = Import.find(params[:import_id])
   end
 
+  def find_note!
+    @note = @import.notes.find(params[:id]).decorate
+  end
+
   def find_notes!
     return @notes = @import.notes unless params[:tag]
 

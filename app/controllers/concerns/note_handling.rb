@@ -7,11 +7,6 @@ module NoteHandling
   included do
     private
 
-    # Refactoring
-    def find_note!
-      @note = @import.notes.find(params[:id]).decorate
-    end
-
     def import_notes(import, notes)
       notes = notes.each_with_object([]) do |note, array|
         note[:user_id] = current_user.id

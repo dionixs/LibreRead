@@ -4,7 +4,6 @@ module Taggable
   extend ActiveSupport::Concern
 
   included do
-
     # todo
     def self.tagged_with(title:, import_id:)
       Tag.find_by!(title:).notes.where(import_id:)

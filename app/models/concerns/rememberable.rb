@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Rememberable
   extend ActiveSupport::Concern
 
   included do
-
     attr_accessor :remember_token
 
     def remember_me

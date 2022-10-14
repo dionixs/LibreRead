@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 module Avatarable
   extend ActiveSupport::Concern
 
   included do
-
     private
 
     def set_gravatar_hash
