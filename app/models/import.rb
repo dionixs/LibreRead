@@ -2,7 +2,7 @@
 
 class Import < ApplicationRecord
   belongs_to :user
-  has_many :notes, dependent: :delete_all
+  has_many :notes, dependent: :destroy
 
   validates :filename, presence: true, length: { in: 1..200 }
   validates :mime_type, presence: true

@@ -6,6 +6,8 @@ class Note < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
+  before_destroy :delete_all_tags, prepend: true
+
   validates :title, presence: true, length: { minimum: 2 }
   validates :author, presence: true
   validates :place, presence: true
@@ -27,5 +29,11 @@ class Note < ApplicationRecord
   def self.tagged_with(title, opt)
     Tag.find_by!(title:).notes
        .where(user_id: opt[:user_id])
+  end
+
+  private
+
+  def delete_all_tags
+    tags.each(&:destroy)
   end
 end
