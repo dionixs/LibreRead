@@ -25,17 +25,21 @@ module LibreRead
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # Exceptions app
+    # config.exceptions_app = routes
+
+    # config.exceptions_app = lambda { |env|
+    #   ErrorsController.action(:show).call(env)
+    # }
+
     # I18n
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :en
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
+    # Time zone
     config.time_zone = 'Moscow'
 
+    # Eager load paths
     config.eager_load_paths += %W[
       #{config.root}/lib/parser/**
     ]
