@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  after_action :set_route_info, except: %i[create destroy]
+  after_action :set_route_info, except: %i[create destroy] # TODO
   before_action :require_no_authentication, only: %i[new create]
   before_action :require_authentication, only: :destroy
 

@@ -3,6 +3,7 @@
 class NotesController < ApplicationController
   include ActionView::RecordIdentifier
 
+  after_action :set_route_info, except: %i[show] # TODO
   before_action :require_authentication, only: %i[index show edit update destroy]
   before_action :check_pass_changed
   before_action :find_import!, only: %i[index show edit update destroy]

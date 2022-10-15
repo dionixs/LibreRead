@@ -279,7 +279,7 @@ ru:
       you_sure: 'Вы уверены?'
     modal:
       add_tags:
-        title: ''
+        title: 'Добавить теги для заметки'
         subtitle: 'Какие теги вы хотите добавить?'
     buttons:
       disable_with: 'Подождите...'

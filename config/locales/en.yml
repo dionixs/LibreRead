@@ -279,7 +279,7 @@ en:
       you_sure: 'Are you sure?'
     modal:
       add_tags:
-        title: 'Добавить теги для заметки'
+        title: 'Add Tags for note'
         subtitle: 'Which tags do you want to add?'
     buttons:
       disable_with: 'Please wait...'
