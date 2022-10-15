@@ -277,3 +277,10 @@ en:
       file: 'File'
     dialog:
       you_sure: 'Are you sure?'
+    modal:
+      add_tags:
+        title: 'Добавить теги для заметки'
+        subtitle: 'Which tags do you want to add?'
+    buttons:
+      disable_with: 'Please wait...'
+
