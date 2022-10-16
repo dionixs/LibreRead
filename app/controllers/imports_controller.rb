@@ -14,10 +14,12 @@ class ImportsController < ApplicationController
     @imports = @imports.decorate
   end
 
+  # TODO: Refactoring
   def show
     redirect_to import_notes_url(params[:id])
   end
 
+  # TODO: Refactoring
   def download
     send_data(
       @import.data,
@@ -55,7 +57,7 @@ class ImportsController < ApplicationController
     @import = Import.new
   end
 
-  # Refactoring
+  # TODO: Refactoring
   def find_import!
     @import = Import.find(params[:id] || params[:import_id])
   end
