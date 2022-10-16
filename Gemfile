@@ -32,12 +32,12 @@ group :development, :test do
   gem 'awesome_print'
   gem 'bullet'
   gem 'byebug',              '11.1.3'
-  gem "strong_migrations"
   gem 'debug',               '1.5.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails',   '6.2.0'
   gem 'faker',               '2.23.0'
   gem 'pry-rails'
   gem 'rspec-rails', '5.1.2'
+  gem 'strong_migrations'
 end
 
 group :development do
