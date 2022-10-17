@@ -6,6 +6,7 @@ class ImportsController < ApplicationController
   before_action :set_import, only: %i[new create]
   before_action :find_import!, only: %i[show download destroy]
   before_action -> { owner?(@import) }, only: %i[show destroy download]
+  before_action :set_text_file, only: %i[create]
   before_action :import_text_file, only: %i[create]
 
   def index
@@ -14,17 +15,12 @@ class ImportsController < ApplicationController
     @imports = @imports.decorate
   end
 
-  # TODO: Refactoring
   def show
     redirect_to import_notes_url(params[:id])
   end
 
-  # TODO: Refactoring
   def download
-    send_data(
-      @import.data,
-      filename: @import.filename
-    )
+    send_data(@import.data, filename: @import.filename)
   end
 
   def new; end
@@ -57,16 +53,18 @@ class ImportsController < ApplicationController
     @import = Import.new
   end
 
-  # TODO: Refactoring
   def find_import!
     @import = Import.find(params[:id] || params[:import_id])
   end
 
+  def set_text_file
+    @file = import_params[:text_file]
+  end
+
   # TODO: Refactoring
   def import_text_file
-    @file = import_params[:text_file]
     if text_file?(@file)
-      @import = new_import_text_file(@file)
+      @import = new_import(@file)
       @notes = extract_notes(@import.data)
       old_notes = saved_notes_for_current_user(current_user)
       @notes = unique_notes_for_import(@notes, old_notes)

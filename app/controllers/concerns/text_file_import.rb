@@ -36,7 +36,7 @@ module TextFileImport
         not_kindle_clipping_file(notes) || no_new_highlights(notes)
     end
 
-    def new_import_text_file(file)
+    def new_import(file)
       current_user.imports.build(
         filename: file.original_filename,
         mime_type: file.content_type,
