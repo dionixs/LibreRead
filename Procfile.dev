@@ -1,4 +1,4 @@
-web: rake db:migrate && bin/rails server -b 0.0.0.0 -p ${PORT:-3000}
+web: rake db:migrate && rails server -b 0.0.0.0 -p ${PORT:-3000}
 css: yarn build:css --watch
 js: yarn build --watch
 # worker: bundle exec sidekiq -q default
