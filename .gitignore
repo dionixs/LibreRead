@@ -80,3 +80,5 @@ config/database.yml
 .yarn
 
 .editorconfig
+
+erd.pdf
