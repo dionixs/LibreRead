@@ -169,6 +169,10 @@ ru:
       heading:
         h1: ''
         h2: 'Заметки не найдены'
+      form:
+        search:
+          btn: 'Поиск'
+          placeholder: 'Введите тег'
       btn:
         new_import: 'Новый Импорт'
     show:

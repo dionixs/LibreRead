@@ -4,6 +4,7 @@
 @import "components/_flowbite.min.css";
 
 @import "components/_tagify.css";
+@import "components/_selectize.default.css";
 @import "components/_pagination.css";
 
 @import "components/_form.css";

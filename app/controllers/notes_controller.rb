@@ -3,7 +3,7 @@
 class NotesController < ApplicationController
   include ActionView::RecordIdentifier
 
-  after_action :set_route_info, except: %i[show] # TODO
+  after_action :set_route_info, except: %i[show]
   before_action :require_authentication, only: %i[index show edit update destroy]
   before_action :check_pass_changed
   before_action :find_import!, only: %i[index show edit update destroy]
@@ -13,7 +13,6 @@ class NotesController < ApplicationController
 
   def index
     @pagy, @notes = pagy @notes.order(created_kindle_at: :asc)
-                               .where(user_id: current_user.id)
     @notes = @notes.decorate
     session[:return_to] = request.fullpath
   end
@@ -58,9 +57,9 @@ class NotesController < ApplicationController
   end
 
   def find_notes!
-    return @notes = @import.notes unless params[:tag]
+    return @notes = @import.notes.where(user_id: current_user.id) unless params[:tags]
 
-    @notes = Note.tagged_with(title: params[:tag], import_id: params[:import_id])
+    @notes = Note.tagged_with(tags: params[:tags], import_id: params[:import_id])
   end
 
   def return_to
