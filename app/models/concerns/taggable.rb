@@ -10,6 +10,7 @@ module Taggable
           .where(tags: { title: tags.split(',') })
     end
 
+    # TODO: Refactoring
     def all_tags=(titles)
       self.tags = titles.split(',').map do |title|
         Tag.where(title: title.strip, user_id:).first_or_create!
