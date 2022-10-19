@@ -10,13 +10,16 @@ module Taggable
           .where(tags: { title: tags.split(',') })
     end
 
-    def tag_list=(tags_string)
-      tag_names = tags_string.split(',').collect { |s| s.strip.downcase }.uniq
-      new_or_found_tags = tag_names.collect { |title| Tag.find_or_create_by(title:, user_id:) }
-      self.tags = new_or_found_tags
+    # TODO: Refactoring
+    def all_tags=(titles)
+      self.tags = titles.split(',').map do |title|
+        Tag.where(title: title.strip, user_id:).first_or_create!
+      end
+      # TODO
+      update(updated_at: Time.current)
     end
 
-    def tag_list
+    def all_tags
       Note.find_by(id:)&.tags&.map(&:title)&.join(',')
     end
 
