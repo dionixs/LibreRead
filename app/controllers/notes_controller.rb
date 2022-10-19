@@ -45,7 +45,7 @@ class NotesController < ApplicationController
   private
 
   def notes_params
-    params.require(:note).permit(:clipping, :all_tags)
+    params.require(:note).permit(:clipping, :tag_list)
   end
 
   def find_import!
