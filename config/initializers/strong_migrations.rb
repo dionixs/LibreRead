@@ -2,7 +2,7 @@
 
 if Rails.env.development?
   # Mark existing migrations as safe
-  StrongMigrations.start_after = 20221016065232
+  StrongMigrations.start_after = 20_221_016_065_232
 
   # Set timeouts for migrations
   # If you use PgBouncer in transaction mode, delete these lines and set timeouts on the database user

@@ -4,7 +4,6 @@ module Taggable
   extend ActiveSupport::Concern
 
   included do
-
     def self.tagged_with(tags:, import_id:)
       Note.where(import_id:).joins(:tags)
           .where(tags: { title: tags.split(',') })

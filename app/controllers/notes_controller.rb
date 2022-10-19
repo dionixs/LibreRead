@@ -59,6 +59,7 @@ class NotesController < ApplicationController
   def find_notes!
     return @notes = @import.notes.where(user_id: current_user.id) unless params[:tags]
 
+    # TODO: add scope all_by_tags
     @notes = Note.tagged_with(tags: params[:tags], import_id: params[:import_id])
   end
 
