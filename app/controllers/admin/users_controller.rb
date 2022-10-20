@@ -2,14 +2,15 @@
 
 module Admin
   class UsersController < ApplicationController
+    after_action :set_route_info, except: %i[update destroy]
     before_action :require_authentication
+    before_action :set_user!, only: %i[edit update destroy]
 
     def index
       respond_to do |format|
         format.html do
           @pagy, @users = pagy User.order(created_at: :desc)
         end
-
         format.zip { respond_with_zipped_users }
       end
     end
@@ -18,8 +19,20 @@ module Admin
       @user = User.new
     end
 
+    def edit; end
+
+    def update
+      if @user.update(admin_user_params)
+        flash[:notice] = t('.update.flash.notice')
+        redirect_to admin_users_path
+      else
+        render :edit
+      end
+    end
+
     def upload; end
 
+    # TODO: Refactoring
     def create
       if params[:archive].present?
         call_user_bulk_service
@@ -29,6 +42,12 @@ module Admin
       else
         file_not_selected
       end
+    end
+
+    def destroy
+      @user.destroy
+      flash[:notice] = t('.destroy.flash.notice')
+      redirect_to admin_users_path
     end
 
     private
@@ -59,10 +78,16 @@ module Admin
     end
 
     def admin_user_params
-      params.require(:user).permit(:email, :name, :old_password,
-                                   :password, :password_confirmation)
+      params.require(:user).permit(
+        :email, :name, :role, :admin_password, :password, :password_confirmation
+      ).merge(admin_edit: true, admin_id: current_user.id)
     end
 
+    def set_user!
+      @user = User.find(params[:id])
+    end
+
+    # TODO: Refactoring
     def create_one_user
       @user = User.new(admin_user_params)
       @user.password_must_be_changed = true

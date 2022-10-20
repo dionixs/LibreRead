@@ -17,6 +17,7 @@ en:
         password_confirmation: 'Password confirmation'
         new_password: 'New Password'
         old_password: 'Old password'
+        admin_password: 'Admin password'
       import:
         filename: 'Filename'
         mime_type: 'Mime type'
@@ -74,6 +75,7 @@ en:
           created_at: 'Created_at'
           edit: 'Edit'
           delete: 'Delete'
+          role: "Role"
       new:
         title: 'Add new user'
         heading:
@@ -104,6 +106,28 @@ en:
         alert:
           import_error: 'Import error! Check the integrity of the zip file!'
           file_not_selected: 'File not selected!'
+      edit:
+        title: "Edit user"
+        heading:
+          h1: "Edit user"
+        form:
+          btn:
+            save: "Save"
+          label:
+            password: "Password"
+            role: "Role"
+            name: "Name"
+            email: "Email"
+            password_confirmation: "Password confirmation"
+            admin_password: "Admin password"
+      update:
+        update:
+          flash:
+            notice: "Profile was successfully updated!"
+      destroy:
+        destroy:
+          flash:
+            notice: "User deleted successfully!"
 
   users:
     new:
@@ -119,6 +143,7 @@ en:
           password_confirmation: 'Confirm password'
           confirm_new_password: 'Confirm new password'
           terms: 'I accept the'
+          role: "Role"
         placeholder:
           name: 'Enter your name'
         link:
@@ -218,12 +243,12 @@ en:
   static_pages:
     index:
       heading:
-          import: 'Import your'
-          yellow: 'Kindle Highlights'
-          integrations: 'to the integrations'
-          red: 'you love'
+        import: 'Import your'
+        yellow: 'Kindle Highlights'
+        integrations: 'to the integrations'
+        red: 'you love'
       paragraph:
-          text: "LibreRead is the easy way to organise your Kindle highlights. 
+        text: "LibreRead is the easy way to organise your Kindle highlights. 
                  Spend less time note taking and more time enjoying the things you've read."
       btn: 'Get started'
 
@@ -247,7 +272,7 @@ en:
 
   footer:
     paragraph:
-          text: 'The easy way to export your Kindle notes and highlights to the integrations you love.'
+      text: 'The easy way to export your Kindle notes and highlights to the integrations you love.'
     kindle_links:
       column_name: 'Kindle Links'
       amazon_highlights_page: 'Amazon Highlights Page'
@@ -272,9 +297,9 @@ en:
   form:
     upload:
       label:
-         paragraph:
-            first: 'or drag and drop'
-            span: 'Click to upload'
+        paragraph:
+          first: 'or drag and drop'
+          span: 'Click to upload'
 
   global:
     names:
@@ -287,4 +312,9 @@ en:
         subtitle: 'Which tags do you want to add?'
     buttons:
       disable_with: 'Please wait...'
+    user:
+      roles:
+        basic: Basic
+        moderator: Moderator
+        admin: Admin
 

@@ -29,8 +29,8 @@
 #   Note.create(
 #     title: Faker::Book.title,
 #     author: Faker::Book.author,
-#     place: rand(1..10000),
-#     created_kindle_at: Time.now,
+#     place: rand(1..10_000),
+#     created_kindle_at: Time.current,
 #     clipping: Faker::Hipster.paragraph,
 #     user_id: User.first.id,
 #     import_id: Import.last.id

@@ -17,6 +17,7 @@ ru:
         password_confirmation: 'Подтверждение пароля'
         new_password: 'Новый пароль'
         old_password: 'Старый пароль'
+        admin_password: 'Пароль администратора'
       import:
         filename: 'Имя файла'
         mime_type: 'Тип файла'
@@ -74,6 +75,7 @@ ru:
           created_at: 'Создано'
           edit: 'Редактировать'
           delete: 'Удалить'
+          role: "Роль"
       new:
         title: 'Добавить нового пользователя'
         heading:
@@ -104,6 +106,28 @@ ru:
         alert:
           import_error: 'Ошибка импорта! Проверьте целостность zip-файла!'
           file_not_selected: 'Файл не выбран!'
+      edit:
+        title: "Редактировать пользователя"
+        heading:
+          h1: "Редактировать пользователя"
+        form:
+          btn:
+            save: "Сохранить"
+          label:
+            password: "Пароль"
+            role: "Роль"
+            name: "Имя"
+            email: "Email"
+            password_confirmation: "Подтверждение пароля"
+            admin_password: "Пароль администратора"
+      update:
+        update:
+          flash:
+            notice: "Профиль был успешно обновлен!"
+      destroy:
+        destroy:
+          flash:
+            notice: "Пользователь удален!"
 
   users:
     new:
@@ -119,6 +143,7 @@ ru:
           password_confirmation: 'Подтвердить пароль'
           confirm_new_password: 'Подтвердить новый пароль'
           terms: 'Я принимаю'
+          role: "Роль"
         placeholder:
           name: 'Введите ваше имя'
         link:
@@ -287,3 +312,8 @@ ru:
         subtitle: 'Какие теги вы хотите добавить?'
     buttons:
       disable_with: 'Подождите...'
+    user:
+      roles:
+        basic: Базовый
+        moderator: Модератор
+        admin: Админ

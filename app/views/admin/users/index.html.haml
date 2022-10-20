@@ -2,10 +2,8 @@
 %h1.mt-10.mb-10.text-center.text-4xl.font-extrabold.tracking-tight.leading-none.text-gray-900.md:text-5xl.lg:text-6xl.dark:text-white
   = t('admin.users.index.heading.h1')
 .text-center.mt-6
-  = link_to t('admin.users.index.btn.download'), admin_users_path(format: :zip),                                                                                                                                                      |
-    class: 'focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800' |
-  = link_to t('admin.users.index.btn.upload'), upload_new_admin_user_path,                                                                                                                                                             |
-    class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900' |
+  = link_to t('admin.users.index.btn.download'), admin_users_path(format: :zip), class: 'focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
+  = link_to t('admin.users.index.btn.upload'), upload_new_admin_user_path, class: 'focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900'
 .text-center.mt-6
   = link_to t('admin.users.index.btn.new_user'), new_admin_user_path, class: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
 .mt-10.mb-10.max-w-md.mx-auto.md:max-w-4xl.text-center
@@ -23,6 +21,8 @@
                 = t('admin.users.index.table.name')
               %th.px-6.py-2.text-xs.text-gray-500
                 = t('admin.users.index.table.email')
+              %th.px-6.py-2.text-xs.text-gray-500
+                = t('admin.users.index.table.role')
               %th.px-6.py-2.text-xs.text-gray-500
                 = t('admin.users.index.table.created_at')
               %th.px-6.py-2.text-xs.text-gray-500

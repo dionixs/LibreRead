@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'change_locale', to: 'locales#change_locale'
 
     namespace :admin do
-      resources :users, only: %i[index new create] do
+      resources :users, only: %i[index new edit update create destroy] do
         get 'upload', on: :new
       end
     end

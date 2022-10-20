@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # Mark existing migrations as safe
 StrongMigrations.start_after = 20_221_016_065_232
 
@@ -27,4 +26,3 @@ StrongMigrations.auto_analyze = true
 # Make some operations safe by default
 # See https://github.com/ankane/strong_migrations#safe-by-default
 # StrongMigrations.safe_by_default = true
-
