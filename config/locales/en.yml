@@ -160,6 +160,10 @@ en:
     update:
       flash:
         notice: 'Your profile was successfully updated!'
+    destroy:
+      destroy:
+        flash:
+          notice: "Profile deleted successfully!"
 
   sessions:
     new:
@@ -312,6 +316,7 @@ en:
         subtitle: 'Which tags do you want to add?'
     buttons:
       disable_with: 'Please wait...'
+      delete_profile: 'Delete profile'
     user:
       roles:
         basic: Basic

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  after_action :set_route_info, except: %i[create update]
+  after_action :set_route_info, except: %i[create update destroy]
   before_action :require_no_authentication, only: %i[new create]
   before_action :require_authentication, only: %i[edit update]
-  before_action :set_user!, only: %i[edit update]
+  before_action :set_user!, only: %i[edit update destroy]
 
   def new
     @user = User.new
@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = t('.destroy.flash.notice')
+    redirect_to root_path
   end
 
   private

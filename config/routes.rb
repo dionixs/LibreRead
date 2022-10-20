@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     resource :session, only: %i[new create destroy]
-    resources :users, only: %i[new create edit update]
+    resources :users, only: %i[new create edit update destroy]
 
     resources :imports, except: %i[edit update] do
       get 'download', to: 'imports#download'
