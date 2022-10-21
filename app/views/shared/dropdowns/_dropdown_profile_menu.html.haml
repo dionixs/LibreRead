@@ -11,6 +11,9 @@
         = current_user.email
     %ul.py-1{"aria-labelledby" => "user-menu-button"}
       %li
+        - if policy([:admin, :user]).index?
+          = link_to t('header.menu.profile.dropdown.users'), admin_users_path, class: 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+      %li
         / TODO: Add Dashboard
       %li
         = link_to t('header.menu.profile.dropdown.imports'), imports_url, class: 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'

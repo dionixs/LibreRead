@@ -270,6 +270,7 @@ ru:
           imports: 'Импорты'
           settings: 'Настройки'
           sign_out: 'Выход'
+          users: "Пользователи"
       btn:
         log_in: 'Войти'
         sign_up: 'Зарегистрироваться'

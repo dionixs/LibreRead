@@ -270,6 +270,7 @@ en:
           imports: 'Imports'
           settings: 'Settings'
           sign_out: 'Sign out'
+          users: "Users"
       btn:
         log_in: 'Log in'
         sign_up: 'Sign up'
