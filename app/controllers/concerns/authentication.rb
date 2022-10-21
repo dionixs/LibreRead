@@ -13,13 +13,6 @@ module Authentication
       @current_user ||= user&.decorate
     end
 
-    # TODO
-    def owner?(obj)
-      return if obj.blank?
-
-      redirect_to session[:previous_url], alert: t('flash.alert.restricted_area') unless current_user == obj.user
-    end
-
     def user_from_session
       User.find_by(id: session[:user_id])
     end
