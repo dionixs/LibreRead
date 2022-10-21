@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class LocalesController < ApplicationController
-  # TODO: Refactoring
   def change_locale
     locale = params[:locale]
     return I18n.locale unless locale_supported? params[:locale]

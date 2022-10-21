@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ImportPolicy < ApplicationPolicy
-
   def index?
     true
   end
@@ -11,6 +10,10 @@ class ImportPolicy < ApplicationPolicy
   end
 
   def create?
+    user.present?
+  end
+
+  def upload?
     user.present?
   end
 

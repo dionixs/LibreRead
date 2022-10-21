@@ -19,6 +19,8 @@ class ImportsController < ApplicationController
     redirect_to import_notes_url(params[:id])
   end
 
+  def upload; end
+
   def download
     send_data(@import.data, filename: @import.filename)
   end
