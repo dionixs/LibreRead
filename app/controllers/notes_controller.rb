@@ -9,7 +9,8 @@ class NotesController < ApplicationController
   before_action :find_import!, only: %i[index show edit update destroy]
   before_action :find_note!, only: %i[show edit update destroy]
   before_action :find_notes!, only: %i[index]
-  before_action -> { owner?(@note) }, only: %i[show edit update destroy]
+  before_action :authorize_note!
+  after_action :verify_authorized
 
   def index
     @pagy, @notes = pagy @notes.order(created_kindle_at: :asc)
@@ -61,6 +62,10 @@ class NotesController < ApplicationController
 
     # TODO: add scope all_by_tags
     @notes = Note.tagged_with(tags: params[:tags], import_id: params[:import_id])
+  end
+
+  def authorize_note!
+    authorize(@note || Note)
   end
 
   def return_to

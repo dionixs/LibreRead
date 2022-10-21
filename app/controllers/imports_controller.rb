@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 class ImportsController < ApplicationController
-  before_action :require_authentication, only: %i[index download show new create destroy]
+  before_action :require_authentication
   before_action :check_pass_changed
   before_action :set_import, only: %i[new create]
   before_action :find_import!, only: %i[show download destroy]
-  before_action -> { owner?(@import) }, only: %i[show destroy download]
+  before_action :authorize_import!
+  after_action :verify_authorized
   before_action :set_text_file, only: %i[create]
   before_action :import_text_file, only: %i[create]
 
   def index
-    @pagy, @imports = pagy Import.order(created_at: :desc)
-                                 .where(user_id: current_user.id)
+    @pagy, @imports = pagy Import.where(user_id: current_user.id).order(created_at: :desc)
     @imports = @imports.decorate
   end
 
@@ -61,8 +61,8 @@ class ImportsController < ApplicationController
     @file = import_params[:text_file]
   end
 
-  # TODO: Refactoring
   def import_text_file
+    # Add upload action (?)
     if text_file?(@file)
       @import = new_import(@file)
       @notes = extract_notes(@import.data)
@@ -70,5 +70,9 @@ class ImportsController < ApplicationController
       @notes = unique_notes_for_import(@notes, old_notes)
     end
     render 'new' if import_failed?(@file, @notes)
+  end
+
+  def authorize_import!
+    authorize(@import || Import)
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Note < ApplicationRecord
+  include Authorship
   include Taggable
 
   belongs_to :user

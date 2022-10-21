@@ -48,7 +48,7 @@ ru:
       not_kindle_clipping_file: 'Это не файл Kindle!'
       lang_not_supported: 'Язык вашего файла не поддерживается!'
       no_new_highlights: "Новых заметок не обнаружено!"
-      restricted_area: Запретная Зона
+      not_authorized: 'У вас нет прав на выполнение этого действия!'
     notice:
       welcome: "Добро пожаловать, %{name}!"
       import_complete: 'Импорт завершен!'
@@ -322,3 +322,8 @@ ru:
         basic: Базовый
         moderator: Модератор
         admin: Админ
+  dashboard:
+    index:
+      title: "Dashboard"
+      heading:
+        h1: "Dashboard"

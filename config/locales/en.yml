@@ -48,7 +48,7 @@ en:
       not_kindle_clipping_file: 'Not a Kindle clipping file!'
       lang_not_supported: 'Language of your file is not supported!'
       no_new_highlights: "No new highlights!"
-      restricted_area: Restricted Area
+      not_authorized: 'You do not have permission to perform this action!'
     notice:
       welcome: "Welcome to the app, %{name}!"
       import_complete: 'Import Complete!'
@@ -322,4 +322,9 @@ en:
         basic: Basic
         moderator: Moderator
         admin: Admin
+  dashboard:
+    index:
+      title: "Dashboard"
+      heading:
+        h1: "Dashboard"
 

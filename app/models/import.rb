@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Import < ApplicationRecord
+  include Authorship
+
   belongs_to :user
   has_many :notes, dependent: :destroy
 
