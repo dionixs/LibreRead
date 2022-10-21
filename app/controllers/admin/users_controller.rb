@@ -4,7 +4,7 @@ module Admin
   class UsersController < BaseController
     after_action :set_route_info, except: %i[update destroy]
     before_action :require_authentication
-    before_action :set_user!, only: %i[edit update destroy]
+    before_action :set_user!, only: %i[show edit update destroy]
     before_action :authorize_user!
     after_action :verify_authorized
 
@@ -16,6 +16,9 @@ module Admin
         format.zip { respond_with_zipped_users }
       end
     end
+
+    # TODO: Add view
+    def show; end
 
     def new
       @user = User.new
