@@ -330,12 +330,13 @@ en:
       heading:
         h1: "Dashboard"
       subtitle:
-        import_or_export: "Import/Export Highlights"
+        import_or_export: "Import/Export"
         convert_files: "Convert files"
       link:
         title:
           convert: "Convert your eBook files"
           import: "Import Highlights"
+          export: "Export Highlights"
         subtitle: "Popular"
 
 

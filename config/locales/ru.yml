@@ -330,12 +330,13 @@ ru:
       heading:
         h1: "Dashboard"
       subtitle:
-        import_or_export: "Импорт/Экспорт заметок"
+        import_or_export: "Импорт/Экспорт"
         convert_files: "Конвертировать файлы"
       link:
         title:
           convert: "Конвертер электронных книг"
           import: "Импорт Заметок"
+          export: "Экспортировать заметки"
         subtitle: "Популярный вариант"
 
 
