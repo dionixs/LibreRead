@@ -16,6 +16,10 @@ module Internationalization
       I18n.with_locale(locale, &)
     end
 
+    def locale_from_session
+      I18n.locale = session[:locale]
+    end
+
     # Adapted from https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb
     def locale_from_url
       locale = params[:locale]
