@@ -323,8 +323,19 @@ ru:
         basic: Базовый
         moderator: Модератор
         admin: Админ
+
   dashboard:
     index:
       title: "Dashboard"
       heading:
         h1: "Dashboard"
+      subtitle:
+        import_or_export: "Импорт/Экспорт заметок"
+        convert_files: "Конвертировать файлы"
+      link:
+        title:
+          convert: "Конвертер электронных книг"
+          import: "Импорт Заметок"
+        subtitle: "Популярный вариант"
+
+

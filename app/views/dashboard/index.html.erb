@@ -1,0 +1,49 @@
+<%= provide(:title, t('.title')) %>
+
+<h1 class="mt-10 mb-10 text-center text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+  <%= t('.heading.h1') %>
+</h1>
+
+<div class="mt-10 max-w-md mx-auto md:max-w-4xl flex justify-center">
+  <div class="p-4 w-full max-w-lg bg-white rounded-lg border shadow-md sm:p-6 dark:bg-gray-800 dark:border-gray-700">
+    <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white text-center">
+      <%= t('.subtitle.import_or_export') %>
+    </h5>
+
+    <ul class="my-4 space-y-3">
+      <li>
+        <%= link_to new_import_url, class: "flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white" do %>
+          <span class="flex-1 ml-3 whitespace-nowrap">
+            <%= t('.link.title.import') %>
+          </span>
+          <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+            <%= t('.link.subtitle') %>
+          </span>
+        <% end %>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+          <span class="flex-1 ml-3 whitespace-nowrap">
+            <%= t('.link.title.export') %>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white text-center">
+      <%= t('.subtitle.convert_files') %>
+    </h5>
+
+    <ul class="my-4 space-y-3">
+      <li>
+        <a href="#" class="flex items-center p-3 text-base font-bold text-gray-900 bg-gray-50 rounded-lg hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+         <span class="flex-1 ml-3 whitespace-nowrap">
+           <%= t('.link.title.convert') %>
+         </span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+

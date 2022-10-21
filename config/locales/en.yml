@@ -323,9 +323,19 @@ en:
         basic: Basic
         moderator: Moderator
         admin: Admin
+
   dashboard:
     index:
       title: "Dashboard"
       heading:
         h1: "Dashboard"
+      subtitle:
+        import_or_export: "Import/Export Highlights"
+        convert_files: "Convert files"
+      link:
+        title:
+          convert: "Convert your eBook files"
+          import: "Import Highlights"
+        subtitle: "Popular"
+
 

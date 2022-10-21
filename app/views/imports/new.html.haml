@@ -13,4 +13,4 @@
           #{t('form.upload.label.paragraph.first')}
         %p.text-xs.text-gray-500.dark:text-gray-400
           #{t('imports.new.form.paragraph.second')}
-      = form.file_field :text_file, multiple: false, required: true, class: "hidden", onchange: 'this.form.submit();'
+      = form.file_field :text_file, accept: 'text/plain', multiple: false, required: true, class: "hidden", onchange: 'this.form.submit();'

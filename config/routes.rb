@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'change_locale', to: 'locales#change_locale'
 
     namespace :admin do
+      # TODO: Add show
       resources :users, only: %i[index new edit update create destroy] do
         get 'upload', on: :new
       end
@@ -13,8 +14,11 @@ Rails.application.routes.draw do
     resource :session, only: %i[new create destroy]
     resources :users, only: %i[new create edit update destroy]
 
+    get 'dashboard', to: 'dashboard#index'
+
     resources :imports, except: %i[edit update] do
       get 'download', to: 'imports#download'
+      post 'upload', to: 'imports#upload'
       resources :notes, except: %i[new create]
     end
   end
