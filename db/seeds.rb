@@ -6,39 +6,43 @@
 #   u.save
 # end
 
+# Password
+password = 'P@ssw0rd$1'
+
+# Create admin
+User.create(
+  email: 'admin@mail.com',
+  name: Faker::Name.name,
+  role: 'admin',
+  password:,
+  password_confirmation: password
+)
+
 # Create users
-# password = 'P@ssw0rd$1'
-#
-# 10.times do
-#   User.create email: Faker::Internet.email,
-#               name: Faker::Name.name,
-#               password:,
-#               password_confirmation: password
-# end
+10.times do
+  User.create email: Faker::Internet.email,
+              name: Faker::Name.name,
+              password:,
+              password_confirmation: password
+end
 
 # Create import
-# Import.create(
-#   filename: 'My Clippings.txt',
-#   mime_type: 'text/plain',
-#   data: Faker::Hipster.paragraph,
-#   user_id: User.first.id
-# )
+Import.create(
+  filename: 'My Clippings.txt',
+  mime_type: 'text/plain',
+  data: Faker::Hipster.paragraph,
+  user_id: User.first.id
+)
 
 # Create notes
-# 30.times do
-#   Note.create(
-#     title: Faker::Book.title,
-#     author: Faker::Book.author,
-#     place: rand(1..10_000),
-#     created_kindle_at: Time.current,
-#     clipping: Faker::Hipster.paragraph,
-#     user_id: User.first.id,
-#     import_id: Import.last.id
-#   )
-# end
-
-# Create tags
-# 5.times do
-#   title = Faker::Hipster.word
-#   Note.first.tags.create(title:, user_id: User.last.id)
-# end
+30.times do
+  Note.create(
+    title: Faker::Book.title,
+    author: Faker::Book.author,
+    place: rand(1..10_000),
+    created_kindle_at: Time.current,
+    clipping: Faker::Hipster.paragraph,
+    user_id: User.first.id,
+    import_id: Import.last.id
+  )
+end
