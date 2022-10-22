@@ -9,6 +9,7 @@ class User < ApplicationRecord
   attr_accessor :admin_edit, :admin_id, :admin_password
 
   enum role: { admin: 'admin', moderator: 'moderator', basic: 'basic' }, _suffix: :role
+  enum status: { active: 'active', banned: 'banned' }, _suffix: :status
 
   before_save :set_gravatar_hash, if: :email_changed?
   before_update :check_password_changed, if: -> { password.present? }

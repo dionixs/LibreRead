@@ -76,6 +76,7 @@ en:
           edit: 'Edit'
           delete: 'Delete'
           role: "Role"
+          status: "Status"
       new:
         title: 'Add new user'
         heading:
@@ -120,6 +121,7 @@ en:
             email: "Email"
             password_confirmation: "Password confirmation"
             admin_password: "Admin password"
+            status: "Status"
       update:
         update:
           flash:
@@ -323,6 +325,9 @@ en:
         basic: Basic
         moderator: Moderator
         admin: Admin
+      statuses:
+        active: Active
+        banned: Banned
 
   dashboard:
     index:

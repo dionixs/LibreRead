@@ -76,6 +76,7 @@ ru:
           edit: 'Редактировать'
           delete: 'Удалить'
           role: "Роль"
+          status: "Статус"
       new:
         title: 'Добавить нового пользователя'
         heading:
@@ -120,6 +121,7 @@ ru:
             email: "Email"
             password_confirmation: "Подтверждение пароля"
             admin_password: "Пароль администратора"
+            status: "Статус"
       update:
         update:
           flash:
@@ -323,6 +325,9 @@ ru:
         basic: Базовый
         moderator: Модератор
         admin: Админ
+      statuses:
+        active: Активный
+        banned: Забаненный
 
   dashboard:
     index:

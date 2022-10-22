@@ -7,5 +7,11 @@ module Admin
         [t(role, scope: 'global.user.roles'), role]
       end
     end
+
+    def user_statuses
+      User.statuses.keys.map do |status|
+        [t(status, scope: 'global.user.statuses'), status]
+      end
+    end
   end
 end
