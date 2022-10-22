@@ -32,4 +32,7 @@ class User < ApplicationRecord
                     'valid_email_2/email': { mx: true }
   validates :role, presence: true
   validates :status, presence: true
+
+  alias active? active_status?
+  alias banned? banned_status?
 end
