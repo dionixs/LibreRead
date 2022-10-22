@@ -20,6 +20,6 @@ class NotePolicy < ApplicationPolicy
   private
 
   def access_allowed?
-    user.admin_role? || user.moderator_role? || user.author?(record)
+    user.admin_role? || user.moderator_role? || (user.active? && user.author?(record))
   end
 end

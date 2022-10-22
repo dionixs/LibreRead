@@ -10,11 +10,11 @@ class ImportPolicy < ApplicationPolicy
   end
 
   def create?
-    user.present?
+    access_allowed?
   end
 
   def upload?
-    user.present?
+    access_allowed?
   end
 
   def download?
@@ -28,6 +28,6 @@ class ImportPolicy < ApplicationPolicy
   private
 
   def access_allowed?
-    user.admin_role? || user.moderator_role? || user.author?(record)
+    user.admin_role? || user.moderator_role? || (user.active? && user.author?(record))
   end
 end
