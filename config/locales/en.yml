@@ -49,6 +49,7 @@ en:
       lang_not_supported: 'Language of your file is not supported!'
       no_new_highlights: "No new highlights!"
       not_authorized: 'You do not have permission to perform this action!'
+      you_are_banned: "You are blocked for violating site rules!"
     notice:
       welcome: "Welcome to the app, %{name}!"
       import_complete: 'Import Complete!'
