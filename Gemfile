@@ -44,6 +44,7 @@ end
 group :development do
   gem 'brakeman'
   gem 'bundler-audit'
+  gem "letter_opener"
   gem 'rails_best_practices'
   gem 'rails-erd'
   gem 'rubocop', '1.36.0', require: false
