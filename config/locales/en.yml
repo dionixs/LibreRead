@@ -178,9 +178,13 @@ en:
           password: 'Your password'
           remember_me: 'Remember me'
         paragraph:
-          text: 'New to LibreRead?'
+          text:
+            reset: "Forgot password?"
+            signup: "New to LibreRead?"
         btn: 'Log in'
-        link: 'Create an account'
+        link:
+          reset: "Reset password"
+          signup: "Sign up"
     create:
       flash:
         alert: 'Incorrect email and/or password!'
@@ -344,5 +348,17 @@ en:
           import: "Import Highlights"
           export: "Export Highlights"
         subtitle: "Popular"
+  password_resets:
+    new:
+      heading:
+        h1: "Reset Password"
+      form:
+        label:
+          email: "Email"
+        btn: "Reset password"
+        back: "Back to Sign in"
+  password_reset_mailer:
+    reset_email:
+      subject: "Password reset | LibreRead"
 
 

@@ -1,0 +1,17 @@
+- provide(:title, t('sessions.new.title'))
+
+%section
+  .flex.flex-col.items-center.px-6.py-8.pt-20
+    .w-full.shadow.md:mt-0.sm:max-w-md.xl:p-0
+      .p-6.space-y-4.md:space-y-6.sm:p-8
+        %h1.text-center.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
+          = t('.heading.h1')
+          = form_with url: password_reset_path, class: 'space-y-4 md:space-y-6 text-left' do |form|
+            %div
+              = form.label :email, t('.form.label.email'), class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+              = form.email_field :email, value: params[:email], class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', placeholder: 'name@mail.com', required: true
+            = form.submit t('.form.btn'), class: 'w-full items-center py-2.5 px-4 text-xs font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800'
+            %p.text-sm.font-light.text-gray-500.dark:text-gray-400
+              = link_to t('.form.back'), new_session_path, class: 'font-medium text-primary-600 hover:underline dark:text-primary-500'
+
+

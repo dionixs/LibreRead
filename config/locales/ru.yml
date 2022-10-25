@@ -178,9 +178,13 @@ ru:
           password: 'Ваш пароль'
           remember_me: 'Запомнить меня'
         paragraph:
-          text: 'У вас нет аккаунта на LibreRead?'
+          text:
+            reset: "Забыли пароль?"
+            signup: "У вас нет аккаунта на LibreRead?"
         btn: 'Войти'
-        link: 'Зарегистрироваться'
+        link:
+          reset: "Сбросить пароль"
+          signup: "Зарегистрироваться"
     create:
       flash:
         alert: 'Неверный адрес электронной почты или пароль!'
@@ -344,5 +348,18 @@ ru:
           import: "Импорт Заметок"
           export: "Экспортировать заметки"
         subtitle: "Популярный вариант"
+
+  password_resets:
+    new:
+      heading:
+        h1: "Сбросить пароль"
+      form:
+        label:
+          email: "Email"
+        btn: "Сбросить пароль"
+        back: "Назад к странице регистрации"
+  password_reset_mailer:
+    reset_email:
+      subject: "Сбросить пароль | LibreRead"
 
 
