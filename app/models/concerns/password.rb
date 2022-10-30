@@ -5,22 +5,14 @@ module Password
 
   # rubocop:disable Metrics/BlockLength
   included do
+    include Digestible
+
     attr_accessor :old_password
 
     private
 
     def check_password_changed
       self.password_must_be_changed = false if password_must_be_changed == true
-    end
-
-    def digest(string)
-      cost = if ActiveModel::SecurePassword
-                .min_cost
-               BCrypt::Engine::MIN_COST
-             else
-               BCrypt::Engine.cost
-             end
-      BCrypt::Password.create(string, cost:)
     end
 
     def correct_admin_password

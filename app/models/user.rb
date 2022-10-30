@@ -4,6 +4,7 @@ class User < ApplicationRecord
   include Accessible
   include Avatarable
   include Rememberable
+  include Recoverable
   include Password
 
   attr_accessor :admin_edit, :admin_id, :admin_password
