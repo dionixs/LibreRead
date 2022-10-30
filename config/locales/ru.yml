@@ -358,6 +358,8 @@ ru:
           email: "Email"
         btn: "Сбросить пароль"
         back: "Назад к странице регистрации"
+    create:
+      success: "Инструкции по сбросу пароля были отправлены на ваш адрес электронной почты."
   password_reset_mailer:
     reset_email:
       subject: "Сбросить пароль | LibreRead"

@@ -357,6 +357,8 @@ en:
           email: "Email"
         btn: "Reset password"
         back: "Back to Sign in"
+    create:
+      success: "Password reset instructions were sent to your email address."
   password_reset_mailer:
     reset_email:
       subject: "Password reset | LibreRead"
