@@ -7,7 +7,7 @@ module Password
   included do
     include Digestible
 
-    attr_accessor :old_password
+    attr_accessor :old_password, :skip_password_edit
 
     private
 
@@ -24,6 +24,8 @@ module Password
 
     def correct_old_password
       return if correct_password?(password_digest_was, old_password)
+
+      return errors.add(:old_password, :blank) if old_password.blank?
 
       errors.add :old_password, I18n.t('activerecord.errors.messages.is_incorrect')
     end

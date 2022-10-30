@@ -1,0 +1,19 @@
+- provide(:title, t('.title'))
+
+%section
+  .flex.flex-col.items-center.px-6.py-8.pt-20
+    .w-full.shadow.md:mt-0.sm:max-w-md.xl:p-0
+      .p-6.space-y-4.md:space-y-6.sm:p-8
+        %h1.text-center.text-xl.font-bold.leading-tight.tracking-tight.text-gray-900.md:text-2xl.dark:text-white
+          = t('.heading')
+        = render 'shared/errors', object: @user
+        = form_with model: @user, url: password_reset_path, method: :patch, class: 'space-y-4 md:space-y-6' do |form|
+          = form.hidden_field :password_reset_token, value: @user.password_reset_token
+          = form.hidden_field :email, value: @user.email
+          %div
+            = form.label :password, t('.form.label.password'), class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+            = form.password_field :password, id: 'password', placeholder: '••••••••', class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required: true
+          %div
+            = form.label :password_confirmation, t('.form.label.password_confirmation'), class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+            = form.password_field :password_confirmation, id: 'password', placeholder: '••••••••', class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required: true
+          = form.submit t('.form.btn'), class: 'w-full items-center py-2.5 px-4 text-xs font-medium text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800'

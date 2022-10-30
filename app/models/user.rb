@@ -21,10 +21,10 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
-  validates :admin_password, presence: true, if: -> { admin_edit }
+  validates :admin_password, presence: true, if: -> { admin_edit && !skip_password_edit }
   validate :correct_admin_password, on: :update, if: -> { admin_password.present? }
   validate :password_presence
-  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit }
+  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit && !skip_password_edit }
   validates :password, confirmation: true, allow_blank: true,
                        length: { minimum: 8, maximum: 70 }
   validate :password_complexity

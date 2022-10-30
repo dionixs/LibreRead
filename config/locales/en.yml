@@ -359,6 +359,18 @@ en:
         back: "Back to Sign in"
     create:
       success: "Password reset instructions were sent to your email address."
+    edit:
+      fail: "Could not reset your password..."
+      title: "Enter a new password"
+      heading: "Enter a new password"
+      form:
+        label:
+          password_confirmation: "Password confirmation"
+          password: "Password"
+        btn: "Reset my password!"
+    update:
+      success: 'Your password was reset!'
+      fail: "Could not reset your password..."
   password_reset_mailer:
     reset_email:
       subject: "Password reset | LibreRead"
