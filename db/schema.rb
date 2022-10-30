@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_055842) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_30_114759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,9 +76,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_055842) do
     t.string "gravatar_hash"
     t.enum "role", default: "basic", null: false, enum_type: "user_role"
     t.enum "status", default: "active", null: false, enum_type: "user_status"
+    t.string "password_reset_token"
+    t.datetime "password_reset_token_sent_at"
     t.index "lower((email)::text)", name: "user_lower_email_idx", unique: true
     t.index ["created_at"], name: "index_users_on_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["password_reset_token"], name: "index_users_on_password_reset_token"
     t.index ["role"], name: "index_users_on_role"
     t.index ["status"], name: "index_users_on_status"
   end
