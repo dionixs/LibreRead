@@ -12,6 +12,7 @@ gem 'caxlsx_rails',         '0.6.3'
 gem 'cld',                  '0.11.0'
 gem 'cssbundling-rails',    '1.1.1'
 gem 'draper',               '4.0.2'
+gem 'faker',                '2.23.0'
 gem 'haml-rails',           '2.1.0'
 gem 'jsbundling-rails',     '1.0.3'
 gem 'pagy',                 '5.10.1'
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'byebug',              '11.1.3'
   gem 'debug',               '1.5.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails',   '6.2.0'
-  gem 'faker',               '2.23.0'
   gem 'pry-rails'
   gem 'rspec-rails', '5.1.2'
 end
