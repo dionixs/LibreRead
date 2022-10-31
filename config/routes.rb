@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
+class AdminConstraint
+  def matches?(request)
+    user_id = request.session[:user_id] || request.cookie_jar.encrypted[:user_id]
+
+    User.find_by(id: user_id)&.admin_role?
+  end
+end
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
+
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     get 'change_locale', to: 'locales#change_locale'
 
