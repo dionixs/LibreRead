@@ -60,8 +60,18 @@ ru:
         note: "%{name} успешна удалена!"
 
   admin:
+    user_mailer:
+      bulk_import_done:
+        subject: Импорт пользователей завершён | AskIt
+      bulk_import_fail:
+        subject: Импорт пользователей не удался | AskIt
+      bulk_export_done:
+        subject: Экспорт пользователей завершён | AskIt
+      bulk_export_fail:
+        subject: "Не удалось экспортировать файл!"
     users:
       index:
+        success: Вы получите электронное письмо, как только эта операция будет завершена.
         title: 'Список пользователей'
         heading:
           h1: 'Список пользователей'

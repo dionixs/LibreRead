@@ -6,6 +6,10 @@ module Admin
       user.admin_role?
     end
 
+    def upload?
+      user.admin_role?
+    end
+
     def update?
       user.admin_role?
     end

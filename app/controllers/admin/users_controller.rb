@@ -13,7 +13,12 @@ module Admin
         format.html do
           @pagy, @users = pagy User.order(created_at: :desc)
         end
-        format.zip { respond_with_zipped_users }
+
+        format.zip do
+          UserBulkExportJob.perform_later current_user
+          flash[:notice] = t '.success'
+          redirect_to admin_users_path
+        end
       end
     end
 
@@ -37,7 +42,6 @@ module Admin
 
     def upload; end
 
-    # TODO: Refactoring
     def create
       if params[:archive].present?
         call_user_bulk_service
@@ -57,29 +61,19 @@ module Admin
 
     private
 
-    # TODO: Refactoring
-    def respond_with_zipped_users
-      compressed_filestream = Zip::OutputStream.write_buffer do |zos|
-        User.order(created_at: :desc).each do |user|
-          zos.put_next_entry "user_#{user.id}.xlsx"
-          zos.print render_to_string(layout: false, handlers: [:axlsx],
-                                     formats: [:xlsx], template: 'admin/users/user',
-                                     locals: { user: })
-        end
-      end
-
-      compressed_filestream.rewind
-      send_data compressed_filestream.read, filename: 'users.zip'
-    end
-
     def call_user_bulk_service
       return if not_zip_file(params[:archive])
 
-      if UserBulkService.call params[:archive]
-        flash[:notice] = t('admin.users.create.notice.import_users')
-      else
-        flash[:alert] = t('admin.users.create.alert.import_error')
-      end
+      UserBulkImportJob.perform_later create_blob, current_user
+      flash[:notice] = t('admin.users.create.notice.import_users')
+    end
+
+    def create_blob
+      file = File.open params[:archive]
+      result = ActiveStorage::Blob.create_and_upload! io: file,
+                                                      filename: params[:archive].original_filename
+      file.close
+      result.key
     end
 
     def admin_user_params
@@ -97,7 +91,6 @@ module Admin
       authorize(@user || User)
     end
 
-    # TODO: Refactoring
     def create_one_user
       @user = User.new(admin_user_params)
       @user.password_must_be_changed = true

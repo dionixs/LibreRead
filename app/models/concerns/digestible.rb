@@ -4,7 +4,6 @@ module Digestible
   extend ActiveSupport::Concern
 
   included do
-
     private
 
     def digest(string)

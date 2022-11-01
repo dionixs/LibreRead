@@ -60,8 +60,18 @@ en:
         note: "%{name} successfully deleted!"
 
   admin:
+    user_mailer:
+      bulk_import_done:
+        subject: User import done | AskIt
+      bulk_import_fail:
+        subject: User import failed | AskIt
+      bulk_export_done:
+        subject: User export done | AskIt
+      bulk_export_fail:
+        subject: "Export failed!"
     users:
       index:
+        success: You'll get an email once this operation is done
         title: 'List of users'
         heading:
           h1: 'List of users'
