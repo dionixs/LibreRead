@@ -4,13 +4,13 @@ class SessionsController < ApplicationController
   after_action :set_route_info, except: %i[create destroy]
   before_action :require_no_authentication, only: %i[new create]
   before_action :require_authentication, only: :destroy
+  before_action :set_user, only: :create
 
   def new; end
 
   def create
-    user = User.find_by email: params[:email]
-    if user&.authenticate(params[:password])
-      do_sign_in(user)
+    if @user&.authenticate(user_params[:password])
+      do_sign_in(@user)
     else
       flash.now[:alert] = t('.create.flash.alert')
       render :new
@@ -24,6 +24,14 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.permit(:email, :password)
+  end
+
+  def set_user
+    @user = User.find_by email: user_params[:email]
+  end
 
   def do_sign_in(user)
     sign_in(user)
