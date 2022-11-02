@@ -13,7 +13,7 @@ class NotesController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @pagy, @notes = pagy @notes.order(created_kindle_at: :asc)
+    @pagy, @notes = pagy @notes.order(created_kindle_at: :asc).load_async
     @notes = @notes.decorate
     session[:return_to] = request.fullpath
   end
@@ -58,7 +58,7 @@ class NotesController < ApplicationController
   end
 
   def find_notes!
-    return @notes = @import.notes.where(user_id: current_user.id) unless params[:tags]
+    return @notes = @import.notes.where(user_id: current_user.id).load_async unless params[:tags]
 
     # TODO: add scope all_by_tags
     @notes = Note.tagged_with(tags: params[:tags], import_id: params[:import_id])

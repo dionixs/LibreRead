@@ -7,6 +7,7 @@ module Taggable
     def self.tagged_with(tags:, import_id:)
       Note.where(import_id:).joins(:tags)
           .where(tags: { title: tags.split(',') })
+          .load_async
     end
 
     def all_tags=(titles)
