@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   def destroy
     flash[:notice] = t('.destroy.flash.alert')
     sign_out
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 
   private

@@ -40,7 +40,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     flash[:notice] = t('flash.notice.successfully_deleted.note', name: t('activerecord.models.note'))
-    redirect_to import_notes_path(params[:import_id])
+    redirect_to import_notes_path(params[:import_id]), status: :see_other
   end
 
   private

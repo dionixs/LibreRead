@@ -56,7 +56,7 @@ module Admin
     def destroy
       @user.destroy
       flash[:notice] = t('.destroy.flash.notice')
-      redirect_to admin_users_path
+      redirect_to admin_users_path, status: :see_other
     end
 
     private

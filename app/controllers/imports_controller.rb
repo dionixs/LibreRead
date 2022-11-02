@@ -42,7 +42,8 @@ class ImportsController < ApplicationController
     redirect_to imports_path,
                 notice: t('flash.notice.successfully_deleted.import',
                           name: t('global.names.file'),
-                          filename: filename.to_s)
+                          filename: filename.to_s),
+                status: :see_other
   end
 
   private

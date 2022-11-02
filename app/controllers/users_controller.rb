@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     flash[:notice] = t('.destroy.flash.notice')
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 
   private
