@@ -343,6 +343,8 @@ en:
       statuses:
         active: Active
         banned: Banned
+    errors:
+      invalid_format: "is not an email"
 
   dashboard:
     index:

@@ -343,6 +343,8 @@ ru:
       statuses:
         active: Активный
         banned: Забаненный
+    errors:
+      invalid_format: "это не email"
 
   dashboard:
     index:

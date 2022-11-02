@@ -29,7 +29,7 @@ gem 'slim-rails',           '3.5.1'
 gem 'sprockets-rails',      '3.4.2'
 gem 'strong_migrations',    '1.3.2'
 gem 'turbo-rails',          '1.3.0'
-gem 'valid_email2',         '4.0.4'
+# gem 'valid_email2',         '4.0.4'
 
 group :development, :test do
   gem 'awesome_print'
