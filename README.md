@@ -1,24 +1,47 @@
-# README
+# LibreRead
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is Web App for Import Kindle Highlights. 
 
-Things you may want to cover:
+## License
 
-* Ruby version
+Code released under MIT license. 
+See [LICENSE](LICENSE) for details.
 
-* System dependencies
+## System dependencies
+- ruby-3.1.2
+- node 18.12.0
+- yarn 3.2.4
+- redis 7.0.5
+- postgres 14.5
 
-* Configuration
+## Getting started
 
-* Database creation
+To get started with the app, clone the repo and then install the needed gems:
 
-* Database initialization
+```
+$ gem install bundler -v 2.3.22
+$ bundle _2.3.22_ config set --local without 'production'
+$ bundle _2.3.22_ install
+$ yarn install
+```
 
-* How to run the test suite
+Create the file config/database.yml like config/database.example.yml.
 
-* Services (job queues, cache servers, search engines, etc.)
+Create the database:
 
-* Deployment instructions
+```
+$ rails db:create
+```
 
-* ...
+Next, migrate and seed a database:
+
+```
+$ rails db:migrate
+$ rails db:seed
+```
+
+Run the app in a local server:
+
+```
+$ ./bin/dev
+```
