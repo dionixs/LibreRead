@@ -128,7 +128,7 @@ class ClippingsParser
   def get_clipping(unit)
     return if unit.nil?
 
-    unit[2].strip
+    unit[2]&.strip
   end
 
   def split_details(unit)
